@@ -7,7 +7,9 @@ Release:	0.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+# Source0-md5:	c24a483b65cae773107a442026744f7f
+Source1:	%{name}_plugins-20010604.tar
+# Source1-md5:	f6fe02b37f25518e92fc64a56115afbd
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
