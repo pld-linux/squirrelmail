@@ -38,12 +38,66 @@ przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
 # List of usefull plugins (ONLY usefull one should be here)
 for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
 	addgraphics*tar.gz attachment_common*tar.gz vacation*tar.gz \
-	squirrelspell*tar.gz sqclock*tar.gz retrieveuserdata*tar.gz \
+	sqclock*tar.gz retrieveuserdata*tar.gz squirrelspell*tar.gz \
 	quicksave*tar.gz printer_friendly*tar.gz password_forget*tar.gz \
 	newmail*tar.gz motd*tar.gz mail_fwd*tar.gz mail_fetch*tar.gz \
 	gzip*tar.gz fortune*tar.gz auto_cc*tar.gz; do
 		tar xfvz $i -C plugins
 done
+
+%package ispell
+Summary:        A squirreel interface to ispel
+Summary(pl):    Wiewórczy inerfejs do ispela 
+Group:          Applications/Mail
+Group(de):      Applikationen/Post
+Group(pl):      Aplikacje/Poczta
+Group(pt):      Aplicações/Correio Eletrônico
+#Source0:        http://prdownloads.sf.net/squirrelmail/%{name}-%{ver}-%{rcver}.tar.bz2
+#Source1:        http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+#Patch0:         %{name}-setlocale.patch
+URL:            http://www.squirrelmail.org/
+Requires:       ispell
+Requires:       squirrelmail
+Provides:       webmail-spellcheck
+Buildarch:      noarch
+
+%description ispell
+This package contains a interface to ispell and it allows you to check mail 
+against typos and common mistakes 
+
+%description -l pl ispell
+Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziæ pocztê pod k±tem 
+¼le wpisanych s³ów i ortografi. 
+
+%files ispell
+%defattr(644,root,root,755)
+/home/httpd/html/squirrel/plugins/squirrelspell
+
+%package  	mailfetch
+Summary:        A squirrel pop3 plug-in
+Summary(pl):    Wiewiórczy plug-in pop3
+Group:          Applications/Mail
+Group(de):      Applikationen/Post
+Group(pl):      Aplikacje/Poczta
+Group(pt):      Aplicações/Correio Eletrônico
+#Source0:        http://prdownloads.sf.net/squirrelmail/%{name}-%{ver}-%{rcver}.tar.bz2
+#Source1:        http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+#Patch0:         %{name}-setlocale.patch
+URL:            http://www.squirrelmail.org/
+Requires:       squirrelmail
+Buildarch:      noarch
+
+%description mailfetch
+This package contains a interface to pop3 serwers, it allows you to fetch mail
+from this kind of serwers. 
+
+%description -l pl ispell
+Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich pocztê  
+za pomoc± us³ugi pop3.
+
+%files mailfetch
+%defattr(644,root,root,755)
+/home/httpd/html/squirrel/plugins/mail_fetch
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -80,7 +134,26 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) /home/httpd/html/squirrel/help/ru
 %lang(sv) /home/httpd/html/squirrel/help/sv
 /home/httpd/html/squirrel/images
-/home/httpd/html/squirrel/plugins
+/home/httpd/html/squirrel/plugins/README.plugins
+/home/httpd/html/squirrel/plugins/abook_take
+/home/httpd/html/squirrel/plugins/addgraphics
+/home/httpd/html/squirrel/plugins/attachment_common
+/home/httpd/html/squirrel/plugins/auto_cc
+/home/httpd/html/squirrel/plugins/change_pass
+/home/httpd/html/squirrel/plugins/fortune
+/home/httpd/html/squirrel/plugins/gzip
+/home/httpd/html/squirrel/plugins/index.php
+/home/httpd/html/squirrel/plugins/mail_fwd
+/home/httpd/html/squirrel/plugins/make_archive.pl
+/home/httpd/html/squirrel/plugins/motd
+/home/httpd/html/squirrel/plugins/newmail
+/home/httpd/html/squirrel/plugins/password_forget
+/home/httpd/html/squirrel/plugins/printer_friendly
+/home/httpd/html/squirrel/plugins/quicksave
+/home/httpd/html/squirrel/plugins/retrieveuserdata
+/home/httpd/html/squirrel/plugins/sqclock
+/home/httpd/html/squirrel/plugins/username
+/home/httpd/html/squirrel/plugins/vacation
 /home/httpd/html/squirrel/src
 /home/httpd/html/squirrel/themes
 /home/httpd/html/squirrel/locale/index.php
