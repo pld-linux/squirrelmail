@@ -7,8 +7,11 @@ Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
+# Source0-md5:	179e66ab0c7c5c3af013bb9425c0c66a
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+# Source1-md5:	f6fe02b37f25518e92fc64a56115afbd
 Source2:	http://www.squirrelmail.org/plugins/change_pass-1.5-1.2.8.tar.gz
+# Source2-md5:	bd796aab63ced6eb70110e16394d02cb
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
@@ -18,11 +21,11 @@ Patch5:		%{name}-gzip.patch
 Patch6:		%{name}-mail_fwd.patch
 Patch7:		%{name}-username.patch
 URL:		http://www.squirrelmail.org/
-Requires:	webserver
 Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
+Requires:	webserver
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -157,9 +160,8 @@ cd -
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
-	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
+	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
