@@ -6,23 +6,20 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.4
-%define		_rc	rc1
-Release:	0.%{_rc}.1
+Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	b17478106aab5abc6cfd824fffd310f0
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
+# Source0-md5:	285b42bec8967b88ef3c083fcad18634
 Source1:	%{name}_plugins-20050108.tar
-# Source1-md5:	03414c43cfceb3e187e7968e22736aa2
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
 #%define		_change_passwd_version	4.0
 #Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
-%define		_all_locales_date	20050101
-Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}%{_rc}-%{_all_locales_date}.tar.bz2
-# Source4-md5:	be100dee9f443c28fa3934a64548c118
+%define		_all_locales_date	20050122
+Source4:	http://mesh.dl.sourceforge.net/sourceforge/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
+# Source4-md5:	ec7f97d77c706135571732ac7accf961
 Source5:	%{name}.conf
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
@@ -153,7 +150,7 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
 #%setup -q -a1
-%setup -q -a1 -n %{name}-%{version}-%{_rc}
+%setup -q -a1 -n %{name}-%{version}
 
 # List of useful plugins (ONLY useful ones should be here)
 for i in addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
@@ -298,7 +295,7 @@ fi
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
-%lang(th) %{_squirreldir}/help/th_TH
+#%lang(th) %{_squirreldir}/help/th_TH
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
@@ -341,7 +338,7 @@ fi
 %lang(sv) %{_squirreldir}/locale/sv_SE
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
-%lang(th) %{_squirreldir}/locale/th_TH
+#%lang(th) %{_squirreldir}/locale/th_TH
 %lang(tr) %{_squirreldir}/locale/tr_TR
 #%lang(uk) %{_squirreldir}/locale/uk_UA
 #%lang(vi) %{_squirreldir}/locale/vi_VN
@@ -386,6 +383,15 @@ fi
 %doc plugins/change_pass/README
 %dir %{_squirreldir}/plugins/change_pass
 %{_squirreldir}/plugins/change_pass/*.php
+%lang(bg) %{_squirreldir}/plugins/change_pass/locale/bg_BG
+%lang(de) %{_squirreldir}/plugins/change_pass/locale/de_DE
+%lang(es) %{_squirreldir}/plugins/change_pass/locale/es_ES
+%lang(fr) %{_squirreldir}/plugins/change_pass/locale/fr_FR
+%lang(ja) %{_squirreldir}/plugins/change_pass/locale/ja_JP
+%lang(lt) %{_squirreldir}/plugins/change_pass/locale/lt_LT
+%lang(pl) %{_squirreldir}/plugins/change_pass/locale/pl_PL
+%lang(pt_BR) %{_squirreldir}/plugins/change_pass/locale/pt_BR
+%lang(pt) %{_squirreldir}/plugins/change_pass/locale/pt_PT
 
 %files ispell
 %defattr(644,root,root,755)
