@@ -1,0 +1,14 @@
+--- sqspell_config.dist~	Sat Jul 21 20:58:26 2001
++++ sqspell_config.dist		Sat Jul 21 21:01:51 2001
+@@ -38,7 +38,10 @@
+    Whatever your setting is, don't omit the "-a" flag.
+ 
+ 								**/
+-$SQSPELL_APP = array("English" => "ispell -a");
++$SQSPELL_APP = array(
++	"English" => "ispell -a",
++	"Polski" => "ispell -d polish -a"
++		);
+ 
+ /**
+    DEFAULT DICTIONARY
