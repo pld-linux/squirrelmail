@@ -1,5 +1,6 @@
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
+Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.7
 Release:	1
@@ -20,12 +21,32 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
-you check mail by any cookie-aware WWW browser. Squirrel supports many
-languages: Polish, Russian, German:
+you check mail by any cookie-aware WWW browser. It includes built-in
+pure PHP support for the IMAP and SMTP protocols, and all pages render
+in pure HTML 4.0 (with no Javascript) for maximum compatibility across
+browsers. It has very few requirements and is very easy to configure
+and install. SquirrelMail has a all the functionality you would want
+from an email client, including strong MIME support, address books,
+and folder manipulation.
 
 %description -l pl
 Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
-przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
+przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW. Pakiet u¿ywa
+wbudoewanego w PHP wsparcia do protoko³w IMAP i SMTP, a serwowane
+strony u¿ywaj± tylko HTML 4.0 (bez Javascript) po to ¿eby udostêpniaæ
+zasoby na mo¿liwie du¿± ilo¶æ typó³ pzregl±darek http. Pakiet jest
+³atwy w instalacji i konfigurowaniu, a tak¿e ma wszystkie obecnie
+wymagane cechy dobrego klienta pocztowego jak wsparcie do MIME,
+ksia¿ka adresowa i wsparcie do pzrechowywaniu listów w folderach.
+
+%description -l pt_BR
+O SquirrelMail é um webmail baseado. Ele inclui suporte em PHP puro
+para os protocolos IMAP e SMTP e todas as páginas são montadas em puro
+HTML 4.0 (sem nenhum Javascript) para máxima compatibilidade entre
+navegadores. Ele possui poucas exigências e é muito fácil de se
+configurar e instalar. O SquirrelMail possui todas as funcionalidades
+que você poderia desejar em um cliente de e-mail, incluindo um forte
+suporte a MIME, livros de endereços e manipulação de pastas.
 
 %package ispell
 Summary:	A squirreel interface to ispel
