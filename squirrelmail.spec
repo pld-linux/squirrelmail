@@ -423,10 +423,12 @@ fi
 %files mailfetch
 %defattr(644,root,root,755)
 %doc plugins/mail_fetch/README
+%dir %{_squirreldir}/plugins/mail_fetch
 %{_squirreldir}/plugins/mail_fetch/*.php
 
 %files newmail
 %defattr(644,root,root,755)
 %doc plugins/newmail/{HISTORY,README}
+%dir %{_squirreldir}/plugins/newmail
 %{_squirreldir}/plugins/newmail/*.php
 %{_squirreldir}/plugins/newmail/sounds
