@@ -2,7 +2,7 @@
 # - make separate packages with plugins..
 #
 Summary:	The SquirrelMail, a WebMail package
-Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
+Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.3a
@@ -92,7 +92,7 @@ Ten pakiet zawiera interfejs do zmiany hase³.
 
 %package ispell
 Summary:	A squirreel interface to ispel
-Summary(pl):	Wiewórczy inerfejs do ispela
+Summary(pl):	Wiewiórczy inerfejs do ispela
 Group:		Applications/Mail
 Requires:	ispell
 Requires:	%{name} = %{version}-%{release}
