@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.8
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -107,35 +107,86 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html
+%doc AUTHORS COPYING ChangeLog INSTALL README ReleaseNotes UPGRADE doc/*.txt doc/*.html
 %doc doc/README* doc/ReleaseNotes/1.2/*
 %defattr(750,root,http,750)
 %attr(730,http,http) %{_squirreldir}/data/
 %{_squirreldir}/index.php
 %{_squirreldir}/configure
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*
-%{_squirreldir}/functions/*
+%{_squirreldir}/functions
 %{_squirreldir}/help/index.php
+%{_squirreldir}/help/en_US
 %lang(ca) %{_squirreldir}/help/ca_ES
 %lang(cs) %{_squirreldir}/help/cs_CZ
-%{_squirreldir}/help/en_US
+%lang(da) %{_squirreldir}/help/da_DK
+%lang(es) %{_squirreldir}/help/es_ES
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
+%lang(id) %{_squirreldir}/help/id_ID
 %lang(it) %{_squirreldir}/help/it_IT
 %lang(ko) %{_squirreldir}/help/ko_KR
+%lang(lt) %{_squirreldir}/help/lt_LT
+%lang(nl) %{_squirreldir}/help/nl_NL
 %lang(pl) %{_squirreldir}/help/pl_PL
+%lang(pt) %{_squirreldir}/help/pt_PT
+%lang(pt_BR) %{_squirreldir}/help/pt_BR
 %lang(ru) %{_squirreldir}/help/ru_RU
+%lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sv) %{_squirreldir}/help/sv_SE
+%lang(th) %{_squirreldir}/help/th_TH
 %{_squirreldir}/images
+%{_squirreldir}/locale/index.php
+%{_squirreldir}/locale/timezones.cfg
+%lang(bg) %{_squirreldir}/locale/bg_BG/LC_MESSAGES/squirrelmail.mo
+%lang(ca) %{_squirreldir}/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
+%lang(da) %{_squirreldir}/locale/da_DK/LC_MESSAGES/squirrelmail.mo
+%lang(de) %{_squirreldir}/locale/de_DE/LC_MESSAGES/squirrelmail.mo
+%lang(cs) %{_squirreldir}/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
+%lang(es) %{_squirreldir}/locale/es_ES/LC_MESSAGES/squirrelmail.mo
+%lang(et) %{_squirreldir}/locale/et_EE/LC_MESSAGES/squirrelmail.mo
+%lang(fi) %{_squirreldir}/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
+%lang(fr) %{_squirreldir}/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
+%lang(hr) %{_squirreldir}/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
+%lang(hu) %{_squirreldir}/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
+%lang(id) %{_squirreldir}/locale/id_ID/LC_MESSAGES/squirrelmail.mo
+%lang(is) %{_squirreldir}/locale/is_IS/LC_MESSAGES/squirrelmail.mo
+%lang(it) %{_squirreldir}/locale/it_IT/LC_MESSAGES/squirrelmail.mo
+%lang(ko) %{_squirreldir}/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
+%lang(lt) %{_squirreldir}/locale/lt_LT/LC_MESSAGES/squirrelmail.mo
+%lang(nl) %{_squirreldir}/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
+%lang(nn) %{_squirreldir}/locale/nn_NO/LC_MESSAGES/squirrelmail.mo
+%lang(no) %{_squirreldir}/locale/no*/LC_MESSAGES/squirrelmail.mo
+%lang(pl) %{_squirreldir}/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
+%lang(pt) %{_squirreldir}/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
+%lang(pt_BR) %{_squirreldir}/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
+%lang(ro) %{_squirreldir}/locale/ro_RO/LC_MESSAGES/squirrelmail.mo
+%lang(ru) %{_squirreldir}/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
+%lang(sr) %{_squirreldir}/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
+%lang(sv) %{_squirreldir}/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
+%lang(sk) %{_squirreldir}/locale/sk_SK/LC_MESSAGES/squirrelmail.mo
+%lang(sl) %{_squirreldir}/locale/sl_SI/LC_MESSAGES/squirrelmail.mo
+%lang(th) %{_squirreldir}/locale/th_TH/LC_MESSAGES/squirrelmail.mo
+%lang(tr) %{_squirreldir}/locale/tr_TR/LC_MESSAGES/squirrelmail.mo
+%lang(zh_CN) %{_squirreldir}/locale/zh_CN/LC_MESSAGES/squirrelmail.mo
+%lang(zh_TW) %{_squirreldir}/locale/zh_TW/LC_MESSAGES/squirrelmail.mo
+%dir %{_squirreldir}/plugins
 %{_squirreldir}/plugins/README.plugins
 %{_squirreldir}/plugins/abook_take
 %{_squirreldir}/plugins/addgraphics
+%{_squirreldir}/plugins/administrator
 %{_squirreldir}/plugins/attachment_common
 %{_squirreldir}/plugins/auto_cc
+%{_squirreldir}/plugins/bug_report
+%{_squirreldir}/plugins/calendar
 %{_squirreldir}/plugins/change_pass
+%{_squirreldir}/plugins/delete_move_next
+%{_squirreldir}/plugins/filters
 %{_squirreldir}/plugins/fortune
 %{_squirreldir}/plugins/gzip
 %{_squirreldir}/plugins/index.php
+%{_squirreldir}/plugins/info
+%{_squirreldir}/plugins/listcommands
 %{_squirreldir}/plugins/mail_fwd
 %{_squirreldir}/plugins/make_archive.pl
 %{_squirreldir}/plugins/motd
@@ -144,36 +195,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/printer_friendly
 %{_squirreldir}/plugins/quicksave
 %{_squirreldir}/plugins/retrieveuserdata
+%{_squirreldir}/plugins/sent_subfolders
+%{_squirreldir}/plugins/spamcop
 %{_squirreldir}/plugins/sqclock
+%{_squirreldir}/plugins/translate
 %{_squirreldir}/plugins/username
 %{_squirreldir}/plugins/vacation
 %{_squirreldir}/src
 %{_squirreldir}/themes
-%{_squirreldir}/locale/index.php
-%dir %{_squirreldir}/locale
-%dir %{_squirreldir}/locale/[^i]*
-%lang(is) %dir %{_squirreldir}/locale/is_IS/LC_MESSAGES
-%lang(it) %dir %{_squirreldir}/locale/it_IT/LC_MESSAGES
-%lang(ca) %{_squirreldir}/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
-%lang(da) %{_squirreldir}/locale/da_DK/LC_MESSAGES/squirrelmail.mo
-%lang(de) %{_squirreldir}/locale/de_DE/LC_MESSAGES/squirrelmail.mo
-%lang(cs) %{_squirreldir}/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
-%lang(es) %{_squirreldir}/locale/es_ES/LC_MESSAGES/squirrelmail.mo
-%lang(fi) %{_squirreldir}/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
-%lang(fr) %{_squirreldir}/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
-%lang(hr) %{_squirreldir}/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
-%lang(hu) %{_squirreldir}/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
-%lang(is) %{_squirreldir}/locale/is_IS/LC_MESSAGES/squirrelmail.mo
-%lang(it) %{_squirreldir}/locale/it_IT/LC_MESSAGES/squirrelmail.mo
-%lang(ko) %{_squirreldir}/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
-%lang(nl) %{_squirreldir}/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
-%lang(no) %{_squirreldir}/locale/no*/LC_MESSAGES/squirrelmail.mo
-%lang(pl) %{_squirreldir}/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
-%lang(pt) %{_squirreldir}/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
-%lang(pt_BR) %{_squirreldir}/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
-%lang(ru) %{_squirreldir}/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
-%lang(sr) %{_squirreldir}/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
-%lang(sv) %{_squirreldir}/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
 
 %files ispell
 %defattr(644,root,root,755)
