@@ -114,7 +114,7 @@ rm -rf $RPM_BUILD_ROOT
 %files 
 %defattr(644,root,root,755)
 %doc *.gz doc/*.gz
-%defattr(640,root,http,750)
+%defattr(750,root,http,750)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
 /home/httpd/html/squirrel/configure
