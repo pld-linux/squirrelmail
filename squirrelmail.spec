@@ -1,18 +1,18 @@
+%define	ver	1.2.0
+%define rcver	rc2
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
-Version:	1.1.2
+Version:	%{ver}.%{rcver}
 Release:	4
 License:	GPL
 Group:		Applications/Mail
 Group(de):	Applikationen/Post
 Group(pl):	Aplikacje/Poczta
 Group(pt):	Aplicações/Correio Eletrônico
-Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-Source1:	http://prdownloads.sourceforge.net/squirrelmail/%{name}_plugins-20010521.tar
-Source2:	squirrelmail-%{version}-config-pl
-Source3:	squirrelmail-%{version}-default-user-pl
-Patch0:		squirrelmail-sqspell_pl.patch
+Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{ver}-%{rcver}.tar.bz2
+Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+Patch0:		%{name}-setlocale.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	imapdaemon
@@ -32,7 +32,10 @@ Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
 przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
 
 %prep 
-%setup -q -a1 
+%setup -a1 -q -n %{name}-%{ver}-%{rcver}
+%patch0 -p1
+
+# List of usefull plugins (ONLY usefull one should be here)
 for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
 	addgraphics*tar.gz attachment_common*tar.gz vacation*tar.gz \
 	squirrelspell*tar.gz sqclock*tar.gz retrieveuserdata*tar.gz \
@@ -47,16 +50,11 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
 
-install %{SOURCE1} $RPM_BUILD_ROOT/home/httpd/html/squirrel/config/config.php
-install %{SOURCE2} $RPM_BUILD_ROOT/home/httpd/html/squirrel/data/
-
 gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*
 
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
-
-patch -p0 -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/plugins/squirrelspell < %{PATCH0}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
