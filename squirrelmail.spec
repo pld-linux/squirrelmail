@@ -214,9 +214,11 @@ ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/c
 rm -rf $RPM_BUILD_ROOT
 
 %triggerpostun -- squirrelmail < 1.4.3a-5
-if [ -f /home/services/httpd/html/squirrel/config/config.php ]; then
-    mv /home/services/httpd/html/squirrel/config/config.php \
-	    %{_sysconfdir}/%{name}/config.php
+if [ -f /home/services/httpd/html/squirrel/config/config.php.rpmsave ]; then
+	echo "Moving old config file to %{_sysconfdir}/%{name}/config.php"
+	mv -f %{_sysconfdir}/%{name}/config.php %{_sysconfdir}/%{name}/config.php.rpmnew
+	mv -f /home/services/httpd/html/squirrel/config/config.php.rpmsave \
+		%{_sysconfdir}/%{name}/config.php
 fi
 
 %files
