@@ -2,19 +2,20 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.2.8
-Release:	10
+Version:	1.2.10
+Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
 Patch3:		%{name}-auto_cc.patch
 Patch4:		%{name}-fortune.patch
-Patch5:		%{name}-mail_fwd.patch
-Patch6:		%{name}-username.patch
+Patch5:		%{name}-gzip.patch
+Patch6:		%{name}-mail_fwd.patch
+Patch7:		%{name}-username.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -130,6 +131,7 @@ done
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 cd plugins/mail_fwd/fwdfile
@@ -151,12 +153,14 @@ cd $RPM_BUILD_ROOT
 rm -rf `find . -name *.po`
 cd -
 
+rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog INSTALL README ReleaseNotes UPGRADE doc/*.txt doc/*.html
+%doc AUTHORS ChangeLog README ReleaseNotes UPGRADE doc/*.txt doc/*.html
 %doc doc/README* doc/ReleaseNotes/1.2/*
 %dir %{_squirreldir}
 %attr(730,root,http) %dir %{_squirreldir}/data
