@@ -66,7 +66,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
 /home/httpd/html/squirrel/configure
-%config (noreplace) /home/httpd/html/squirrel/config/*
+%config(noreplace) /home/httpd/html/squirrel/config/*
 /home/httpd/html/squirrel/functions/*
 /home/httpd/html/squirrel/help/index.php
 %lang(ca) /home/httpd/html/squirrel/help/ca
