@@ -144,7 +144,7 @@ A Squirrel new mail notify plug-in.
 Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
-%setup -q -a1
+%setup -q -a1 -a4
 
 # List of useful plugins (ONLY useful ones should be here)
 for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
@@ -157,7 +157,26 @@ rm -f *.tar.gz
 
 tar -xzf %{SOURCE2} -C plugins
 #tar -xzf %{SOURCE3} -C plugins
-tar -xjf %{SOURCE4}
+
+# locales for not present plugins
+rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archive_mail,askuserinfo,attachment_doc,autocomplete,avelsieve,block_attach,block_sender,bounce,change_ldappass,change_merakpass,change_mysqlpass,change_passwd,check_quota,chg_sasl_passwd,contactclean,cookie_warning,courier_vacation,custom_from,disk_quota,empty_folders,enews,extract,file_manager,folder_sizes,gpg,got_hotmail,image_buttons,japanese_input,junkfolder,ldap_abook,ldapquery,left_css,login_alias,mark_read,naguser,notes,online_users,preview_pane,qmailadmin_login,quota_usage,restrict_senders,rewrap,sasql,select_range,sent_confirmation,serversidefilter,show_headers,show_user_and_ip,smallcal,smime,startup_folder,tmda,tmdatools,taglines,templates,timeout_user,twc_weather,unsafe_image_rules,useracl,user_special_mailboxes,vadmin,view_as_html,virus_scan,vkeyboard,vpopmail,windows,yelp}.mo
+
+# move to proper place (set by bindtextdomain in plugin)
+for f in `find locale -name change_pass.mo`; do
+	if [ ! -f plugins/change_pass/$f ]; then
+		install -D $f plugins/change_pass/$f
+	fi
+	rm -f $f
+done
+for f in `find locale -name gzip.mo`; do
+	if [ ! -f plugins/gzip/$f ]; then
+		install -D $f plugins/gzip/$f
+	fi
+	rm -f $f
+done
+
+# missing (bind)textdomain calls?
+# auto_cc, compatibility, quicksave, username, vacation
 
 #rm -f plugins/change_passwd/chpasswd
 rm -f plugins/mail_fwd/fwdfile/wfwd.o
@@ -166,6 +185,8 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+
+find locale -name '*.po' | xargs rm -f
 
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
@@ -187,7 +208,7 @@ install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
 install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
 
-cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
+cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
 find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
@@ -343,7 +364,11 @@ fi
 %dir %{_squirreldir}/plugins/gzip
 %{_squirreldir}/plugins/gzip/*.php
 %dir %{_squirreldir}/plugins/gzip/locale
+%lang(de) %{_squirreldir}/plugins/gzip/locale/de_DE
 %lang(el) %{_squirreldir}/plugins/gzip/locale/el_GR
+%lang(id) %{_squirreldir}/plugins/gzip/locale/id_ID
+%lang(lt) %{_squirreldir}/plugins/gzip/locale/lt_LT
+%lang(sv) %{_squirreldir}/plugins/gzip/locale/sv_SE
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
@@ -374,11 +399,15 @@ fi
 %lang(de) %{_squirreldir}/plugins/change_pass/locale/de_DE
 %lang(es) %{_squirreldir}/plugins/change_pass/locale/es_ES
 %lang(fr) %{_squirreldir}/plugins/change_pass/locale/fr_FR
+%lang(id) %{_squirreldir}/plugins/change_pass/locale/id_ID
 %lang(ja) %{_squirreldir}/plugins/change_pass/locale/ja_JP
 %lang(lt) %{_squirreldir}/plugins/change_pass/locale/lt_LT
+%lang(nl) %{_squirreldir}/plugins/change_pass/locale/nl_NL
+%lang(nn) %{_squirreldir}/plugins/change_pass/locale/nn_NO
 %lang(pl) %{_squirreldir}/plugins/change_pass/locale/pl_PL
 %lang(pt_BR) %{_squirreldir}/plugins/change_pass/locale/pt_BR
 %lang(pt) %{_squirreldir}/plugins/change_pass/locale/pt_PT
+%lang(sv) %{_squirreldir}/plugins/change_pass/locale/sv_SE
 
 %files ispell
 %defattr(644,root,root,755)
