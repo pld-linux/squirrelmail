@@ -208,7 +208,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/abook_take
 %{_squirreldir}/plugins/addgraphics
 %{_squirreldir}/plugins/administrator
-%{_squirreldir}/plugins/attachment_common
 %{_squirreldir}/plugins/auto_cc
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
