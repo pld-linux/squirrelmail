@@ -6,7 +6,7 @@ Version:	1.2.10
 Release:	2
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
