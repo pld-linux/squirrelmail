@@ -1,0 +1,487 @@
+diff -ru squirrelmail-1.2.6/plugins/abook_take/setup.php plugins.AX/abook_take/setup.php
+--- squirrelmail-1.2.6/plugins/abook_take/setup.php	Thu Apr 26 16:05:22 2001
++++ plugins.AX/abook_take/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 2 places by ri_once */ ?>
+ <?php
+ 
+ 
+@@ -20,7 +21,7 @@
+ {
+   global $abook_take_verify, $Email_RegExp_Match;
+   
+-  include '../functions/url_parser.php';
++  /* '_once' Added by ri_once */ include_once '../functions/url_parser.php';
+   
+   if (! eregi('^' . $Email_RegExp_Match . '$', $email))
+     return false;
+@@ -39,7 +40,7 @@
+ {
+   global $abook_found_email, $Email_RegExp_Match;
+   
+-  include '../functions/url_parser.php';
++  /* '_once' Added by ri_once */ include_once '../functions/url_parser.php';
+ 
+   while (eregi('(' . $Email_RegExp_Match . ')', $str, $hits))
+   {
+diff -ru squirrelmail-1.2.6/plugins/abook_take/take.php plugins.AX/abook_take/take.php
+--- squirrelmail-1.2.6/plugins/abook_take/take.php	Thu Apr 26 15:59:41 2001
++++ plugins.AX/abook_take/take.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 7 places by ri_once */ ?>
+ <?php
+   /**
+    **  take.php
+@@ -7,13 +8,13 @@
+    **/
+    
+    chdir('..');
+-   include('../src/validate.php');
+-   include("../functions/strings.php");
+-   include("../config/config.php");
+-   include("../functions/i18n.php");
+-   include("../functions/page_header.php");
+-   include("../functions/addressbook.php");
+-   include("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once('../src/validate.php');
++   /* '_once' Added by ri_once */ include_once("../functions/strings.php");
++   /* '_once' Added by ri_once */ include_once("../config/config.php");
++   /* '_once' Added by ri_once */ include_once("../functions/i18n.php");
++   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
++   /* '_once' Added by ri_once */ include_once("../functions/addressbook.php");
++   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
+    
+    displayPageHeader($color, "None");
+    
+Only in squirrelmail-1.2.6/plugins/: administrator
+diff -ru squirrelmail-1.2.6/plugins/attachment_common/image.php plugins.AX/attachment_common/image.php
+--- squirrelmail-1.2.6/plugins/attachment_common/image.php	Tue May  8 16:36:42 2001
++++ plugins.AX/attachment_common/image.php	Fri May 24 11:17:08 2002
+@@ -1,10 +1,11 @@
++<?php /* Modified at 4 places by ri_once */ ?>
+ <?php
+ 
+    chdir("..");
+-   include('../src/validate.php');
+-   include("../functions/date.php");
+-   include("../functions/page_header.php");
+-   include("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once('../src/validate.php');
++   /* '_once' Added by ri_once */ include_once("../functions/date.php");
++   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
++   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
+ 
+ 
+    displayPageHeader($color, "None");
+diff -ru squirrelmail-1.2.6/plugins/attachment_common/vcard.php plugins.AX/attachment_common/vcard.php
+--- squirrelmail-1.2.6/plugins/attachment_common/vcard.php	Wed May  2 15:45:33 2001
++++ plugins.AX/attachment_common/vcard.php	Fri May 24 11:17:08 2002
+@@ -1,11 +1,12 @@
++<?php /* Modified at 5 places by ri_once */ ?>
+ <?php
+    chdir("..");
+ 
+-   include('../src/validate.php');
+-   include("../functions/date.php");
+-   include("../functions/page_header.php");
+-   include("../functions/mime.php");
+-   include("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once('../src/validate.php');
++   /* '_once' Added by ri_once */ include_once("../functions/date.php");
++   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
++   /* '_once' Added by ri_once */ include_once("../functions/mime.php");
++   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
+ 
+    $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0);
+    sqimap_mailbox_select($imapConnection, $mailbox);
+Only in squirrelmail-1.2.6/plugins/: bug_report
+Only in squirrelmail-1.2.6/plugins/: calendar
+diff -ru squirrelmail-1.2.6/plugins/change_pass/options.php plugins.AX/change_pass/options.php
+--- squirrelmail-1.2.6/plugins/change_pass/options.php	Mon Mar 26 16:59:01 2001
++++ plugins.AX/change_pass/options.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 6 places by ri_once */ ?>
+ <?php
+    /*
+     *  Change Pass
+@@ -8,15 +9,15 @@
+    session_start();
+ 
+    if (!isset($strings_php))
+-      include ("../functions/strings.php");
++      /* '_once' Added by ri_once */ include_once ("../functions/strings.php");
+    if (!isset($config_php))
+-      include ("../config/config.php");
++      /* '_once' Added by ri_once */ include_once ("../config/config.php");
+    if (!isset($page_header))
+-      include ("../functions/page_header.php");
++      /* '_once' Added by ri_once */ include_once ("../functions/page_header.php");
+    if (!isset($imap_php))
+-      include ("../functions/imap.php");
++      /* '_once' Added by ri_once */ include_once ("../functions/imap.php");
+    
+-   include ("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once ("../src/load_prefs.php");
+ 
+    if (isset($plugin_change_pass))
+        $Messages = change_pass_check();
+@@ -44,7 +45,7 @@
+ }
+ 
+ ?><tr><td>
+-    <form method=post action="<?= $PHP_SELF ?>">
++    <form method=post action="<?php /* '=' Modified to 'php blah echo'by ri_once */ echo  $PHP_SELF ?>">
+     <table>
+       <tr>
+         <th align=right>Old Password:</th>
+Binary files squirrelmail-1.2.6/plugins/change_pass/poppassd_1.8/poppassd and plugins.AX/change_pass/poppassd_1.8/poppassd differ
+Only in squirrelmail-1.2.6/plugins/: delete_move_next
+Only in squirrelmail-1.2.6/plugins/: filters
+diff -ru squirrelmail-1.2.6/plugins/fortune/setup.php plugins.AX/fortune/setup.php
+--- squirrelmail-1.2.6/plugins/fortune/setup.php	Fri May 24 11:32:16 2002
++++ plugins.AX/fortune/setup.php	Mon Mar  5 16:21:41 2001
+@@ -20,7 +20,7 @@
+   if( !$fortune_visible ) {
+     return;
+   }
+-  $fortune_location = "/usr/bin/fortune";
++  $fortune_location = "/usr/games/fortune";
+   global $color;
+   $exist = file_exists("$fortune_location");
+   echo "<center><table cellpadding=0 cellspacing=0 border=0 bgcolor=$color[10]><tr><td><table width=100% cellpadding=2 cellspacing=1 border=0 bgcolor=\"$color[5]\"><tr><td align=center>";
+Only in squirrelmail-1.2.6/plugins/: listcommands
+Only in squirrelmail-1.2.6/plugins/: mail_fetch
+Binary files squirrelmail-1.2.6/plugins/mail_fwd/fwdfile/wfwd and plugins.AX/mail_fwd/fwdfile/wfwd differ
+diff -ru squirrelmail-1.2.6/plugins/motd/setup.php plugins.AX/motd/setup.php
+--- squirrelmail-1.2.6/plugins/motd/setup.php	Sat Apr 21 03:06:07 2001
++++ plugins.AX/motd/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 1 places by ri_once */ ?>
+ <?php
+    /*
+     *  motd v1.2
+@@ -21,7 +22,7 @@
+       $motd_file = "../config/motd.php";
+ 
+       if(file_exists($motd_file)) {
+-        include($motd_file);
++        /* '_once' Added by ri_once */ include_once($motd_file);
+       }
+       else {
+ 	print "<hr width=\"50%\">";
+diff -ru squirrelmail-1.2.6/plugins/newmail/newmail.php plugins.AX/newmail/newmail.php
+--- squirrelmail-1.2.6/plugins/newmail/newmail.php	Fri May  4 21:25:19 2001
++++ plugins.AX/newmail/newmail.php	Fri May 24 11:17:08 2002
+@@ -1,7 +1,8 @@
++<?php /* Modified at 2 places by ri_once */ ?>
+ <?php
+    chdir ("../");
+-   include ('../src/validate.php');
+-   include ("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once ('../src/validate.php');
++   /* '_once' Added by ri_once */ include_once ("../src/load_prefs.php");
+ ?>
+ <HTML>
+ <TITLE>New Mail</TITLE>
+diff -ru squirrelmail-1.2.6/plugins/newmail/newmail_opt.php plugins.AX/newmail/newmail_opt.php
+--- squirrelmail-1.2.6/plugins/newmail/newmail_opt.php	Sat May  5 01:39:16 2001
++++ plugins.AX/newmail/newmail_opt.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 6 places by ri_once */ ?>
+ <?php
+    /**
+     **  newmails_opt.php
+@@ -7,12 +8,12 @@
+     **/
+ 
+    chdir("..");
+-   include('../src/validate.php');
+-   include("../functions/page_header.php");
+-   include("../functions/display_messages.php");
+-   include("../functions/imap.php");
+-   include("../functions/array.php");
+-   include("../src/load_prefs.php");
++   /* '_once' Added by ri_once */ include_once('../src/validate.php');
++   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
++   /* '_once' Added by ri_once */ include_once("../functions/display_messages.php");
++   /* '_once' Added by ri_once */ include_once("../functions/imap.php");
++   /* '_once' Added by ri_once */ include_once("../functions/array.php");
++   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
+ 
+    displayPageHeader($color, "None");
+ 
+diff -ru squirrelmail-1.2.6/plugins/printer_friendly/bottom.php plugins.AX/printer_friendly/bottom.php
+--- squirrelmail-1.2.6/plugins/printer_friendly/bottom.php	Wed May  2 22:35:25 2001
++++ plugins.AX/printer_friendly/bottom.php	Fri May 24 11:17:08 2002
+@@ -1,9 +1,10 @@
++<?php /* Modified at 3 places by ri_once */ ?>
+ <?php
+ 
+     chdir('..');
+-    include ('../src/validate.php');
+-    include ('../src/load_prefs.php');
+-    include ('../functions/imap.php');
++    /* '_once' Added by ri_once */ include_once ('../src/validate.php');
++    /* '_once' Added by ri_once */ include_once ('../src/load_prefs.php');
++    /* '_once' Added by ri_once */ include_once ('../functions/imap.php');
+ 
+ ?>
+ <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
+diff -ru squirrelmail-1.2.6/plugins/printer_friendly/top.php plugins.AX/printer_friendly/top.php
+--- squirrelmail-1.2.6/plugins/printer_friendly/top.php	Wed May  2 15:18:22 2001
++++ plugins.AX/printer_friendly/top.php	Fri May 24 11:17:08 2002
+@@ -1,8 +1,9 @@
++<?php /* Modified at 2 places by ri_once */ ?>
+ <?php
+ 
+     chdir('..');
+-    include ('../src/validate.php');
+-    include ('../src/load_prefs.php');
++    /* '_once' Added by ri_once */ include_once ('../src/validate.php');
++    /* '_once' Added by ri_once */ include_once ('../src/load_prefs.php');
+ 
+ ?>
+ <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
+diff -ru squirrelmail-1.2.6/plugins/quicksave/setup.php plugins.AX/quicksave/setup.php
+--- squirrelmail-1.2.6/plugins/quicksave/setup.php	Thu Apr 26 06:54:48 2001
++++ plugins.AX/quicksave/setup.php	Fri May 24 11:17:08 2002
+@@ -1,4 +1,5 @@
+-<?
++<?php /* Modified at 6 places by ri_once */ ?>
++<?php /* 'php' Added by ri_once */
+ 
+ // this is required by squirrel to initiate the quicksave plugin,
+ // but if you're seeing this, then you probably alread know this.
+@@ -36,7 +37,7 @@
+ </form>
+ 	<!-- end -- QuickSave plugin -->
+ 
+-<?
++<?php /* 'php' Added by ri_once */
+ 
+ } // end quicksave_left_main_after() function
+ 
+@@ -64,11 +65,11 @@
+ 
+ <script language=Javascript>
+ <!--
+-document.write("<input type=\"button\" name=\"QScancel\" value=\"Cancel\" onClick=\"QuickSave_cancel_button('right_main.php?use_mailbox_cache=1&sort=<?=$sort?>&startMessage=1&mailbox=<?=htmlspecialchars($mailbox)?>');\">");
++document.write("<input type=\"button\" name=\"QScancel\" value=\"Cancel\" onClick=\"QuickSave_cancel_button('right_main.php?use_mailbox_cache=1&sort=<?php /* '=' Modified to 'php blah echo'by ri_once */ echo $sort?>&startMessage=1&mailbox=<?php /* '=' Modified to 'php blah echo'by ri_once */ echo htmlspecialchars($mailbox)?>');\">");
+ //-->
+ </script>
+ 
+-<?
++<?php /* 'php' Added by ri_once */
+ 
+ } // end quicksave_cancel_button() function
+ 
+@@ -307,6 +308,6 @@
+ //-->
+ </script>
+ 	<!-- end -- QuickSave plugin -->
+-<?
++<?php /* 'php' Added by ri_once */
+ } // end QuickSave_compose_bottom()
+ ?>
+diff -ru squirrelmail-1.2.6/plugins/retrieveuserdata/ldap.php plugins.AX/retrieveuserdata/ldap.php
+--- squirrelmail-1.2.6/plugins/retrieveuserdata/ldap.php	Mon Mar  5 16:21:41 2001
++++ plugins.AX/retrieveuserdata/ldap.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 1 places by ri_once */ ?>
+ <?php
+    /*
+     *  ldap.php
+@@ -29,7 +30,7 @@
+ 
+    function retrieve_data ($uid, $passwd) {
+ 
+-      include("../plugins/retrieveuserdata/config.php");
++      /* '_once' Added by ri_once */ include_once("../plugins/retrieveuserdata/config.php");
+ 
+       $ldap_error = 0;
+       $common_name = "";
+diff -ru squirrelmail-1.2.6/plugins/retrieveuserdata/setup.php plugins.AX/retrieveuserdata/setup.php
+--- squirrelmail-1.2.6/plugins/retrieveuserdata/setup.php	Mon Mar  5 16:21:41 2001
++++ plugins.AX/retrieveuserdata/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 4 places by ri_once */ ?>
+ <?php
+    /*
+     *  SquirrelMail Retrieve User Data Plugin 0.4
+@@ -62,7 +63,7 @@
+    function check_userdata() {
+       global $data_dir, $username;
+ 
+-      include ("../plugins/retrieveuserdata/config.php");
++      /* '_once' Added by ri_once */ include_once ("../plugins/retrieveuserdata/config.php");
+ 
+       if (isset($username)) {
+          $got_external_userdata = getPref($data_dir, $username, "got_external_userdata");
+@@ -88,7 +89,7 @@
+    function force_userdata() {
+       global $data_dir, $username;
+ 
+-      include("../plugins/retrieveuserdata/config.php");
++      /* '_once' Added by ri_once */ include_once("../plugins/retrieveuserdata/config.php");
+ 
+       if ($force != 0 && isset($username)) {
+          $got_external_userdata = getPref($data_dir, $username, "got_external_userdata");
+@@ -131,8 +132,8 @@
+    function retrieve_external_userdata() {
+      global $data_dir, $username, $password;
+ 
+-     include("../plugins/retrieveuserdata/config.php");
+-     include ("../plugins/retrieveuserdata/$retrieve_data_from");
++     /* '_once' Added by ri_once */ include_once("../plugins/retrieveuserdata/config.php");
++     /* '_once' Added by ri_once */ include_once ("../plugins/retrieveuserdata/$retrieve_data_from");
+ 
+      $cleartext_password = OneTimePadDecrypt($password, $onetimepad);
+      $userdata = retrieve_data($username, $cleartext_password);
+Only in squirrelmail-1.2.6/plugins/: sent_subfolders
+Only in squirrelmail-1.2.6/plugins/: spamcop
+diff -ru squirrelmail-1.2.6/plugins/sqclock/setup.php plugins.AX/sqclock/setup.php
+--- squirrelmail-1.2.6/plugins/sqclock/setup.php	Mon Mar  5 16:21:41 2001
++++ plugins.AX/sqclock/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 2 places by ri_once */ ?>
+ <?php
+    /*
+     *  SquirrelMail Clock
+@@ -17,7 +18,7 @@
+     *
+     */
+ 
+-   include "../plugins/sqclock/options.php";
++   /* '_once' Added by ri_once */ include_once "../plugins/sqclock/options.php";
+ 
+    function squirrelmail_plugin_init_sqclock() {
+       global $squirrelmail_plugin_hooks;
+@@ -62,7 +63,7 @@
+          </td></tr></table>
+          <br>
+          </center>
+-      <?
++      <?php /* 'php' Added by ri_once */
+       }
+    }
+ ?>
+Only in squirrelmail-1.2.6/plugins/: squirrelspell
+Only in squirrelmail-1.2.6/plugins/: translate
+diff -ru squirrelmail-1.2.6/plugins/username/setup.php plugins.AX/username/setup.php
+--- squirrelmail-1.2.6/plugins/username/setup.php	Wed May  2 20:01:39 2001
++++ plugins.AX/username/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 1 places by ri_once */ ?>
+ <?php
+    /*
+     *  Username display
+@@ -54,7 +55,7 @@
+ </td></tr></table>
+ </td></tr></table>
+ <br>
+-<?
++<?php /* 'php' Added by ri_once */
+    }
+ 
+    function username_show_options() {
+diff -ru squirrelmail-1.2.6/plugins/vacation/setup.php plugins.AX/vacation/setup.php
+--- squirrelmail-1.2.6/plugins/vacation/setup.php	Thu Apr 26 09:48:49 2001
++++ plugins.AX/vacation/setup.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 3 places by ri_once */ ?>
+ <?php
+    /*
+     *  Vacation Plugin 
+@@ -16,18 +17,18 @@
+    function vacation_option_link() {
+       global $color;
+ 
+-	include("../plugins/vacation/config.php");
++	/* '_once' Added by ri_once */ include_once("../plugins/vacation/config.php");
+ 
+       ?>
+       <br>
+       <table width=50% cellpadding=3 cellspacing=0 border=0 align=center>
+          <tr>
+-            <td bgcolor="<? echo $color[9] ?>">
++            <td bgcolor="<?php /* 'php' Added by ri_once */ echo $color[9] ?>">
+                <a href="../plugins/vacation/vac_init.php"><?php echo $vac_title ?></a>
+             </td>
+          </tr>
+          <tr>
+-            <td bgcolor="<? echo $color[0] ?>">
++            <td bgcolor="<?php /* 'php' Added by ri_once */ echo $color[0] ?>">
+             <?php echo $vac_setup_message ?>
+ 	    </td>
+          </tr>
+diff -ru squirrelmail-1.2.6/plugins/vacation/vac_init.php plugins.AX/vacation/vac_init.php
+--- squirrelmail-1.2.6/plugins/vacation/vac_init.php	Thu Apr 26 09:29:24 2001
++++ plugins.AX/vacation/vac_init.php	Fri May 24 11:17:08 2002
+@@ -1,3 +1,4 @@
++<?php /* Modified at 12 places by ri_once */ ?>
+ <?php
+ 
+ chdir("..");
+@@ -5,30 +6,30 @@
+ 
+ 
+ if (!isset($config_php))
+-	include("../config/config.php");
++	/* '_once' Added by ri_once */ include_once("../config/config.php");
+ if (!isset($strings_php))
+-	include("../functions/strings.php");
++	/* '_once' Added by ri_once */ include_once("../functions/strings.php");
+ if (!isset($page_header_php))
+-	include("../functions/page_header.php");
++	/* '_once' Added by ri_once */ include_once("../functions/page_header.php");
+ if (!isset($imap_php))
+-	include("../functions/imap.php");
++	/* '_once' Added by ri_once */ include_once("../functions/imap.php");
+ if (!isset($array_php))
+-	include("../functions/array.php");
++	/* '_once' Added by ri_once */ include_once("../functions/array.php");
+ if (!isset($i18n_php))
+-	include("../functions/i18n.php");
++	/* '_once' Added by ri_once */ include_once("../functions/i18n.php");
+ if (!isset($plugin_php))
+-	include("../functions/plugin.php");
++	/* '_once' Added by ri_once */ include_once("../functions/plugin.php");
+ if (!isset($display_messages_php))
+-	include("../functions/display_messages.php");
++	/* '_once' Added by ri_once */ include_once("../functions/display_messages.php");
+ 
+-include("../functions/auth.php");
++/* '_once' Added by ri_once */ include_once("../functions/auth.php");
+ 
+ is_logged_in();
+ 
+-include("../src/load_prefs.php");
++/* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
+ $chosen_language = getPref($data_dir, $username, "language");
+ 
+-include("../plugins/vacation/config.php");
++/* '_once' Added by ri_once */ include_once("../plugins/vacation/config.php");
+ 
+ function sqStripSlashes($string) {
+       if (get_magic_quotes_gpc()) {
+@@ -48,7 +49,7 @@
+ echo "<form method=post action=\"vac_init.php\">\n";
+ 
+ if ($edit_vacation) {
+-   include("../plugins/vacation/vacation.php");
++   /* '_once' Added by ri_once */ include_once("../plugins/vacation/vacation.php");
+ }
+ 
+ echo "</form>\n";
+diff -ru squirrelmail-1.2.6/plugins/vacation/vacation.php plugins.AX/vacation/vacation.php
+--- squirrelmail-1.2.6/plugins/vacation/vacation.php	Mon Feb  5 10:55:27 2001
++++ plugins.AX/vacation/vacation.php	Fri May 24 11:17:08 2002
+@@ -1,6 +1,7 @@
++<?php /* Modified at 1 places by ri_once */ ?>
+ <?php
+ 
+-include("../plugins/vacation/config.php");
++/* '_once' Added by ri_once */ include_once("../plugins/vacation/config.php");
+ 
+ $vacation=FALSE;  //start by assuming no vacation message
+ 
