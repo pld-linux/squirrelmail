@@ -12,13 +12,15 @@ Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	285b42bec8967b88ef3c083fcad18634
 Source1:	%{name}_plugins-20050108.tar
+# Source1-md5:	819fa3165bc6ab43c9cdd53addcf340c
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
+# Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
 #%define		_change_passwd_version	4.0
 #Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
-# Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
+## Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 %define		_all_locales_date	20050122
-Source4:	http://mesh.dl.sourceforge.net/sourceforge/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
+Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
 # Source4-md5:	ec7f97d77c706135571732ac7accf961
 Source5:	%{name}.conf
 Patch0:		%{name}-config.patch
@@ -164,8 +166,6 @@ tar -xzf %{SOURCE2} -C plugins
 #tar -xzf %{SOURCE3} -C plugins
 tar -xjf %{SOURCE4}
 
-# use poppassd from separate package; don't include x86 binaries!!!
-#rm -rf plugins/change_pass/{courierpassd,poppassd}*
 #rm -f plugins/change_passwd/chpasswd
 rm -f plugins/mail_fwd/fwdfile/wfwd.o
 
