@@ -1,6 +1,6 @@
-diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4.4-rc1/config/config_default.php
+diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php ./squirrelmail-1.4.4-rc1/config/config_default.php
 --- ./squirrelmail-1.4.4-rc1.orig/config/config_default.php	2004-12-24 16:55:39.000000000 +0100
-+++ squirrelmail-1.4.4-rc1/config/config_default.php	2005-01-05 23:35:46.743683304 +0100
++++ ./squirrelmail-1.4.4-rc1/config/config_default.php	2005-01-06 16:20:04.648183416 +0100
 @@ -84,7 +84,7 @@
   * option set to true.
   * @global string $provider_name
@@ -19,12 +19,21 @@ diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1
  
  /*** Server Settings ***/
  /**
+@@ -266,7 +266,7 @@
+  * If you do not use this, set it to the empty string.
+  * @global string $default_folder_prefix
+  */
+-$default_folder_prefix = '';
++$default_folder_prefix = 'mail/';
+ 
+ /**
+  * User level prefix control
 @@ -418,7 +418,7 @@
   *   $data_dir = SM_PATH . 'data/';
   * @global string $data_dir
   */
 -$data_dir = SM_PATH . 'data/';
-+$data_dir = SM_PATH . '/var/lib/squirrelmail/prefs/';
++$data_dir = '/var/lib/squirrelmail/prefs/';
  
  /**
   * Attachments directory
@@ -37,9 +46,9 @@ diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1
  
  /**
   * Hash level used for data directory.
-diff -urN ./squirrelmail-1.4.4-rc1.orig/config/conf.pl squirrelmail-1.4.4-rc1/config/conf.pl
+diff -urN ./squirrelmail-1.4.4-rc1.orig/config/conf.pl ./squirrelmail-1.4.4-rc1/config/conf.pl
 --- ./squirrelmail-1.4.4-rc1.orig/config/conf.pl	2004-12-30 00:19:35.000000000 +0100
-+++ squirrelmail-1.4.4-rc1/config/conf.pl	2005-01-05 23:41:06.230113984 +0100
++++ ./squirrelmail-1.4.4-rc1/config/conf.pl	2005-01-06 16:21:18.747918544 +0100
 @@ -286,8 +286,8 @@
  $noselect_fix_enable = "false"         if ( !$noselect_fix_enable );
  $frame_top = "_top"                    if ( !$frame_top );
@@ -47,7 +56,7 @@ diff -urN ./squirrelmail-1.4.4-rc1.orig/config/conf.pl squirrelmail-1.4.4-rc1/co
 -$provider_uri = "http://www.squirrelmail.org/" if ( !$provider_uri );
 -$provider_name = "SquirrelMail"        if ( !$provider_name );
 +$provider_uri = "http://www.pld-linux.org/" if ( !$provider_uri );
-+$provider_name = "PLD Linux"           if ( !$provider_name );
++$provider_name = "PLD Linux"        if ( !$provider_name );
  
  $edit_identity = "true"                if ( !$edit_identity );
  $edit_name = "true"                    if ( !$edit_name );
