@@ -189,9 +189,7 @@ install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
 
 cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 
-cd $RPM_BUILD_ROOT
-rm -rf `find . -name *.po`
-cd -
+find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
 rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~,make_archive.pl,README.plugins}
 
@@ -342,7 +340,10 @@ fi
 %{_squirreldir}/plugins/delete_move_next
 %{_squirreldir}/plugins/filters
 %{_squirreldir}/plugins/fortune
-%{_squirreldir}/plugins/gzip
+%dir %{_squirreldir}/plugins/gzip
+%{_squirreldir}/plugins/gzip/*.php
+%dir %{_squirreldir}/plugins/gzip/locale
+%lang(el) %{_squirreldir}/plugins/gzip/locale/el_GR
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
