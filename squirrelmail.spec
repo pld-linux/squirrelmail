@@ -19,6 +19,7 @@ Requires:	webserver
 Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
+Requires:	php-posix
 Provides:	webmail
 Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
