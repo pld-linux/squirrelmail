@@ -1,0 +1,23 @@
+--- squirrelmail-1.2.8/plugins/gzip/setup.php.orig	Wed May  9 15:52:57 2001
++++ squirrelmail-1.2.8/plugins/gzip/setup.php	Sun Sep 22 01:25:51 2002
+@@ -44,8 +44,9 @@
+   global $username,$data_dir;
+   global $gzip_gzip_disable;
+   global $gzip_gzip_size;
+-
+-  if (isset($gzip_gzip_disable))
++  global $_POST;
++  
++  if (isset($_POST['gzip_gzip_disable']))
+   {
+     setPref($data_dir, $username, 'gzip_disable', '1');
+   } 
+@@ -53,7 +54,7 @@
+   {
+     setPref($data_dir, $username, 'gzip_disable', '');
+   }
+-  setPref($data_dir, $username, 'gzip_size', $gzip_gzip_size);
++  setPref($data_dir, $username, 'gzip_size', $_POST['gzip_gzip_size']);
+ }
+ 
+ 
