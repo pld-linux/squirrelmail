@@ -32,7 +32,7 @@
   * @global string $data_dir
   */
 -$data_dir = SM_PATH . 'data/';
-+$data_dir = '/var/spool/squirrelmail/prefs/';
++$data_dir = '/var/lib/squirrelmail/prefs/';
  
  /**
   * Attachments directory
@@ -41,7 +41,7 @@
   * @global string $attachment_dir
   */
 -$attachment_dir = $data_dir;
-+$attachment_dir = '/var/spool/squirrelmail/data/';
++$attachment_dir = '/var/lib/squirrelmail/data/';
  
  /**
   * Hash level used for data directory.
