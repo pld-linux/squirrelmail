@@ -15,7 +15,6 @@ Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Patch0:		%{name}-setlocale.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
-Requires:	imapdaemon
 Requires:	php
 Requires:	php-gettext
 Provides:	webmail 
