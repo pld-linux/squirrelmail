@@ -48,7 +48,7 @@ install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/data
 install %{SOURCE1} $RPM_BUILD_ROOT/home/httpd/html/squirrel/config/config.php
 install %{SOURCE2} $RPM_BUILD_ROOT/home/httpd/html/squirrel/data/
 
-gzip -9nf AUTHORS COPYING ChangeLog INSTALL README UPGRADE
+gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE
 gzip -9nf doc/*
 
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
@@ -61,7 +61,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc AUTHORS.gz COPYING.gz ChangeLog.gz INSTALL.gz README.gz UPGRADE.gz
+%doc AUTHORS.gz ChangeLog.gz INSTALL.gz README.gz UPGRADE.gz
 %doc doc/*.gz
 %defattr(755,http,http,755)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
