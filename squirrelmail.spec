@@ -2,11 +2,12 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	1.2.6
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+Patch0:		squirrelmail-fortune.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -68,6 +69,8 @@ for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
 		tar xfvz $i -C plugins
 done
 
+%patch0 -p1
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
@@ -79,7 +82,6 @@ gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT
