@@ -6,7 +6,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.3a
-Release:	4
+Release:	4.5
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -19,15 +19,16 @@ Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_vers
 %define		_change_passwd_version	4.0
 Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
-Patch0:		%{name}-ri_once.patch
-Patch1:		%{name}-abook_take.patch
-Patch2:		%{name}-addgraphics.patch
-Patch3:		%{name}-auto_cc.patch
-Patch4:		%{name}-fortune.patch
-Patch5:		%{name}-gzip.patch
-Patch6:		%{name}-mail_fwd.patch
-Patch7:		%{name}-change_pass-i18n.patch
-Patch8:		%{name}-change_pass-polish.patch
+Patch0:		%{name}-config.patch
+Patch1:		%{name}-ri_once.patch
+Patch2:		%{name}-abook_take.patch
+Patch3:		%{name}-addgraphics.patch
+Patch4:		%{name}-auto_cc.patch
+Patch5:		%{name}-fortune.patch
+Patch6:		%{name}-gzip.patch
+Patch7:		%{name}-mail_fwd.patch
+Patch8:		%{name}-change_pass-i18n.patch
+Patch9:		%{name}-change_pass-polish.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -41,6 +42,7 @@ Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_squirreldir	/home/services/httpd/html/squirrel
+%define		_squirreldata	/var/lib/%{name}
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
@@ -171,6 +173,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
@@ -188,7 +191,7 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
-	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel
+	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}}
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
@@ -209,7 +212,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/README* doc/ReleaseNotes/*/*
 %dir %{_squirreldir}
 %{_squirreldir}/class
-%attr(730,root,http) %dir %{_squirreldir}/data
 %attr(640,root,http) %{_squirreldir}/data/.htaccess
 %attr(640,root,http) %{_squirreldir}/data/*
 %{_squirreldir}/index.php
@@ -321,6 +323,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/vacation
 %{_squirreldir}/src
 %{_squirreldir}/themes
+%attr(770,root,http) %dir %{_squirreldata}/prefs
+%attr(770,root,http) %dir %{_squirreldata}/data
+# To be removed. Just for compatibility with existing configurations:
+%attr(730,root,http) %dir %{_squirreldir}/data
 
 %files change_pass
 %defattr(644,root,root,755)
