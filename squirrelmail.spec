@@ -16,6 +16,8 @@ Patch0:		squirrelmail-sqspell_pl.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	imapdaemon
+Requires:	php
+Requires:	php-gettext
 Provides:	webmail 
 Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
