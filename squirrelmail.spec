@@ -11,7 +11,7 @@ URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
 Requires:	php-gettext
-Provides:	webmail 
+Provides:	webmail
 Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -26,7 +26,7 @@ przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
 
 %package ispell
 Summary:	A squirreel interface to ispel
-Summary(pl):	Wiewórczy inerfejs do ispela 
+Summary(pl):	Wiewórczy inerfejs do ispela
 Group:		Applications/Mail
 Requires:	ispell
 Requires:	%{name} = %{version}
@@ -54,7 +54,7 @@ fetch mail from this kind of serwers.
 Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich
 pocztê za pomoc± us³ugi pop3.
 
-%prep 
+%prep
 %setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
@@ -83,7 +83,7 @@ cp sqspell_config.dist sqspell_config.php
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files 
+%files
 %defattr(644,root,root,755)
 %doc *.gz doc/*.gz
 %defattr(750,root,http,750)
