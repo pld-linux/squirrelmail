@@ -24,6 +24,7 @@ Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
+Requires:	php-zlib
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
