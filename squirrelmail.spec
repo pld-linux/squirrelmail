@@ -103,10 +103,10 @@ Wiewiórczy plug-in informuj±cy o nowej poczcie.
 %setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
-for i in abook_take*tar.gz addgraphics*tar.gz attachment_common*tar.gz \
-	auto_cc*tar.gz change_pass*tar.gz fortune*tar.gz gzip*tar.gz \
-	mail_fwd*tar.gz motd*tar.gz password_forget*tar.gz username*tar.gz \
-	quicksave*tar.gz retrieveuserdata*tar.gz vacation*tar.gz; do
+for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
+	 fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
+	 password_forget*tar.gz username*tar.gz quicksave*tar.gz \
+	 retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
