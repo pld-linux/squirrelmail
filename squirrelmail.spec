@@ -181,7 +181,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 #%patch9 -p1
 %patch10 -p1
 %build
-%{__make} -C plugins/mail_fwd/fwdfile
+%{__make} -C plugins/mail_fwd/fwdfile \
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
 
