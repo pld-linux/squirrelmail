@@ -159,6 +159,7 @@ tar -zxvf %{SOURCE3} -C plugins
 
 # use poppassd from separate package; don't include x86 binaries!!!
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
+rm -f plugins/change_passwd/chpasswd
 rm -f plugins/mail_fwd/fwdfile/wfwd
 
 %patch0 -p1
@@ -175,6 +176,9 @@ rm -f plugins/mail_fwd/fwdfile/wfwd
 %{__make} -C plugins/mail_fwd/fwdfile \
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
+
+%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
+	plugins/change_passwd/chpasswd.c -lcrypt
 
 cd po
 ./compilepo pl_PL
