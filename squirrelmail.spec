@@ -209,7 +209,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(bg) %{_squirreldir}/help/bg_BG
 %lang(ca) %{_squirreldir}/help/ca_ES
 %lang(cs) %{_squirreldir}/help/cs_CZ
-%lang(cy_GB) %{_squirreldir}/help/cy_GB
+%lang(cy) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
 %lang(de) %{_squirreldir}/help/de_DE
 %lang(es) %{_squirreldir}/help/es_ES
@@ -240,7 +240,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(da) %{_squirreldir}/locale/da_DK
 %lang(de) %{_squirreldir}/locale/de_DE
 %lang(cs) %{_squirreldir}/locale/cs_CZ
-%lang(cy_GB) %{_squirreldir}/locale/cy_GB
+%lang(cy) %{_squirreldir}/locale/cy_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(fi) %{_squirreldir}/locale/fi_FI
