@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -64,7 +64,7 @@ Summary:	A squirreel interface to change passwords
 Summary(pl):	Wiewiórczy interfejs do zmiany hase³
 Group:		Applications/Mail
 Requires:	poppassd
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description change_pass
 This package contains a interface to change passwords.
@@ -77,7 +77,7 @@ Summary:	A squirreel interface to ispel
 Summary(pl):	Wiewórczy inerfejs do ispela
 Group:		Applications/Mail
 Requires:	ispell
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Provides:	webmail-spellcheck
 
 %description ispell
@@ -92,7 +92,7 @@ k±tem ¼le wpisanych s³ów i ortografii.
 Summary:	A squirrel email forwarding plug-in
 Summary(pl):	Wtyczka umo¿liwiaj±ca przekierowanie poczty
 Group:		Applications/Mail
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description mail_fwd
 This plug-in allows to set email forwarding.
@@ -107,7 +107,7 @@ suid.
 Summary:	A squirrel pop3 plug-in
 Summary(pl):	Wiewiórcza wtyczka pop3
 Group:		Applications/Mail
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description mailfetch
 This package contains a interface to pop3 serwers, it allows you to
@@ -121,8 +121,8 @@ pocztê za pomoc± us³ugi pop3.
 Summary:	A new mail notify plug-in
 Summary(pl):	Wtyczka informuj±ca o nowej poczcie
 Group:		Applications/Mail
-Requires:	%{name} = %{version}
-Requires:	%{name}-ispell = %{version}
+Requires:	%{name} = %{version}-%{release}
+Requires:	%{name}-ispell = %{version}-%{release}
 
 %description newmail
 A Squirrel new mail notify plug-in.
@@ -141,6 +141,10 @@ for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz 
 		tar xfvz $i -C plugins
 done
 
+# use poppassd from separate package; don't include x86 binaries!!!
+rm -rf plugins/change_pass/{courierpassd,poppassd}*
+rm -f plugins/mail_fwd/fwdfile/wfwd
+
 #%patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
@@ -151,16 +155,15 @@ done
 #%patch7 -p1
 
 %build
-cd plugins/mail_fwd/fwdfile
-rm -f wfwd
-%{__make}
-cd -
+%{__make} -C plugins/mail_fwd/fwdfile \
+	CFLAGS="%{rpmcflags}" \
+	LFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
-	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
+	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
