@@ -6,7 +6,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.3a
-Release:	4.7
+Release:	5
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -44,7 +44,7 @@ Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_squirreldir	/home/services/httpd/html/squirrel
+%define		_squirreldir	%{_datadir}/%{name}
 %define		_squirreldata	/var/lib/%{name}
 
 %description
@@ -151,7 +151,7 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 %prep
 %setup -q -a1
 
-# List of usefull plugins (ONLY usefull one should be here)
+# List of useful plugins (ONLY useful ones should be here)
 for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
 	fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
 	password_forget*tar.gz username*tar.gz quicksave*tar.gz \
@@ -194,7 +194,8 @@ cd ..
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
-	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}}
+	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
@@ -205,6 +206,9 @@ rm -rf `find . -name *.po`
 cd -
 
 rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~}
+
+cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/%{name}/config.php}
+ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -222,6 +226,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(750,root,http) %dir %{_squirreldir}/config
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
+%dir %{_sysconfdir}/%{name}
+%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/config.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
 %{_squirreldir}/help/index.php
