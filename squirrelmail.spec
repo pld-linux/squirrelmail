@@ -51,9 +51,31 @@ Requires:	%{name} = %{version}
 This package contains a interface to pop3 serwers, it allows you to
 fetch mail from this kind of serwers.
 
-%description ispell -l pl
-Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich
-pocztê za pomoc± us³ugi pop3.
+%package printerfriendly
+Summary:	A squirrel plug-in, shows printer friendly mail 
+Summary(pl):	Wiewiórczy plug-in, pokazuje wersje przyjazna dla drukarki
+Group:		Applications/Mail
+Requires:	%{name} = %{version}
+
+%description printerfriendly
+This package helps you when its time to print mail from browser, 
+showing printer friendly version.  
+
+%description printerfriendly -l pl
+Pakiet pomaga przy wydruku poczty z przegladarki, pokazuje wersje przyjazna
+dla drukarki.
+
+%package passwordforget
+Summary:	A squirrel plug-in, helps browser forget about login/password
+Summary(pl):	Wiewiórczy plug-in, pomaga przegladarkom zapominac o loginie/hasle
+Group:		Applications/Mail
+Requires:	%{name} = %{version}
+
+%description passwordforget
+This package corrects behavior of browsers: they shouldn't remeber passwords.
+
+%description passwordforget -l pl
+Pakiet poprawia zachowanie przegladarek: niepowinny one zapamietywac hasel.
 
 %prep
 %setup -q -a1
@@ -119,7 +141,6 @@ rm -rf $RPM_BUILD_ROOT
 /home/httpd/html/squirrel/plugins/motd
 /home/httpd/html/squirrel/plugins/newmail
 /home/httpd/html/squirrel/plugins/password_forget
-/home/httpd/html/squirrel/plugins/printer_friendly
 /home/httpd/html/squirrel/plugins/quicksave
 /home/httpd/html/squirrel/plugins/retrieveuserdata
 /home/httpd/html/squirrel/plugins/sqclock
@@ -133,24 +154,43 @@ rm -rf $RPM_BUILD_ROOT
 %lang(is) %dir /home/httpd/html/squirrel/locale/is_IS/LC_MESSAGES
 %lang(it) %dir /home/httpd/html/squirrel/locale/it_IT/LC_MESSAGES
 %lang(ca) /home/httpd/html/squirrel/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
+%lang(ca) /home/httpd/html/squirrel/locale/ca_ES/LC_MESSAGES/squirrelmail.po
 %lang(da) /home/httpd/html/squirrel/locale/da_DK/LC_MESSAGES/squirrelmail.mo
+%lang(da) /home/httpd/html/squirrel/locale/da_DK/LC_MESSAGES/squirrelmail.po
 %lang(de) /home/httpd/html/squirrel/locale/de_DE/LC_MESSAGES/squirrelmail.mo
+%lang(de) /home/httpd/html/squirrel/locale/de_DE/LC_MESSAGES/squirrelmail.po
 %lang(cs) /home/httpd/html/squirrel/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
+%lang(cs) /home/httpd/html/squirrel/locale/cs_CZ/LC_MESSAGES/squirrelmail.po
 %lang(es) /home/httpd/html/squirrel/locale/es_ES/LC_MESSAGES/squirrelmail.mo
+%lang(es) /home/httpd/html/squirrel/locale/es_ES/LC_MESSAGES/squirrelmail.po
 %lang(fi) /home/httpd/html/squirrel/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
+%lang(fi) /home/httpd/html/squirrel/locale/fi_FI/LC_MESSAGES/squirrelmail.po
 %lang(fr) /home/httpd/html/squirrel/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
+%lang(fr) /home/httpd/html/squirrel/locale/fr_FR/LC_MESSAGES/squirrelmail.po
 %lang(hr) /home/httpd/html/squirrel/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
+%lang(hr) /home/httpd/html/squirrel/locale/hr_HR/LC_MESSAGES/squirrelmail.po
 %lang(hu) /home/httpd/html/squirrel/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
+%lang(hu) /home/httpd/html/squirrel/locale/hu_HU/LC_MESSAGES/squirrelmail.po
 %lang(is) /home/httpd/html/squirrel/locale/is_IS/LC_MESSAGES/squirrelmail.mo
+%lang(is) /home/httpd/html/squirrel/locale/is_IS/LC_MESSAGES/squirrelmail.po
 %lang(it) /home/httpd/html/squirrel/locale/it_IT/LC_MESSAGES/squirrelmail.mo
+%lang(it) /home/httpd/html/squirrel/locale/it_IT/LC_MESSAGES/squirrelmail.po
 %lang(ko) /home/httpd/html/squirrel/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
+%lang(ko) /home/httpd/html/squirrel/locale/ko_KR/LC_MESSAGES/squirrelmail.po
 %lang(nl) /home/httpd/html/squirrel/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
+%lang(nl) /home/httpd/html/squirrel/locale/nl_NL/LC_MESSAGES/squirrelmail.po
 %lang(no) /home/httpd/html/squirrel/locale/no*/LC_MESSAGES/squirrelmail.mo
+%lang(no) /home/httpd/html/squirrel/locale/no*/LC_MESSAGES/squirrelmail.po
 %lang(pl) /home/httpd/html/squirrel/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
+%lang(pl) /home/httpd/html/squirrel/locale/pl_PL/LC_MESSAGES/squirrelmail.po
 %lang(pt) /home/httpd/html/squirrel/locale/pt*/LC_MESSAGES/squirrelmail.mo
+%lang(pt) /home/httpd/html/squirrel/locale/pt*/LC_MESSAGES/squirrelmail.po
 %lang(ru) /home/httpd/html/squirrel/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
+%lang(ru) /home/httpd/html/squirrel/locale/ru_RU/LC_MESSAGES/squirrelmail.po
 %lang(sr) /home/httpd/html/squirrel/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
+%lang(sr) /home/httpd/html/squirrel/locale/sr_YU/LC_MESSAGES/squirrelmail.po
 %lang(sv) /home/httpd/html/squirrel/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
+%lang(sv) /home/httpd/html/squirrel/locale/sv_SE/LC_MESSAGES/squirrelmail.po
 
 %files ispell
 %defattr(644,root,root,755)
@@ -159,3 +199,7 @@ rm -rf $RPM_BUILD_ROOT
 %files mailfetch
 %defattr(644,root,root,755)
 /home/httpd/html/squirrel/plugins/mail_fetch
+
+%files printerfriendly
+%defattr(644,root,root,755)
+/home/httpd/html/squirrel/plugins/printer_friendly
