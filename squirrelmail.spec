@@ -5,20 +5,6 @@ Version:	1.2.4
 Release:	2
 License:	GPL
 Group:		Applications/Mail
-Group(cs):	Aplikace/Po¹ta
-Group(da):	Programmer/Post
-Group(de):	Applikationen/Post
-Group(es):	Aplicaciones/Correo Electrónico
-Group(fr):	Applications/Courrier
-Group(is):	Forrit/Póst
-Group(it):	Applicazioni/Posta
-Group(no):	Applikasjoner/Epost
-Group(pl):	Aplikacje/Poczta
-Group(pt):	Aplicações/Correio Eletrônico
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/üÌÅËÔÒÏÎÎÁÑ ĞÏŞÔÁ
-Group(sl):	Programi/Po¹tna
-Group(sv):	Tillämpningar/Post
-Group(uk):	ğÒÉËÌÁÄÎ¦ ğÒÏÇÒÁÍÉ/ğÏÛÔÁ
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 URL:		http://www.squirrelmail.org/
@@ -42,20 +28,6 @@ przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
 Summary:	A squirreel interface to ispel
 Summary(pl):	Wiewórczy inerfejs do ispela 
 Group:		Applications/Mail
-Group(cs):	Aplikace/Po¹ta
-Group(da):	Programmer/Post
-Group(de):	Applikationen/Post
-Group(es):	Aplicaciones/Correo Electrónico
-Group(fr):	Applications/Courrier
-Group(is):	Forrit/Póst
-Group(it):	Applicazioni/Posta
-Group(no):	Applikasjoner/Epost
-Group(pl):	Aplikacje/Poczta
-Group(pt):	Aplicações/Correio Eletrônico
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/üÌÅËÔÒÏÎÎÁÑ ĞÏŞÔÁ
-Group(sl):	Programi/Po¹tna
-Group(sv):	Tillämpningar/Post
-Group(uk):	ğÒÉËÌÁÄÎ¦ ğÒÏÇÒÁÍÉ/ğÏÛÔÁ
 Requires:	ispell
 Requires:	%{name} = %{version}
 Provides:	webmail-spellcheck
@@ -72,20 +44,6 @@ k±tem ¼le wpisanych s³ów i ortografi.
 Summary:	A squirrel pop3 plug-in
 Summary(pl):	Wiewiórczy plug-in pop3
 Group:		Applications/Mail
-Group(cs):	Aplikace/Po¹ta
-Group(da):	Programmer/Post
-Group(de):	Applikationen/Post
-Group(es):	Aplicaciones/Correo Electrónico
-Group(fr):	Applications/Courrier
-Group(is):	Forrit/Póst
-Group(it):	Applicazioni/Posta
-Group(no):	Applikasjoner/Epost
-Group(pl):	Aplikacje/Poczta
-Group(pt):	Aplicações/Correio Eletrônico
-Group(ru):	ğÒÉÌÏÖÅÎÉÑ/üÌÅËÔÒÏÎÎÁÑ ĞÏŞÔÁ
-Group(sl):	Programi/Po¹tna
-Group(sv):	Tillämpningar/Post
-Group(uk):	ğÒÉËÌÁÄÎ¦ ğÒÏÇÒÁÍÉ/ğÏÛÔÁ
 Requires:	%{name} = %{version}
 
 %description mailfetch
