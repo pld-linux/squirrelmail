@@ -1,0 +1,43 @@
+diff -ru squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po
+--- squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2003-09-20 11:56:27.000000000 +0200
++++ squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 19:45:31.000000000 +0100
+@@ -3502,6 +3502,39 @@
+ msgid "Undelivered Message Headers"
+ msgstr "Nag³ówki niedostarczonych wiadomo¶ci"
+ 
++msgid "Change Password"
++msgstr "Zmieñ has³o"
++
++msgid "Old Password"
++msgstr "Stare has³o"
++
++msgid "New Password"
++msgstr "Nowe has³o"
++
++msgid "Verify New Password"
++msgstr "Powtórz nowe has³o"
++
++msgid "You must type in your old password."
++msgstr "Musisz podaæ stare has³o."
++
++msgid "You must type in a new password."
++msgstr "Musisz podaæ nowe has³o."
++
++msgid "You must also type in your new password in the verify box."
++msgstr "Musisz tak¿e wpisaæ has³o w polu 'Powtórz nowe has³o'."
++
++msgid "Your new password doesn't match the verify password."
++msgstr "Nowe has³o nie zgadza siê z tym w polu 'Powtórz nowe has³o'."
++
++msgid "Your old password is not correct."
++msgstr "Poda³e¶ z³e stare has³o."
++
++msgid "This connects to your local Password Server to change your email password."
++msgstr "Opcja pozwala na po³±czenie z lokalnym serwerem i zmianê has³a do Twojej skrzynki pocztowej."
++
++msgid "Password changed successfully."
++msgstr "Has³o zmienione poprawnie."
++
+ #~ msgid ""
+ #~ "FREE - Osirusoft Relays - Osirusofts list of verified open relays. Seems "
+ #~ "to include servers used by abuse@uunet.net auto-replies too."
