@@ -40,14 +40,14 @@ from an email client, including strong MIME support, address books,
 and folder manipulation.
 
 %description -l pl
-Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
+Pakiet zawiera Wiewiórcz± Pocztê, system pozwalaj±cy sprawdzaæ pocztê
 przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW. Pakiet u¿ywa
-wbudoewanego w PHP wsparcia do protoko³w IMAP i SMTP, a serwowane
-strony u¿ywaj± tylko HTML 4.0 (bez Javascript) po to ¿eby udostêpniaæ
-zasoby na mo¿liwie du¿± ilo¶æ typó³ pzregl±darek http. Pakiet jest
+wbudowanej w PHP obs³ugi protoko³ów IMAP i SMTP, a serwowane strony
+u¿ywaj± tylko HTML 4.0 (bez Javascriptu) po to, ¿eby udostêpniaæ
+zasoby na mo¿liwie du¿± ilo¶æ typów przegl±darek http. Pakiet jest
 ³atwy w instalacji i konfigurowaniu, a tak¿e ma wszystkie obecnie
-wymagane cechy dobrego klienta pocztowego jak wsparcie do MIME,
-ksia¿ka adresowa i wsparcie do pzrechowywaniu listów w folderach.
+wymagane cechy dobrego klienta pocztowego jak obs³uga MIME, ksi±¿ka
+adresowa i wsparcie dla przechowywania listów w folderach.
 
 %description -l pt_BR
 O SquirrelMail é um webmail baseado. Ele inclui suporte em PHP puro
@@ -84,12 +84,12 @@ This package contains a interface to ispell and it allows you to check
 mail against typos and common mistakes
 
 %description ispell -l pl
-Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziæ pocztê pod
-k±tem ¼le wpisanych s³ów i ortografi.
+Pakiet zawiera interfejs do ispella pozwalaj±cy sprawdziæ pocztê pod
+k±tem ¼le wpisanych s³ów i ortografii.
 
 %package mail_fwd
 Summary:	A squirrel email forwarding plug-in
-Summary(pl):	Plug-in umo¿liwiaj±cy przekierowanie poczty
+Summary(pl):	Wtyczka umo¿liwiaj±ca przekierowanie poczty
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 
@@ -98,12 +98,13 @@ This plug-in allows to set email forwarding.
 Note: binary file included in this package must be suid.
 
 %description mail_fwd -l pl
-Ten plug-in pozwala na ustawienie przekierowania poczty.
-Uwaga: plik binarny zawarty w tym pakiecie musi mieæ ustawiony bit suid.
+Ta wtyczka pozwala na ustawienie przekierowania poczty.
+Uwaga: plik binarny zawarty w tym pakiecie musi mieæ ustawiony bit
+suid.
 
 %package mailfetch
 Summary:	A squirrel pop3 plug-in
-Summary(pl):	Wiewiórczy plug-in pop3
+Summary(pl):	Wiewiórcza wtyczka pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 
@@ -112,12 +113,12 @@ This package contains a interface to pop3 serwers, it allows you to
 fetch mail from this kind of serwers.
 
 %description mailfetch -l pl
-Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich
+Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gaæ z nich
 pocztê za pomoc± us³ugi pop3.
 
 %package newmail
 Summary:	A new mail notify plug-in
-Summary(pl):	plug-in informuj±cy o nowej poczcie
+Summary(pl):	Wtyczka informuj±ca o nowej poczcie
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 Requires:	%{name}-ispell = %{version}
@@ -126,7 +127,7 @@ Requires:	%{name}-ispell = %{version}
 A Squirrel new mail notify plug-in.
 
 %description newmail -l pl
-Wiewiórczy plug-in informuj±cy o nowej poczcie.
+Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
 %setup -q -a1
