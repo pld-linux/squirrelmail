@@ -232,7 +232,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(nl) %{_squirreldir}/locale/nl_NL
 %lang(nn) %{_squirreldir}/locale/nn_NO
-%lang(no) %{_squirreldir}/locale/no_NO
+%lang(nb) %{_squirreldir}/locale/no_NO
 %lang(pl) %{_squirreldir}/locale/pl_PL
 %lang(pt) %{_squirreldir}/locale/pt_PT
 %lang(pt_BR) %{_squirreldir}/locale/pt_BR
