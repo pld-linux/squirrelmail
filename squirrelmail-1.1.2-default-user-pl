@@ -1,0 +1,10 @@
+chosen_theme=../themes/purple_theme.php
+show_num=25
+wrap_at=86
+editor_size=76
+language=pl
+location_of_bar=left
+location_of_buttons=between
+left_size=150
+use_javascript_addr_book=0
+alt_index_colors=1

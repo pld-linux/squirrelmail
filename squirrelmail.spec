@@ -1,15 +1,24 @@
+# TODO:
+# - make separate packages with plugins..
+#
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.2
-Release:	2
+Version:	1.4.3a
+Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d8271c704a9f23d53138a4ceea38fb4
+# Source0-md5:	9564fed8b8dc6fc75d5ac31825569a77
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
+%define		_compatibility_version	1.3
+Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
+# Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
+%define		_change_passwd_version	4.0
+Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+# Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
@@ -17,17 +26,21 @@ Patch3:		%{name}-auto_cc.patch
 Patch4:		%{name}-fortune.patch
 Patch5:		%{name}-gzip.patch
 Patch6:		%{name}-mail_fwd.patch
+Patch7:		%{name}-change_pass-i18n.patch
+Patch8:		%{name}-change_pass-polish.patch
 URL:		http://www.squirrelmail.org/
-Requires:	webserver
+BuildRequires:	gettext-devel
 Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
 Requires:	php-zlib
+Requires:	webserver
+Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_squirreldir	/home/services/httpd/html/squirrel
+%define		_squirreldir	/home/httpd/html/squirrel
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
@@ -64,6 +77,7 @@ Summary(pl):	Wiewiórczy interfejs do zmiany hase³
 Group:		Applications/Mail
 Requires:	poppassd
 Requires:	%{name} = %{version}-%{release}
+Requires:	squirrelmail-compatibility-%{_compatibility_version}
 
 %description change_pass
 This package contains a interface to change passwords.
@@ -134,11 +148,14 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 # List of usefull plugins (ONLY usefull one should be here)
 for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
-	 fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
-	 password_forget*tar.gz username*tar.gz quicksave*tar.gz \
-	 retrieveuserdata*tar.gz vacation*tar.gz; do
+	fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
+	password_forget*tar.gz username*tar.gz quicksave*tar.gz \
+	retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
+
+tar -zxvf %{SOURCE2} -C plugins
+tar -zxvf %{SOURCE3} -C plugins
 
 # use poppassd from separate package; don't include x86 binaries!!!
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
@@ -151,11 +168,17 @@ rm -f plugins/mail_fwd/fwdfile/wfwd
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
+%patch8 -p1
 
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
+
+cd po
+./compilepo pl_PL
+cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -193,14 +216,18 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_squirreldir}/help
 %{_squirreldir}/help/index.php
 %{_squirreldir}/help/en_US
+%lang(bg) %{_squirreldir}/help/bg_BG
 %lang(ca) %{_squirreldir}/help/ca_ES
 %lang(cs) %{_squirreldir}/help/cs_CZ
+%lang(cy) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
+%lang(de) %{_squirreldir}/help/de_DE
 %lang(es) %{_squirreldir}/help/es_ES
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
 %lang(id) %{_squirreldir}/help/id_ID
 %lang(it) %{_squirreldir}/help/it_IT
+%lang(ja) %{_squirreldir}/help/ja_JP
 %lang(ko) %{_squirreldir}/help/ko_KR
 %lang(lt) %{_squirreldir}/help/lt_LT
 %lang(nl) %{_squirreldir}/help/nl_NL
@@ -208,9 +235,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pt) %{_squirreldir}/help/pt_PT
 %lang(pt_BR) %{_squirreldir}/help/pt_BR
 %lang(ru) %{_squirreldir}/help/ru_RU
+%lang(sk) %{_squirreldir}/help/sk_SK
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sv) %{_squirreldir}/help/sv_SE
 %lang(th) %{_squirreldir}/help/th_TH
+%lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
 %dir %{_squirreldir}/locale
@@ -221,6 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(da) %{_squirreldir}/locale/da_DK
 %lang(de) %{_squirreldir}/locale/de_DE
 %lang(cs) %{_squirreldir}/locale/cs_CZ
+%lang(cy) %{_squirreldir}/locale/cy_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(fi) %{_squirreldir}/locale/fi_FI
@@ -230,11 +260,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(id) %{_squirreldir}/locale/id_ID
 %lang(is) %{_squirreldir}/locale/is_IS
 %lang(it) %{_squirreldir}/locale/it_IT
+%lang(ja) %{_squirreldir}/locale/ja_JP
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(nl) %{_squirreldir}/locale/nl_NL
 %lang(nn) %{_squirreldir}/locale/nn_NO
-%lang(nb) %{_squirreldir}/locale/no_NO
 %lang(pl) %{_squirreldir}/locale/pl_PL
 %lang(pt) %{_squirreldir}/locale/pt_PT
 %lang(pt_BR) %{_squirreldir}/locale/pt_BR
@@ -256,6 +286,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/auto_cc
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
+%{_squirreldir}/plugins/compatibility
 %{_squirreldir}/plugins/delete_move_next
 %{_squirreldir}/plugins/filters
 %{_squirreldir}/plugins/fortune

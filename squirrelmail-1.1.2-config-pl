@@ -1,0 +1,105 @@
+<?php
+	/** SquirrelMail configuration
+	 ** Created using the configure script, conf.pl
+	 **/
+
+if (defined('config_php'))
+   return;
+define('config_php', true);
+
+	global $print_config_version, $config_version, $config_use_color;
+	$config_version = "x63";
+	$config_use_color = 2;
+
+	global $org_name, $org_logo, $org_title, $signout_page;
+	$org_name   = "SquirrelMail";
+	$org_logo   = "../images/sm_logo.jpg";
+	$org_title  = "SquirrelMail $version";
+	$signout_page  = "";
+
+	global $domain, $imapServerAddress, $imapPort;
+	global $useSendmail, $smtpServerAddress, $smtpPort;
+	global $sendmail_path, $use_authenticated_smtp, $imap_server_type;
+	global $invert_time, $optional_delimiter;
+	$domain                 = "mydomain.com";
+	$imapServerAddress      = "localhost";
+	$imapPort               =  143;
+	$useSendmail            =  true;
+	$smtpServerAddress      = "localhost";
+	$smtpPort               =  25;
+	$sendmail_path          = "/usr/sbin/sendmail";
+	$use_authenticated_smtp = false;
+	$imap_server_type       = "cyrus";
+	$invert_time            = false;
+	$optional_delimiter     = "detect";
+
+	global $default_folder_prefix, $trash_folder, $sent_folder;
+	global $default_move_to_trash, $default_move_to_sent;
+	global $show_prefix_option, $list_special_folders_first;
+	global $use_special_folder_color, $auto_expunge, $default_sub_of_inbox;
+	global $show_contain_subfolders_option, $default_unseen_notify;
+	global $default_unseen_type, $auto_create_special;
+	$default_folder_prefix            = "";
+	$trash_folder                     = "INBOX.Trash";
+	$sent_folder                      = "INBOX.Sent";
+	$default_move_to_trash            =  true;
+	$default_move_to_sent             =  true;
+	$show_prefix_option               =  false;
+	$list_special_folders_first       =  true;
+	$use_special_folder_color         =  true;
+	$auto_expunge                     =  true;
+	$default_sub_of_inbox             =  true;
+	$show_contain_subfolders_option   =  false;
+	$default_unseen_notify            =  2;
+	$default_unseen_type              =  1;
+	$auto_create_special              =  true;
+
+	global $default_charset, $data_dir, $attachment_dir;
+	global $default_left_size, $force_username_lowercase;
+	$default_charset          = "iso-8859-1";
+	$data_dir                 = "../data/";
+	$attachment_dir           = "$data_dir";
+	$default_left_size        =  150;
+	$force_username_lowercase = false;
+
+	global $plugins;
+
+	global $theme_css, $theme;
+	$theme_css = "";
+	$theme[0]["PATH"] = "../themes/default_theme.php";
+	$theme[0]["NAME"] = "Default";
+	$theme[1]["PATH"] = "../themes/plain_blue_theme.php";
+	$theme[1]["NAME"] = "Plain Blue";
+	$theme[2]["PATH"] = "../themes/sandstorm_theme.php";
+	$theme[2]["NAME"] = "Sand Storm";
+	$theme[3]["PATH"] = "../themes/deepocean_theme.php";
+	$theme[3]["NAME"] = "Deep Ocean";
+	$theme[4]["PATH"] = "../themes/slashdot_theme.php";
+	$theme[4]["NAME"] = "Slashdot";
+	$theme[5]["PATH"] = "../themes/purple_theme.php";
+	$theme[5]["NAME"] = "Purple";
+	$theme[6]["PATH"] = "../themes/forest_theme.php";
+	$theme[6]["NAME"] = "Forest";
+	$theme[7]["PATH"] = "../themes/ice_theme.php";
+	$theme[7]["NAME"] = "Ice";
+	$theme[8]["PATH"] = "../themes/seaspray_theme.php";
+	$theme[8]["NAME"] = "Sea Spray";
+	$theme[9]["PATH"] = "../themes/bluesteel_theme.php";
+	$theme[9]["NAME"] = "Blue Steel";
+	$theme[10]["PATH"] = "../themes/dark_grey_theme.php";
+	$theme[10]["NAME"] = "Dark Grey";
+	$theme[11]["PATH"] = "../themes/high_contrast_theme.php";
+	$theme[11]["NAME"] = "High Contrast";
+	$theme[12]["PATH"] = "../themes/black_bean_burrito_theme.php";
+	$theme[12]["NAME"] = "Black Bean Burrito";
+	$theme[13]["PATH"] = "../themes/servery_theme.php";
+	$theme[13]["NAME"] = "Servery";
+	$theme[14]["PATH"] = "../themes/maize_theme.php";
+	$theme[14]["NAME"] = "Maize";
+	$theme[15]["PATH"] = "../themes/bluesnews_theme.php";
+	$theme[15]["NAME"] = "BluesNews";
+
+	global $default_use_javascript_addr_book, $ldap_server;
+	$default_use_javascript_addr_book = false;
+	global $motd;
+	$motd = "";
