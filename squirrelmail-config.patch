@@ -1,0 +1,70 @@
+--- ./config/config_default.php.org	Wed Apr 21 19:21:54 2004
++++ ./config/config_default.php	Fri Oct  8 11:59:38 2004
+@@ -95,7 +95,7 @@
+  * option set to true.
+  * @global string $provider_name
+  */
+-$provider_name = 'SquirrelMail';
++$provider_name = 'PLD Linux';
+ 
+ /**
+  * Provider URI
+@@ -106,7 +106,7 @@
+  * option set to true.
+  * @global string $provider_uri
+  */
+-$provider_uri = 'http://www.squirrelmail.org/';
++$provider_uri = 'http://www.pld-linux.org/';
+ 
+ /*** Server Settings ***/
+ /**
+@@ -276,7 +276,7 @@
+  * If you do not use this, set it to the empty string.
+  * @global string $default_folder_prefix
+  */
+-$default_folder_prefix = '';
++$default_folder_prefix = 'mail/';
+ 
+ /**
+  * User level prefix control
+@@ -442,7 +442,7 @@
+  *   $data_dir = SM_PATH . 'data/';
+  * @global string $data_dir
+  */
+-$data_dir = SM_PATH . 'data/';
++$data_dir = '/var/spool/squirrelmail/prefs/';
+ 
+ /**
+  * Attachments directory
+@@ -460,7 +460,7 @@
+  *    + It should probably be another directory than data_dir.
+  * @global string $attachment_dir
+  */
+-$attachment_dir = $data_dir;
++$attachment_dir = '/var/spool/squirrelmail/data/';
+ 
+ /**
+  * Hash level used for data directory.
+@@ -823,4 +823,4 @@
+  * sent and regular output to begin, which will majorly screw
+  * things up when we try to send more headers later.
+  */
+-?>
+\ No newline at end of file
++?>
+--- ./config/conf.pl.org	Fri Oct  8 11:48:41 2004
++++ ./config/conf.pl	Fri Oct  8 11:50:49 2004
+@@ -317,11 +317,11 @@
+ }
+ 
+ if ( !$provider_uri ) {
+-    $provider_uri = "http://www.squirrelmail.org/";
++    $provider_uri = "http://www.pld-linux.org/";
+ }
+ 
+ if ( !$provider_name ) {
+-    $provider_name = "SquirrelMail";
++    $provider_name = "PLD Linux";
+ }
+ 
+ if ( !$edit_identity ) {
