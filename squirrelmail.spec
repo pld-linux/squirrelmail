@@ -6,7 +6,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.3a
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -22,6 +22,7 @@ Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_vers
 Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 # Source3-size:	27587
+Source4:	%{name}.conf
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-abook_take.patch
@@ -196,9 +197,12 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/%{name}
+	$RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/httpd
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
+
+install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
 
 cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 
@@ -213,6 +217,31 @@ ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/c
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post
+if [ -f %{_sysconfdir}/httpd/httpd.conf ] && ! grep -q "^Include.*%{name}.conf" %{_sysconfdir}/httpd/httpd.conf; then
+        echo "Include %{_sysconfdir}/httpd/%{name}.conf" >> %{_sysconfdir}/httpd/httpd.conf
+elif [ -d %{_sysconfdir}/httpd/httpd.conf ]; then
+        ln -sf %{_sysconfdir}/httpd/%{name}.conf %{_sysconfdir}/httpd/httpd.conf/99_%{name}.conf
+fi
+if [ -f /var/lock/subsys/httpd ]; then
+        /usr/sbin/apachectl restart 1>&2
+fi
+
+%preun
+if [ "$1" = "0" ]; then
+        umask 027
+        if [ -d %{_sysconfdir}/httpd/httpd.conf ]; then
+            rm -f %{_sysconfdir}/httpd/httpd.conf/99_%{name}.conf
+        else
+                grep -v "^Include.*%{name}.conf" %{_sysconfdir}/httpd/httpd.conf > \
+                        %{_sysconfdir}/httpd/httpd.conf.tmp
+                mv -f %{_sysconfdir}/httpd/httpd.conf.tmp %{_sysconfdir}/httpd/httpd.conf
+                if [ -f /var/lock/subsys/httpd ]; then
+                    /usr/sbin/apachectl restart 1>&2
+                fi
+        fi
+fi
 
 %triggerpostun -- squirrelmail < 1.4.3a-5
 if [ -f /home/services/httpd/html/squirrel/config/config.php.rpmsave ]; then
@@ -236,6 +265,7 @@ fi
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %dir %{_sysconfdir}/%{name}
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/%{name}.conf
 %attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/config.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
