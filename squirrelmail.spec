@@ -157,12 +157,12 @@ for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
 	gzip*.tar.gz mail_fwd*.tar.gz motd*.tar.gz \
 	password_forget*.tar.gz quicksave*.tar.gz retrieveuserdata*.tar.gz \
 	username*.tar.gz vacation*.tar.gz; do
-		tar xfvz $i -C plugins
+		tar -xzf $i -C plugins
 done
 
-tar -zxvf %{SOURCE2} -C plugins
-#tar -zxvf %{SOURCE3} -C plugins
-tar -jxvf %{SOURCE4}
+tar -xzf %{SOURCE2} -C plugins
+#tar -xzf %{SOURCE3} -C plugins
+tar -xjf %{SOURCE4}
 
 # use poppassd from separate package; don't include x86 binaries!!!
 #rm -rf plugins/change_pass/{courierpassd,poppassd}*
