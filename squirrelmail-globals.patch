@@ -6,7 +6,7 @@ diff -uNr squirrelmail-1.2.7/index.php squirrelmail-1.2.7.new/index.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * index.php -- Displays the main frameset
   *
@@ -18,7 +18,7 @@ diff -uNr squirrelmail-1.2.7/src/addrbook_popup.php squirrelmail-1.2.7.new/src/a
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * addrbook_popup.php
   *
@@ -30,7 +30,7 @@ diff -uNr squirrelmail-1.2.7/src/addrbook_search.php squirrelmail-1.2.7.new/src/
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * addrbook_search.php
   *
@@ -42,7 +42,7 @@ diff -uNr squirrelmail-1.2.7/src/addrbook_search_html.php squirrelmail-1.2.7.new
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * addrbook_search_html.php
   *
@@ -54,7 +54,7 @@ diff -uNr squirrelmail-1.2.7/src/addressbook.php squirrelmail-1.2.7.new/src/addr
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * addressbook.php
   *
@@ -66,7 +66,7 @@ diff -uNr squirrelmail-1.2.7/src/compose.php squirrelmail-1.2.7.new/src/compose.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * compose.php
   *
@@ -78,7 +78,7 @@ diff -uNr squirrelmail-1.2.7/src/delete_message.php squirrelmail-1.2.7.new/src/d
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * delete_message.php
   *
@@ -90,7 +90,7 @@ diff -uNr squirrelmail-1.2.7/src/download.php squirrelmail-1.2.7.new/src/downloa
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * download.php
   *
@@ -102,7 +102,7 @@ diff -uNr squirrelmail-1.2.7/src/draft_actions.php squirrelmail-1.2.7.new/src/dr
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * draft_actions.php
   *
@@ -114,7 +114,7 @@ diff -uNr squirrelmail-1.2.7/src/empty_trash.php squirrelmail-1.2.7.new/src/empt
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * empty_trash.php
   *
@@ -126,7 +126,7 @@ diff -uNr squirrelmail-1.2.7/src/folders.php squirrelmail-1.2.7.new/src/folders.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders.php
   *
@@ -138,7 +138,7 @@ diff -uNr squirrelmail-1.2.7/src/folders_create.php squirrelmail-1.2.7.new/src/f
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders_create.php
   *
@@ -150,7 +150,7 @@ diff -uNr squirrelmail-1.2.7/src/folders_delete.php squirrelmail-1.2.7.new/src/f
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders_delete.php
   *
@@ -162,7 +162,7 @@ diff -uNr squirrelmail-1.2.7/src/folders_rename_do.php squirrelmail-1.2.7.new/sr
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders_rename_do.php
   *
@@ -174,7 +174,7 @@ diff -uNr squirrelmail-1.2.7/src/folders_rename_getname.php squirrelmail-1.2.7.n
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders_rename_getname.php
   *
@@ -186,7 +186,7 @@ diff -uNr squirrelmail-1.2.7/src/folders_subscribe.php squirrelmail-1.2.7.new/sr
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * folders_subscribe.php
   *
@@ -198,7 +198,7 @@ diff -uNr squirrelmail-1.2.7/src/help.php squirrelmail-1.2.7.new/src/help.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * help.php
   *
@@ -210,7 +210,7 @@ diff -uNr squirrelmail-1.2.7/src/image.php squirrelmail-1.2.7.new/src/image.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * image.php
   *
@@ -222,7 +222,7 @@ diff -uNr squirrelmail-1.2.7/src/index.php squirrelmail-1.2.7.new/src/index.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * index.php
   *
@@ -234,7 +234,7 @@ diff -uNr squirrelmail-1.2.7/src/left_main.php squirrelmail-1.2.7.new/src/left_m
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * left_main.php
   *
@@ -246,7 +246,7 @@ diff -uNr squirrelmail-1.2.7/src/load_prefs.php squirrelmail-1.2.7.new/src/load_
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * load_prefs.php
   *
@@ -258,7 +258,7 @@ diff -uNr squirrelmail-1.2.7/src/login.php squirrelmail-1.2.7.new/src/login.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * login.php -- simple login screen
   *
@@ -270,7 +270,7 @@ diff -uNr squirrelmail-1.2.7/src/move_messages.php squirrelmail-1.2.7.new/src/mo
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * move_messages.php
   *
@@ -282,7 +282,7 @@ diff -uNr squirrelmail-1.2.7/src/options.php squirrelmail-1.2.7.new/src/options.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options.php
   *
@@ -294,7 +294,7 @@ diff -uNr squirrelmail-1.2.7/src/options_display.php squirrelmail-1.2.7.new/src/
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_display.php
   *
@@ -306,7 +306,7 @@ diff -uNr squirrelmail-1.2.7/src/options_folder.php squirrelmail-1.2.7.new/src/o
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_folder.php
   *
@@ -318,7 +318,7 @@ diff -uNr squirrelmail-1.2.7/src/options_highlight.php squirrelmail-1.2.7.new/sr
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_highlight.php
   *
@@ -330,7 +330,7 @@ diff -uNr squirrelmail-1.2.7/src/options_identities.php squirrelmail-1.2.7.new/s
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_identities.php
   *
@@ -342,7 +342,7 @@ diff -uNr squirrelmail-1.2.7/src/options_order.php squirrelmail-1.2.7.new/src/op
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_order.php
   *
@@ -354,7 +354,7 @@ diff -uNr squirrelmail-1.2.7/src/options_personal.php squirrelmail-1.2.7.new/src
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * options_personal.php
   *
@@ -366,7 +366,7 @@ diff -uNr squirrelmail-1.2.7/src/printer_friendly_bottom.php squirrelmail-1.2.7.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * printer_friendly_bottom.php
   *
@@ -378,7 +378,7 @@ diff -uNr squirrelmail-1.2.7/src/printer_friendly_main.php squirrelmail-1.2.7.ne
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * printer_friendly_main.php
   *
@@ -390,7 +390,7 @@ diff -uNr squirrelmail-1.2.7/src/printer_friendly_top.php squirrelmail-1.2.7.new
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * printer_friendly_top.php
   *
@@ -402,7 +402,7 @@ diff -uNr squirrelmail-1.2.7/src/read_body.php squirrelmail-1.2.7.new/src/read_b
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * read_body.php
   *
@@ -414,7 +414,7 @@ diff -uNr squirrelmail-1.2.7/src/redirect.php squirrelmail-1.2.7.new/src/redirec
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
  * redirect.php
  * Derived from webmail.php by Ralf Kraudelt <kraude@wiwi.uni-rostock.de>
@@ -426,7 +426,7 @@ diff -uNr squirrelmail-1.2.7/src/retrievalerror.php squirrelmail-1.2.7.new/src/r
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * retrievalerror.php
   *
@@ -438,7 +438,7 @@ diff -uNr squirrelmail-1.2.7/src/right_main.php squirrelmail-1.2.7.new/src/right
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * right_main.php
   *
@@ -450,7 +450,7 @@ diff -uNr squirrelmail-1.2.7/src/search.php squirrelmail-1.2.7.new/src/search.ph
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * search.php
   *
@@ -462,7 +462,7 @@ diff -uNr squirrelmail-1.2.7/src/signout.php squirrelmail-1.2.7.new/src/signout.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * signout.php -- cleans up session and logs the user out
   *
@@ -474,7 +474,7 @@ diff -uNr squirrelmail-1.2.7/src/validate.php squirrelmail-1.2.7.new/src/validat
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
  * validate.php
  *
@@ -486,7 +486,7 @@ diff -uNr squirrelmail-1.2.7/src/vcard.php squirrelmail-1.2.7.new/src/vcard.php
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * vcard.php
   *
@@ -498,7 +498,7 @@ diff -uNr squirrelmail-1.2.7/src/webmail.php squirrelmail-1.2.7.new/src/webmail.
  
 +while (list($k,$v)=each($_GET))$$k=$v;
 +while (list($k,$v)=each($_POST))$$k=$v;
-+
++while (list($k,$v)=each($_COOKIE))$$k=$v;
  /**
   * webmail.php -- Displays the main frameset
   *
