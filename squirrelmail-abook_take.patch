@@ -1,0 +1,91 @@
+--- squirrelmail-1.2.8/plugins/abook_take/setup.php.orig	Thu Apr 26 16:05:22 2001
++++ squirrelmail-1.2.8/plugins/abook_take/setup.php	Fri Sep 20 10:01:45 2002
+@@ -1,5 +1,7 @@
+ <?php
+ 
++   require_once('../functions/url_parser.php');
++
+ 
+ /* Address Take -- steals addresses from incoming email messages.  Searches
+    the To, Cc, From and Reply-To headers, also searches the body of the
+@@ -20,8 +22,6 @@
+ {
+   global $abook_take_verify, $Email_RegExp_Match;
+   
+-  include '../functions/url_parser.php';
+-  
+   if (! eregi('^' . $Email_RegExp_Match . '$', $email))
+     return false;
+     
+@@ -39,7 +39,6 @@
+ {
+   global $abook_found_email, $Email_RegExp_Match;
+   
+-  include '../functions/url_parser.php';
+ 
+   while (eregi('(' . $Email_RegExp_Match . ')', $str, $hits))
+   {
+@@ -102,7 +101,7 @@
+                 $new_body = substr($new_body, 0, $pos);
+               }
+                      
+-              $trans = get_html_translation_table('HTMLENTITIES');
++              $trans = get_html_translation_table(HTML_ENTITIES);
+               $trans[' '] = '&nbsp;';
+               $trans = array_flip($trans);
+               $new_body = strtr($new_body, $trans);
+@@ -176,18 +175,18 @@
+   global $abook_take_abook_take_location;
+   global $abook_take_abook_take_hide;
+   global $abook_take_abook_take_verify;
++  global $_POST;
+   
+-  
+-  if (isset($abook_take_abook_take_location)) 
++  if (isset($_POST['abook_take_abook_take_location']))
+   {
+-    setPref($data_dir, $username, 'abook_take_location', $abook_take_abook_take_location);
++    setPref($data_dir, $username, 'abook_take_location', $_POST['abook_take_abook_take_location']);
+   } 
+   else 
+   {
+     setPref($data_dir, $username, 'abook_take_location', 'center');
+   }
+ 
+-  if (isset($abook_take_abook_take_hide)) 
++  if (isset($_POST['abook_take_abook_take_hide']))
+   {
+     setPref($data_dir, $username, 'abook_take_hide', '1');
+   } 
+@@ -196,7 +195,7 @@
+     setPref($data_dir, $username, 'abook_take_hide', '');
+   }
+ 
+-  if (isset($abook_take_abook_take_verify)) 
++  if (isset($_POST['abook_take_abook_take_verify'])) 
+   {
+     setPref($data_dir, $username, 'abook_take_verify', '1');
+   } 
+--- squirrelmail-1.2.8/plugins/abook_take/take.php.orig	Thu Apr 26 15:59:41 2001
++++ squirrelmail-1.2.8/plugins/abook_take/take.php	Thu Jun 27 15:18:33 2002
+@@ -7,13 +7,13 @@
+    **/
+    
+    chdir('..');
+-   include('../src/validate.php');
+-   include("../functions/strings.php");
+-   include("../config/config.php");
+-   include("../functions/i18n.php");
+-   include("../functions/page_header.php");
+-   include("../functions/addressbook.php");
+-   include("../src/load_prefs.php");
++   require_once('../src/validate.php');
++   require_once("../functions/strings.php");
++   require_once("../config/config.php");
++   require_once("../functions/i18n.php");
++   require_once("../functions/page_header.php");
++   require_once("../functions/addressbook.php");
++   require_once("../src/load_prefs.php");
+    
+    displayPageHeader($color, "None");
+    
