@@ -9,8 +9,10 @@ Group(de):	Applikationen/Post
 Group(pl):	Aplikacje/Poczta
 Group(pt):	Aplicações/Correio Eletrônico
 Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-Source1:	%{name}-%{version}-config-pl
-Source2:	%{name}-%{version}-default-user-pl
+Source1:	http://prdownloads.sourceforge.net/squirrelmail/%{name}_plugins-20010521.tar
+Source2:	squirrelmail-%{version}-config-pl
+Source3:	squirrelmail-%{version}-default-user-pl
+Patch0:		squirrelmail-sqspell_pl.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	imapdaemon
@@ -28,10 +30,13 @@ Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
 przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
 
 %prep 
-%setup -q 
-
-%build
-echo "No build necessary"
+%setup -q -a1 
+for i in "change_pass.1.3-1.0.1"  "username.1.0-1.0.0" "abook_take.1.4-1.1.1" "addgraphics.1.00-1.0.3"  "attachment_common.2.2-1.1.1" "vacation-0.11" "squirrelspell.0.3.5-1.0.6" "sqclock.0.2-1.0.0" "retrieveuserdata.0.4-1.0.0" "quicksave.1.0.0-1.0.0" "printer_friendly.0.2.2-1.1.2" "password_forget.1.2-1.0.1" "newmail.1.4-1.1.2" "motd.1.2-1.0.3" "mail_fwd.1.0-1.0.0" "mail_fetch.0.6-1.1.1" "gzip.1.7-1.1.1" "fortune.2.0-1.0.0"  "auto_cc.1.2-1.0.0"; do
+mv $i.tar.gz plugins/
+cd plugins
+tar xfvz $i.tar.gz
+cd ..
+done
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -46,9 +51,11 @@ install %{SOURCE1} $RPM_BUILD_ROOT/home/httpd/html/squirrel/config/config.php
 install %{SOURCE2} $RPM_BUILD_ROOT/home/httpd/html/squirrel/data/
 
 rm AUTHORS ChangeLog INSTALL README UPGRADE doc/*
-cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
-
 gzip -9nf $RPM_BUILD_ROOT%{_datadir}/docs/squirrel/*
+cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
+cd plugins/squirrelspell
+cp sqspell_config.dist sqspell_config.php
+patch -p0 -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/plugins/squirrelspell < %{PATCH0}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -60,7 +67,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
 /home/httpd/html/squirrel/configure
-/home/httpd/html/squirrel/config/*
+%config (noreplace) /home/httpd/html/squirrel/config/*
 /home/httpd/html/squirrel/functions/*
 /home/httpd/html/squirrel/help/index.php
 /home/httpd/html/squirrel/help/ca/*
@@ -74,7 +81,6 @@ rm -rf $RPM_BUILD_ROOT
 /home/httpd/html/squirrel/help/ru/*
 /home/httpd/html/squirrel/help/sv/*
 /home/httpd/html/squirrel/images/*
-#FixMe: do sth with plugins !!!
 /home/httpd/html/squirrel/plugins/*
 /home/httpd/html/squirrel/po/*
 /home/httpd/html/squirrel/src/*
