@@ -17,7 +17,6 @@ Patch3:		%{name}-auto_cc.patch
 Patch4:		%{name}-fortune.patch
 Patch5:		%{name}-gzip.patch
 Patch6:		%{name}-mail_fwd.patch
-Patch7:		%{name}-username.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -145,14 +144,13 @@ done
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
 rm -f plugins/mail_fwd/fwdfile/wfwd
 
-#%patch0 -p1
-#%patch1 -p1
+%patch0 -p1
+%patch1 -p1
 %patch2 -p1
-#%patch3 -p1
-#%patch4 -p1
-#%patch5 -p1
-#%patch6 -p1
-#%patch7 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
 
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
