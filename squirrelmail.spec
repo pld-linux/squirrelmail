@@ -25,7 +25,7 @@ Requires:	php-posix
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_squirreldir	/home/httpd/html/squirrel
+%define		_squirreldir	/home/services/httpd/html/squirrel
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
