@@ -1,7 +1,7 @@
 diff -ru squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po
---- squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2003-09-20 11:56:27.000000000 +0200
-+++ squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 19:45:31.000000000 +0100
-@@ -3502,6 +3502,39 @@
+--- squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 20:04:48.000000000 +0100
++++ squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 20:06:20.000000000 +0100
+@@ -3502,6 +3502,45 @@
  msgid "Undelivered Message Headers"
  msgstr "Nag³ówki niedostarczonych wiadomo¶ci"
  
@@ -37,6 +37,12 @@ diff -ru squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po squirrelmai
 +
 +msgid "Password changed successfully."
 +msgstr "Has³o zmienione poprawnie."
++
++msgid "Connecting to Password Server"
++msgstr "£±czenie z serwerem hase³"
++
++msgid "Closing Connection"
++msgstr "Zamykanie po³±czenia"
 +
  #~ msgid ""
  #~ "FREE - Osirusoft Relays - Osirusofts list of verified open relays. Seems "
