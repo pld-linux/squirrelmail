@@ -2,7 +2,7 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	1.2.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -98,7 +98,7 @@ rm -rf $RPM_BUILD_ROOT
 /home/httpd/html/squirrel/help/index.php
 %lang(ca) /home/httpd/html/squirrel/help/ca_ES
 %lang(cs) /home/httpd/html/squirrel/help/cs_CZ
-%lang(en) /home/httpd/html/squirrel/help/en_US
+/home/httpd/html/squirrel/help/en_US
 %lang(fi) /home/httpd/html/squirrel/help/fi_FI
 %lang(fr) /home/httpd/html/squirrel/help/fr_FR
 %lang(it) /home/httpd/html/squirrel/help/it_IT
@@ -149,7 +149,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(nl) /home/httpd/html/squirrel/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
 %lang(no) /home/httpd/html/squirrel/locale/no*/LC_MESSAGES/squirrelmail.mo
 %lang(pl) /home/httpd/html/squirrel/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
-%lang(pt) /home/httpd/html/squirrel/locale/pt*/LC_MESSAGES/squirrelmail.mo
+%lang(pt) /home/httpd/html/squirrel/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
+%lang(pt_BR) /home/httpd/html/squirrel/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
 %lang(ru) /home/httpd/html/squirrel/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
 %lang(sr) /home/httpd/html/squirrel/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
 %lang(sv) /home/httpd/html/squirrel/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
