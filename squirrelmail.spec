@@ -78,9 +78,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
 
-gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
-	doc/README* doc/ReleaseNotes/1.2/*
-
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
@@ -90,7 +87,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc *.gz doc/*.gz
+%doc AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html
+%doc doc/README* doc/ReleaseNotes/1.2/*
 %defattr(750,root,http,750)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
