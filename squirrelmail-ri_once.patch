@@ -54,25 +54,6 @@ diff -ru squirrelmail-1.2.6/plugins/abook_take/take.php plugins.AX/abook_take/ta
     displayPageHeader($color, "None");
     
 Only in squirrelmail-1.2.6/plugins/: administrator
-diff -ru squirrelmail-1.2.6/plugins/attachment_common/image.php plugins.AX/attachment_common/image.php
---- squirrelmail-1.2.6/plugins/attachment_common/image.php	Tue May  8 16:36:42 2001
-+++ plugins.AX/attachment_common/image.php	Fri May 24 11:17:08 2002
-@@ -1,10 +1,11 @@
-+<?php /* Modified at 4 places by ri_once */ ?>
- <?php
- 
-    chdir("..");
--   include('../src/validate.php');
--   include("../functions/date.php");
--   include("../functions/page_header.php");
--   include("../src/load_prefs.php");
-+   /* '_once' Added by ri_once */ include_once('../src/validate.php');
-+   /* '_once' Added by ri_once */ include_once("../functions/date.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
-+   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
- 
- 
-    displayPageHeader($color, "None");
 diff -ru squirrelmail-1.2.6/plugins/attachment_common/vcard.php plugins.AX/attachment_common/vcard.php
 --- squirrelmail-1.2.6/plugins/attachment_common/vcard.php	Wed May  2 15:45:33 2001
 +++ plugins.AX/attachment_common/vcard.php	Fri May 24 11:17:08 2002
@@ -137,18 +118,6 @@ diff -ru squirrelmail-1.2.6/plugins/change_pass/options.php plugins.AX/change_pa
 Binary files squirrelmail-1.2.6/plugins/change_pass/poppassd_1.8/poppassd and plugins.AX/change_pass/poppassd_1.8/poppassd differ
 Only in squirrelmail-1.2.6/plugins/: delete_move_next
 Only in squirrelmail-1.2.6/plugins/: filters
-diff -ru squirrelmail-1.2.6/plugins/fortune/setup.php plugins.AX/fortune/setup.php
---- squirrelmail-1.2.6/plugins/fortune/setup.php	Fri May 24 11:32:16 2002
-+++ plugins.AX/fortune/setup.php	Mon Mar  5 16:21:41 2001
-@@ -20,7 +20,7 @@
-   if( !$fortune_visible ) {
-     return;
-   }
--  $fortune_location = "/usr/bin/fortune";
-+  $fortune_location = "/usr/games/fortune";
-   global $color;
-   $exist = file_exists("$fortune_location");
-   echo "<center><table cellpadding=0 cellspacing=0 border=0 bgcolor=$color[10]><tr><td><table width=100% cellpadding=2 cellspacing=1 border=0 bgcolor=\"$color[5]\"><tr><td align=center>";
 Only in squirrelmail-1.2.6/plugins/: listcommands
 Only in squirrelmail-1.2.6/plugins/: mail_fetch
 Binary files squirrelmail-1.2.6/plugins/mail_fwd/fwdfile/wfwd and plugins.AX/mail_fwd/fwdfile/wfwd differ
@@ -169,79 +138,6 @@ diff -ru squirrelmail-1.2.6/plugins/motd/setup.php plugins.AX/motd/setup.php
        }
        else {
  	print "<hr width=\"50%\">";
-diff -ru squirrelmail-1.2.6/plugins/newmail/newmail.php plugins.AX/newmail/newmail.php
---- squirrelmail-1.2.6/plugins/newmail/newmail.php	Fri May  4 21:25:19 2001
-+++ plugins.AX/newmail/newmail.php	Fri May 24 11:17:08 2002
-@@ -1,7 +1,8 @@
-+<?php /* Modified at 2 places by ri_once */ ?>
- <?php
-    chdir ("../");
--   include ('../src/validate.php');
--   include ("../src/load_prefs.php");
-+   /* '_once' Added by ri_once */ include_once ('../src/validate.php');
-+   /* '_once' Added by ri_once */ include_once ("../src/load_prefs.php");
- ?>
- <HTML>
- <TITLE>New Mail</TITLE>
-diff -ru squirrelmail-1.2.6/plugins/newmail/newmail_opt.php plugins.AX/newmail/newmail_opt.php
---- squirrelmail-1.2.6/plugins/newmail/newmail_opt.php	Sat May  5 01:39:16 2001
-+++ plugins.AX/newmail/newmail_opt.php	Fri May 24 11:17:08 2002
-@@ -1,3 +1,4 @@
-+<?php /* Modified at 6 places by ri_once */ ?>
- <?php
-    /**
-     **  newmails_opt.php
-@@ -7,12 +8,12 @@
-     **/
- 
-    chdir("..");
--   include('../src/validate.php');
--   include("../functions/page_header.php");
--   include("../functions/display_messages.php");
--   include("../functions/imap.php");
--   include("../functions/array.php");
--   include("../src/load_prefs.php");
-+   /* '_once' Added by ri_once */ include_once('../src/validate.php');
-+   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/display_messages.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/imap.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/array.php");
-+   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
- 
-    displayPageHeader($color, "None");
- 
-diff -ru squirrelmail-1.2.6/plugins/printer_friendly/bottom.php plugins.AX/printer_friendly/bottom.php
---- squirrelmail-1.2.6/plugins/printer_friendly/bottom.php	Wed May  2 22:35:25 2001
-+++ plugins.AX/printer_friendly/bottom.php	Fri May 24 11:17:08 2002
-@@ -1,9 +1,10 @@
-+<?php /* Modified at 3 places by ri_once */ ?>
- <?php
- 
-     chdir('..');
--    include ('../src/validate.php');
--    include ('../src/load_prefs.php');
--    include ('../functions/imap.php');
-+    /* '_once' Added by ri_once */ include_once ('../src/validate.php');
-+    /* '_once' Added by ri_once */ include_once ('../src/load_prefs.php');
-+    /* '_once' Added by ri_once */ include_once ('../functions/imap.php');
- 
- ?>
- <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
-diff -ru squirrelmail-1.2.6/plugins/printer_friendly/top.php plugins.AX/printer_friendly/top.php
---- squirrelmail-1.2.6/plugins/printer_friendly/top.php	Wed May  2 15:18:22 2001
-+++ plugins.AX/printer_friendly/top.php	Fri May 24 11:17:08 2002
-@@ -1,8 +1,9 @@
-+<?php /* Modified at 2 places by ri_once */ ?>
- <?php
- 
-     chdir('..');
--    include ('../src/validate.php');
--    include ('../src/load_prefs.php');
-+    /* '_once' Added by ri_once */ include_once ('../src/validate.php');
-+    /* '_once' Added by ri_once */ include_once ('../src/load_prefs.php');
- 
- ?>
- <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">
 diff -ru squirrelmail-1.2.6/plugins/quicksave/setup.php plugins.AX/quicksave/setup.php
 --- squirrelmail-1.2.6/plugins/quicksave/setup.php	Thu Apr 26 06:54:48 2001
 +++ plugins.AX/quicksave/setup.php	Fri May 24 11:17:08 2002
@@ -249,20 +145,20 @@ diff -ru squirrelmail-1.2.6/plugins/quicksave/setup.php plugins.AX/quicksave/set
 -<?
 +<?php /* Modified at 6 places by ri_once */ ?>
 +<?php /* 'php' Added by ri_once */
- 
+
  // this is required by squirrel to initiate the quicksave plugin,
  // but if you're seeing this, then you probably alread know this.
 @@ -36,7 +37,7 @@
  </form>
  	<!-- end -- QuickSave plugin -->
- 
+
 -<?
 +<?php /* 'php' Added by ri_once */
  
  } // end quicksave_left_main_after() function
- 
+
 @@ -64,11 +65,11 @@
- 
+
  <script language=Javascript>
  <!--
 -document.write("<input type=\"button\" name=\"QScancel\" value=\"Cancel\" onClick=\"QuickSave_cancel_button('right_main.php?use_mailbox_cache=1&sort=<?=$sort?>&startMessage=1&mailbox=<?=htmlspecialchars($mailbox)?>');\">");
