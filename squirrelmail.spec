@@ -3,11 +3,12 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.10
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
+Source2:	http://www.squirrelmail.org/plugins/change_pass-1.5-1.2.8.tar.gz
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
@@ -136,6 +137,8 @@ for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz 
 	 retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
+
+tar -zxvf %{SOURCE2} -C plugins
 
 %patch0 -p1
 %patch1 -p1
