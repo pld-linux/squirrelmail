@@ -445,8 +445,8 @@ fi
 
 %files mail_fwd
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_sbindir}/wfwd
 %doc plugins/mail_fwd/README
+%attr(755,root,root) %{_sbindir}/wfwd
 %dir %{_squirreldir}/plugins/mail_fwd
 %{_squirreldir}/plugins/mail_fwd/[!f]*.php
 
