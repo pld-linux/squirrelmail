@@ -27,13 +27,6 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
-#Patch2:		%{name}-abook_take.patch
-#Patch3:		%{name}-addgraphics.patch
-#Patch4:		%{name}-auto_cc.patch
-#Patch6:		%{name}-gzip.patch
-#Patch7:		%{name}-mail_fwd.patch
-#Patch8:		%{name}-change_pass-i18n.patch
-#Patch9:		%{name}-change_pass-polish.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
