@@ -1,5 +1,5 @@
 # TODO:
-# - make separate packages with plugins..
+# - make separate packages with plugins
 #
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
@@ -153,10 +153,10 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 %setup -q -a1 -n %{name}-%{version}
 
 # List of useful plugins (ONLY useful ones should be here)
-for i in addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
-	gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
-	password_forget*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
-	username*tar.gz vacation*tar.gz; do
+for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
+	gzip*.tar.gz mail_fwd*.tar.gz motd*.tar.gz \
+	password_forget*.tar.gz quicksave*.tar.gz retrieveuserdata*.tar.gz \
+	username*.tar.gz vacation*.tar.gz; do
 		tar xfvz $i -C plugins
 done
 
@@ -167,7 +167,7 @@ tar -jxvf %{SOURCE4}
 # use poppassd from separate package; don't include x86 binaries!!!
 #rm -rf plugins/change_pass/{courierpassd,poppassd}*
 #rm -f plugins/change_passwd/chpasswd
-#rm -f plugins/mail_fwd/fwdfile/wfwd
+rm -f plugins/mail_fwd/fwdfile/wfwd.o
 
 %patch0 -p1
 %patch1 -p1
