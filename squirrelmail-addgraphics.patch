@@ -1,0 +1,11 @@
+--- squirrelmail-1.2.8/plugins/addgraphics/setup.php.orig	Thu Apr  5 22:50:14 2001
++++ squirrelmail-1.2.8/plugins/addgraphics/setup.php	Wed Sep 18 17:26:08 2002
+@@ -28,7 +28,7 @@
+          * URI stuff.  If you place it in the "images" directory off
+          * the source Squirrelmail directory, do a "../images/<filename>"
+          */
+- 	$left_image = "../images/sm_logo.jpg";
++ 	$left_image = "../images/sm_logo.png";
+ 	/* 
+ 	 * Alternate tag for the image, in case user doens't let it load
+ 	 */
