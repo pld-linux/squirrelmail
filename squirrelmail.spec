@@ -2,7 +2,7 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	1.2.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -11,6 +11,7 @@ URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
 Requires:	php-gettext
+Requires:	php-pcre
 Provides:	webmail
 Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
