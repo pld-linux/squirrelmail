@@ -3,13 +3,15 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.2
-Release:	3
+Release:	5
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	8d8271c704a9f23d53138a4ceea38fb4
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
+Source2:	http://www.squirrelmail.org/plugins/compatibility-1.2.tar.gz
+# Source2-md5:	3f1e632406e5637842a73b90353f367d
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
@@ -143,6 +145,8 @@ for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz 
 		tar xfvz $i -C plugins
 done
 
+tar -zxvf %{SOURCE2} -C plugins
+
 # use poppassd from separate package; don't include x86 binaries!!!
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
 rm -f plugins/mail_fwd/fwdfile/wfwd
@@ -202,14 +206,18 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_squirreldir}/help
 %{_squirreldir}/help/index.php
 %{_squirreldir}/help/en_US
+%lang(bg) %{_squirreldir}/help/bg_BG
 %lang(ca) %{_squirreldir}/help/ca_ES
 %lang(cs) %{_squirreldir}/help/cs_CZ
+%lang(cy_GB) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
+%lang(de) %{_squirreldir}/help/de_DE
 %lang(es) %{_squirreldir}/help/es_ES
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
 %lang(id) %{_squirreldir}/help/id_ID
 %lang(it) %{_squirreldir}/help/it_IT
+%lang(ja) %{_squirreldir}/help/ja_JP
 %lang(ko) %{_squirreldir}/help/ko_KR
 %lang(lt) %{_squirreldir}/help/lt_LT
 %lang(nl) %{_squirreldir}/help/nl_NL
@@ -217,9 +225,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(pt) %{_squirreldir}/help/pt_PT
 %lang(pt_BR) %{_squirreldir}/help/pt_BR
 %lang(ru) %{_squirreldir}/help/ru_RU
+%lang(sk) %{_squirreldir}/help/sk_SK
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sv) %{_squirreldir}/help/sv_SE
 %lang(th) %{_squirreldir}/help/th_TH
+%lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
 %dir %{_squirreldir}/locale
@@ -230,6 +240,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(da) %{_squirreldir}/locale/da_DK
 %lang(de) %{_squirreldir}/locale/de_DE
 %lang(cs) %{_squirreldir}/locale/cs_CZ
+%lang(cy_GB) %{_squirreldir}/locale/cy_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(fi) %{_squirreldir}/locale/fi_FI
@@ -239,6 +250,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(id) %{_squirreldir}/locale/id_ID
 %lang(is) %{_squirreldir}/locale/is_IS
 %lang(it) %{_squirreldir}/locale/it_IT
+%lang(ja) %{_squirreldir}/locale/ja_JP
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(nl) %{_squirreldir}/locale/nl_NL
@@ -265,6 +277,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/auto_cc
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
+%{_squirreldir}/plugins/compatibility
 %{_squirreldir}/plugins/delete_move_next
 %{_squirreldir}/plugins/filters
 %{_squirreldir}/plugins/fortune
