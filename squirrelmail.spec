@@ -184,7 +184,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd
 	LFLAGS="%{rpmldflags}"
 
 %{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
-        plugins/change_passwd/chpasswd.c -lcrypt
+	plugins/change_passwd/chpasswd.c -lcrypt
 
 cd po
 ./compilepo pl_PL
