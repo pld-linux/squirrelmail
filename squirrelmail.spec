@@ -5,12 +5,22 @@ Version:	1.2.4
 Release:	2
 License:	GPL
 Group:		Applications/Mail
+Group(cs):	Aplikace/Poπta
+Group(da):	Programmer/Post
 Group(de):	Applikationen/Post
+Group(es):	Aplicaciones/Correo ElectrÛnico
+Group(fr):	Applications/Courrier
+Group(is):	Forrit/PÛst
+Group(it):	Applicazioni/Posta
+Group(no):	Applikasjoner/Epost
 Group(pl):	Aplikacje/Poczta
 Group(pt):	AplicaÁıes/Correio EletrÙnico
+Group(ru):	“…Ãœ÷≈Œ…—/¸Ã≈À‘“œŒŒ¡— –œﬁ‘¡
+Group(sl):	Programi/Poπtna
+Group(sv):	Till‰mpningar/Post
+Group(uk):	“…ÀÃ¡ƒŒ¶ “œ«“¡Õ…/œ€‘¡
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
-#Patch0:		%{name}-setlocale.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -28,9 +38,66 @@ languages: Polish, Russian, German:
 Pakiet zawiera WiewiÛrcz±PocztÍ, system pozwalaj±cy sprawdzaÊ pocztÍ
 przez dowoln±, obs≥uguj±c± ciasteczka przegl±darkÍ WWW.
 
+%package ispell
+Summary:	A squirreel interface to ispel
+Summary(pl):	WiewÛrczy inerfejs do ispela 
+Group:		Applications/Mail
+Group(cs):	Aplikace/Poπta
+Group(da):	Programmer/Post
+Group(de):	Applikationen/Post
+Group(es):	Aplicaciones/Correo ElectrÛnico
+Group(fr):	Applications/Courrier
+Group(is):	Forrit/PÛst
+Group(it):	Applicazioni/Posta
+Group(no):	Applikasjoner/Epost
+Group(pl):	Aplikacje/Poczta
+Group(pt):	AplicaÁıes/Correio EletrÙnico
+Group(ru):	“…Ãœ÷≈Œ…—/¸Ã≈À‘“œŒŒ¡— –œﬁ‘¡
+Group(sl):	Programi/Poπtna
+Group(sv):	Till‰mpningar/Post
+Group(uk):	“…ÀÃ¡ƒŒ¶ “œ«“¡Õ…/œ€‘¡
+Requires:	ispell
+Requires:	%{name} = %{version}
+Provides:	webmail-spellcheck
+
+%description ispell
+This package contains a interface to ispell and it allows you to check
+mail against typos and common mistakes
+
+%description ispell -l pl
+Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziÊ pocztÍ pod
+k±tem ºle wpisanych s≥Ûw i ortografi.
+
+%package mailfetch
+Summary:	A squirrel pop3 plug-in
+Summary(pl):	WiewiÛrczy plug-in pop3
+Group:		Applications/Mail
+Group(cs):	Aplikace/Poπta
+Group(da):	Programmer/Post
+Group(de):	Applikationen/Post
+Group(es):	Aplicaciones/Correo ElectrÛnico
+Group(fr):	Applications/Courrier
+Group(is):	Forrit/PÛst
+Group(it):	Applicazioni/Posta
+Group(no):	Applikasjoner/Epost
+Group(pl):	Aplikacje/Poczta
+Group(pt):	AplicaÁıes/Correio EletrÙnico
+Group(ru):	“…Ãœ÷≈Œ…—/¸Ã≈À‘“œŒŒ¡— –œﬁ‘¡
+Group(sl):	Programi/Poπtna
+Group(sv):	Till‰mpningar/Post
+Group(uk):	“…ÀÃ¡ƒŒ¶ “œ«“¡Õ…/œ€‘¡
+Requires:	%{name} = %{version}
+
+%description mailfetch
+This package contains a interface to pop3 serwers, it allows you to
+fetch mail from this kind of serwers.
+
+%description ispell -l pl
+Pakiet zawiera interfejs do serwerÛw pop3, pozwala ∂ci±gn±c z nich
+pocztÍ za pomoc± us≥ugi pop3.
+
 %prep 
-%setup -a1 -q -n %{name}-%{version}
-#%patch0 -p1
+%setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
 for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
@@ -42,71 +109,17 @@ for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
 		tar xfvz $i -C plugins
 done
 
-%package ispell
-Summary:        A squirreel interface to ispel
-Summary(pl):    WiewÛrczy inerfejs do ispela 
-Group:          Applications/Mail
-Group(de):      Applikationen/Post
-Group(pl):      Aplikacje/Poczta
-Group(pt):      AplicaÁıes/Correio EletrÙnico
-#Source0:        http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
-#Source1:        http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
-#Patch0:         %{name}-setlocale.patch
-URL:            http://www.squirrelmail.org/
-Requires:       ispell
-Requires:       squirrelmail
-Provides:       webmail-spellcheck
-Buildarch:      noarch
-
-%description ispell
-This package contains a interface to ispell and it allows you to check mail 
-against typos and common mistakes 
-
-%description -l pl ispell
-Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziÊ pocztÍ pod k±tem 
-ºle wpisanych s≥Ûw i ortografi. 
-
-%files ispell
-%defattr(644,root,root,755)
-/home/httpd/html/squirrel/plugins/squirrelspell
-
-%package  	mailfetch
-Summary:        A squirrel pop3 plug-in
-Summary(pl):    WiewiÛrczy plug-in pop3
-Group:          Applications/Mail
-Group(de):      Applikationen/Post
-Group(pl):      Aplikacje/Poczta
-Group(pt):      AplicaÁıes/Correio EletrÙnico
-#Source0:        http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
-#Source1:        http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
-#Patch0:         %{name}-setlocale.patch
-URL:            http://www.squirrelmail.org/
-Requires:       squirrelmail
-Buildarch:      noarch
-
-%description mailfetch
-This package contains a interface to pop3 serwers, it allows you to fetch mail
-from this kind of serwers. 
-
-%description -l pl ispell
-Pakiet zawiera interfejs do serwerÛw pop3, pozwala ∂ci±gn±c z nich pocztÍ  
-za pomoc± us≥ugi pop3.
-
-%files mailfetch
-%defattr(640,root,http,750)
-/home/httpd/html/squirrel/plugins/mail_fetch
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
 
-gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
-  doc/README* doc/ReleaseNotes/1.2/*
-
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
+
+gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
+	doc/README* doc/ReleaseNotes/1.2/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -178,3 +191,11 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) /home/httpd/html/squirrel/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
 %lang(sr) /home/httpd/html/squirrel/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
 %lang(sv) /home/httpd/html/squirrel/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
+
+%files ispell
+%defattr(644,root,root,755)
+/home/httpd/html/squirrel/plugins/squirrelspell
+
+%files mailfetch
+%defattr(644,root,root,755)
+/home/httpd/html/squirrel/plugins/mail_fetch
