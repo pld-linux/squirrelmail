@@ -19,6 +19,8 @@ Provides:	webmail
 Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_squirreldir	/home/httpd/html/squirrel
+
 %description
 This package contains the Squirrelmail, a webmail system which allows
 you check mail by any cookie-aware WWW browser. It includes built-in
@@ -82,12 +84,11 @@ pocztê za pomoc± us³ugi pop3.
 %setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
-for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
-	addgraphics*tar.gz attachment_common*tar.gz vacation*tar.gz \
-	sqclock*tar.gz retrieveuserdata*tar.gz squirrelspell*tar.gz \
-	quicksave*tar.gz printer_friendly*tar.gz password_forget*tar.gz \
-	newmail*tar.gz motd*tar.gz mail_fwd*tar.gz mail_fetch*tar.gz \
-	gzip*tar.gz fortune*tar.gz auto_cc*tar.gz; do
+for i in abook_take*tar.gz addgraphics*tar.gz attachment_common*tar.gz \
+	auto_cc*tar.gz change_pass*tar.gz fortune*tar.gz gzip*tar.gz \
+	mail_fwd*tar.gz motd*tar.gz password_forget*tar.gz username*tar.gz \
+	printer_friendly*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
+	sqclock*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
@@ -96,10 +97,10 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
+install -d $RPM_BUILD_ROOT%{_squirreldir}/{config,data} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
 
-cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
+cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
 
@@ -111,75 +112,75 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html
 %doc doc/README* doc/ReleaseNotes/1.2/*
 %defattr(750,root,http,750)
-%attr(730,http,http) /home/httpd/html/squirrel/data/
-/home/httpd/html/squirrel/index.php
-/home/httpd/html/squirrel/configure
-%attr(640,root,http) %config(noreplace) /home/httpd/html/squirrel/config/*
-/home/httpd/html/squirrel/functions/*
-/home/httpd/html/squirrel/help/index.php
-%lang(ca) /home/httpd/html/squirrel/help/ca_ES
-%lang(cs) /home/httpd/html/squirrel/help/cs_CZ
-/home/httpd/html/squirrel/help/en_US
-%lang(fi) /home/httpd/html/squirrel/help/fi_FI
-%lang(fr) /home/httpd/html/squirrel/help/fr_FR
-%lang(it) /home/httpd/html/squirrel/help/it_IT
-%lang(ko) /home/httpd/html/squirrel/help/ko_KR
-%lang(pl) /home/httpd/html/squirrel/help/pl_PL
-%lang(ru) /home/httpd/html/squirrel/help/ru_RU
-%lang(sv) /home/httpd/html/squirrel/help/sv_SE
-/home/httpd/html/squirrel/images
-/home/httpd/html/squirrel/plugins/README.plugins
-/home/httpd/html/squirrel/plugins/abook_take
-/home/httpd/html/squirrel/plugins/addgraphics
-/home/httpd/html/squirrel/plugins/attachment_common
-/home/httpd/html/squirrel/plugins/auto_cc
-/home/httpd/html/squirrel/plugins/change_pass
-/home/httpd/html/squirrel/plugins/fortune
-/home/httpd/html/squirrel/plugins/gzip
-/home/httpd/html/squirrel/plugins/index.php
-/home/httpd/html/squirrel/plugins/mail_fwd
-/home/httpd/html/squirrel/plugins/make_archive.pl
-/home/httpd/html/squirrel/plugins/motd
-/home/httpd/html/squirrel/plugins/newmail
-/home/httpd/html/squirrel/plugins/password_forget
-/home/httpd/html/squirrel/plugins/printer_friendly
-/home/httpd/html/squirrel/plugins/quicksave
-/home/httpd/html/squirrel/plugins/retrieveuserdata
-/home/httpd/html/squirrel/plugins/sqclock
-/home/httpd/html/squirrel/plugins/username
-/home/httpd/html/squirrel/plugins/vacation
-/home/httpd/html/squirrel/src
-/home/httpd/html/squirrel/themes
-/home/httpd/html/squirrel/locale/index.php
-%dir /home/httpd/html/squirrel/locale
-%dir /home/httpd/html/squirrel/locale/[^i]*
-%lang(is) %dir /home/httpd/html/squirrel/locale/is_IS/LC_MESSAGES
-%lang(it) %dir /home/httpd/html/squirrel/locale/it_IT/LC_MESSAGES
-%lang(ca) /home/httpd/html/squirrel/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
-%lang(da) /home/httpd/html/squirrel/locale/da_DK/LC_MESSAGES/squirrelmail.mo
-%lang(de) /home/httpd/html/squirrel/locale/de_DE/LC_MESSAGES/squirrelmail.mo
-%lang(cs) /home/httpd/html/squirrel/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
-%lang(es) /home/httpd/html/squirrel/locale/es_ES/LC_MESSAGES/squirrelmail.mo
-%lang(fi) /home/httpd/html/squirrel/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
-%lang(fr) /home/httpd/html/squirrel/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
-%lang(hr) /home/httpd/html/squirrel/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
-%lang(hu) /home/httpd/html/squirrel/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
-%lang(is) /home/httpd/html/squirrel/locale/is_IS/LC_MESSAGES/squirrelmail.mo
-%lang(it) /home/httpd/html/squirrel/locale/it_IT/LC_MESSAGES/squirrelmail.mo
-%lang(ko) /home/httpd/html/squirrel/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
-%lang(nl) /home/httpd/html/squirrel/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
-%lang(no) /home/httpd/html/squirrel/locale/no*/LC_MESSAGES/squirrelmail.mo
-%lang(pl) /home/httpd/html/squirrel/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
-%lang(pt) /home/httpd/html/squirrel/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
-%lang(pt_BR) /home/httpd/html/squirrel/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
-%lang(ru) /home/httpd/html/squirrel/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
-%lang(sr) /home/httpd/html/squirrel/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
-%lang(sv) /home/httpd/html/squirrel/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
+%attr(730,http,http) %{_squirreldir}/data/
+%{_squirreldir}/index.php
+%{_squirreldir}/configure
+%attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*
+%{_squirreldir}/functions/*
+%{_squirreldir}/help/index.php
+%lang(ca) %{_squirreldir}/help/ca_ES
+%lang(cs) %{_squirreldir}/help/cs_CZ
+%{_squirreldir}/help/en_US
+%lang(fi) %{_squirreldir}/help/fi_FI
+%lang(fr) %{_squirreldir}/help/fr_FR
+%lang(it) %{_squirreldir}/help/it_IT
+%lang(ko) %{_squirreldir}/help/ko_KR
+%lang(pl) %{_squirreldir}/help/pl_PL
+%lang(ru) %{_squirreldir}/help/ru_RU
+%lang(sv) %{_squirreldir}/help/sv_SE
+%{_squirreldir}/images
+%{_squirreldir}/plugins/README.plugins
+%{_squirreldir}/plugins/abook_take
+%{_squirreldir}/plugins/addgraphics
+%{_squirreldir}/plugins/attachment_common
+%{_squirreldir}/plugins/auto_cc
+%{_squirreldir}/plugins/change_pass
+%{_squirreldir}/plugins/fortune
+%{_squirreldir}/plugins/gzip
+%{_squirreldir}/plugins/index.php
+%{_squirreldir}/plugins/mail_fwd
+%{_squirreldir}/plugins/make_archive.pl
+%{_squirreldir}/plugins/motd
+%{_squirreldir}/plugins/newmail
+%{_squirreldir}/plugins/password_forget
+%{_squirreldir}/plugins/printer_friendly
+%{_squirreldir}/plugins/quicksave
+%{_squirreldir}/plugins/retrieveuserdata
+%{_squirreldir}/plugins/sqclock
+%{_squirreldir}/plugins/username
+%{_squirreldir}/plugins/vacation
+%{_squirreldir}/src
+%{_squirreldir}/themes
+%{_squirreldir}/locale/index.php
+%dir %{_squirreldir}/locale
+%dir %{_squirreldir}/locale/[^i]*
+%lang(is) %dir %{_squirreldir}/locale/is_IS/LC_MESSAGES
+%lang(it) %dir %{_squirreldir}/locale/it_IT/LC_MESSAGES
+%lang(ca) %{_squirreldir}/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
+%lang(da) %{_squirreldir}/locale/da_DK/LC_MESSAGES/squirrelmail.mo
+%lang(de) %{_squirreldir}/locale/de_DE/LC_MESSAGES/squirrelmail.mo
+%lang(cs) %{_squirreldir}/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
+%lang(es) %{_squirreldir}/locale/es_ES/LC_MESSAGES/squirrelmail.mo
+%lang(fi) %{_squirreldir}/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
+%lang(fr) %{_squirreldir}/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
+%lang(hr) %{_squirreldir}/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
+%lang(hu) %{_squirreldir}/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
+%lang(is) %{_squirreldir}/locale/is_IS/LC_MESSAGES/squirrelmail.mo
+%lang(it) %{_squirreldir}/locale/it_IT/LC_MESSAGES/squirrelmail.mo
+%lang(ko) %{_squirreldir}/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
+%lang(nl) %{_squirreldir}/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
+%lang(no) %{_squirreldir}/locale/no*/LC_MESSAGES/squirrelmail.mo
+%lang(pl) %{_squirreldir}/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
+%lang(pt) %{_squirreldir}/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
+%lang(pt_BR) %{_squirreldir}/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
+%lang(ru) %{_squirreldir}/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
+%lang(sr) %{_squirreldir}/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
+%lang(sv) %{_squirreldir}/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
 
 %files ispell
 %defattr(644,root,root,755)
-/home/httpd/html/squirrel/plugins/squirrelspell
+%{_squirreldir}/plugins/squirrelspell
 
 %files mailfetch
 %defattr(644,root,root,755)
-/home/httpd/html/squirrel/plugins/mail_fetch
+%{_squirreldir}/plugins/mail_fetch
