@@ -16,9 +16,9 @@ Source1:	%{name}_plugins-20050108.tar
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
-%define		_change_passwd_version	4.0
-Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
-# Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
+#%define		_change_passwd_version	4.0
+#Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+## Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 %define		_all_locales_date	20050122
 Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
 # Source4-md5:	ec7f97d77c706135571732ac7accf961
@@ -153,12 +153,13 @@ for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
 	username*.tar.gz vacation*.tar.gz; do
 		tar -xzf $i -C plugins
 done
+rm -f *.tar.gz
 
 tar -xzf %{SOURCE2} -C plugins
-tar -xzf %{SOURCE3} -C plugins
+#tar -xzf %{SOURCE3} -C plugins
 tar -xjf %{SOURCE4}
 
-rm -f plugins/change_passwd/chpasswd
+#rm -f plugins/change_passwd/chpasswd
 rm -f plugins/mail_fwd/fwdfile/wfwd.o
 
 %patch0 -p1
@@ -171,12 +172,8 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
 
-%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
-	plugins/change_passwd/chpasswd.c -lcrypt
-
-cd po
-./compilepo pl_PL
-cd ..
+#%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
+#	plugins/change_passwd/chpasswd.c -lcrypt
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -196,7 +193,7 @@ cd $RPM_BUILD_ROOT
 rm -rf `find . -name *.po`
 cd -
 
-rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~}
+rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~,make_archive.pl,README.plugins}
 
 cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/%{name}/config.php}
 ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
@@ -290,6 +287,7 @@ fi
 %{_squirreldir}/locale/timezones.cfg
 %lang(ar) %{_squirreldir}/locale/ar
 %lang(bg) %{_squirreldir}/locale/bg_BG
+%lang(bn) %{_squirreldir}/locale/bn_IN
 %lang(ca) %{_squirreldir}/locale/ca_ES
 %lang(da) %{_squirreldir}/locale/da_DK
 %lang(de) %{_squirreldir}/locale/de_DE
@@ -299,6 +297,8 @@ fi
 %lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
+%lang(eu) %{_squirreldir}/locale/eu_ES
+%lang(fa) %{_squirreldir}/locale/fa_IR
 %lang(fi) %{_squirreldir}/locale/fi_FI
 %lang(fo) %{_squirreldir}/locale/fo_FO
 %lang(fr) %{_squirreldir}/locale/fr_FR
@@ -326,12 +326,12 @@ fi
 %lang(sl) %{_squirreldir}/locale/sl_SI
 #%lang(th) %{_squirreldir}/locale/th_TH
 %lang(tr) %{_squirreldir}/locale/tr_TR
+%lang(ug) %{_squirreldir}/locale/ug
 #%lang(uk) %{_squirreldir}/locale/uk_UA
 #%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
-%{_squirreldir}/plugins/README.plugins
 %{_squirreldir}/plugins/abook_take
 %{_squirreldir}/plugins/addgraphics
 %{_squirreldir}/plugins/administrator
@@ -346,7 +346,7 @@ fi
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
-%{_squirreldir}/plugins/make_archive.pl
+%{_squirreldir}/plugins/message_details
 %{_squirreldir}/plugins/motd
 %{_squirreldir}/plugins/password_forget
 %{_squirreldir}/plugins/quicksave
