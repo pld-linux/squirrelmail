@@ -9,9 +9,11 @@ Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Patch0:		%{name}-ri_once.patch
-Patch1:		%{name}-addgraphics.patch
-Patch2:		%{name}-fortune.patch
-Patch3:		%{name}-username.patch
+Patch1:		%{name}-abook_take.patch
+Patch2:		%{name}-addgraphics.patch
+Patch3:		%{name}-auto_cc.patch
+Patch4:		%{name}-fortune.patch
+Patch5:		%{name}-username.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -82,6 +84,19 @@ fetch mail from this kind of serwers.
 Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich
 pocztê za pomoc± us³ugi pop3.
 
+%package newmail
+Summary:	A new mail notify plug-in
+Summary(pl):	plug-in informuj±cy o nowej poczcie
+Group:		Applications/Mail
+Requires:	%{name} = %{version}
+Requires:	%{name}-ispell = %{version}
+
+%description newmail
+A Squirrel new mail notify plug-in.
+
+%description newmail -l pl
+Wiewiórczy plug-in informuj±cy o nowej poczcie.
+
 %prep
 %setup -q -a1
 
@@ -89,8 +104,7 @@ pocztê za pomoc± us³ugi pop3.
 for i in abook_take*tar.gz addgraphics*tar.gz attachment_common*tar.gz \
 	auto_cc*tar.gz change_pass*tar.gz fortune*tar.gz gzip*tar.gz \
 	mail_fwd*tar.gz motd*tar.gz password_forget*tar.gz username*tar.gz \
-	printer_friendly*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
-	sqclock*tar.gz vacation*tar.gz; do
+	quicksave*tar.gz retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
@@ -98,6 +112,8 @@ done
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -203,14 +219,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/mail_fwd
 %{_squirreldir}/plugins/make_archive.pl
 %{_squirreldir}/plugins/motd
-%{_squirreldir}/plugins/newmail
 %{_squirreldir}/plugins/password_forget
-%{_squirreldir}/plugins/printer_friendly
 %{_squirreldir}/plugins/quicksave
 %{_squirreldir}/plugins/retrieveuserdata
 %{_squirreldir}/plugins/sent_subfolders
 %{_squirreldir}/plugins/spamcop
-%{_squirreldir}/plugins/sqclock
 %{_squirreldir}/plugins/translate
 %{_squirreldir}/plugins/username
 %{_squirreldir}/plugins/vacation
@@ -224,3 +237,7 @@ rm -rf $RPM_BUILD_ROOT
 %files mailfetch
 %defattr(644,root,root,755)
 %{_squirreldir}/plugins/mail_fetch
+
+%files newmail
+%defattr(644,root,root,755)
+%{_squirreldir}/plugins/newmail
