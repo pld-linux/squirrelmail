@@ -4,7 +4,7 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	%{ver}.%{rcver}
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Mail
 Group(de):	Applikationen/Post
@@ -96,7 +96,7 @@ Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich pocztê
 za pomoc± us³ugi pop3.
 
 %files mailfetch
-%defattr(644,root,root,755)
+%defattr(640,root,http,750)
 /home/httpd/html/squirrel/plugins/mail_fetch
 
 %install
@@ -116,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %files 
 %defattr(644,root,root,755)
 %doc *.gz doc/*.gz
-%defattr(755,http,http,755)
+%defattr(640,root,http,750)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
 /home/httpd/html/squirrel/configure
