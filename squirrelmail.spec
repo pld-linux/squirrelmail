@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.10
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -55,6 +55,19 @@ navegadores. Ele possui poucas exigências e é muito fácil de se
 configurar e instalar. O SquirrelMail possui todas as funcionalidades
 que você poderia desejar em um cliente de e-mail, incluindo um forte
 suporte a MIME, livros de endereços e manipulação de pastas.
+
+%package change_pass
+Summary:	A squirreel interface to change passwords
+Summary(pl):	Wiewiórczy interfejs do zmiany hase³
+Group:		Applications/Mail
+Requires:	poppassd
+Requires:	%{name} = %{version}
+
+%description change_pass
+This package contains a interface to change passwords.
+
+%description change_pass -l pl
+Ten pakiet zawiera interfejs do zmiany hase³.
 
 %package ispell
 Summary:	A squirreel interface to ispel
@@ -236,7 +249,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/auto_cc
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
-%{_squirreldir}/plugins/change_pass
 %{_squirreldir}/plugins/delete_move_next
 %{_squirreldir}/plugins/filters
 %{_squirreldir}/plugins/fortune
@@ -256,6 +268,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/vacation
 %{_squirreldir}/src
 %{_squirreldir}/themes
+
+%files change_pass
+%defattr(644,root,root,755)
+%doc plugins/change_pass/README
+%dir %{_squirreldir}/plugins/change_pass
+%{_squirreldir}/plugins/change_pass/*.php
 
 %files ispell
 %defattr(644,root,root,755)
