@@ -5,24 +5,25 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.3a
-Release:	10
+Version:	1.4.4
+%define		_rc	rc1
+Release:	0.%{_rc}.1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	9564fed8b8dc6fc75d5ac31825569a77
-# Source0-size:	2254039
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
+# Source0-md5:	b17478106aab5abc6cfd824fffd310f0
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
-# Source2-size:	5966
 %define		_change_passwd_version	4.0
 Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
-# Source3-size:	27587
-Source4:	%{name}.conf
+%define		_all_locales_date	20050101
+Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}%{_rc}-%{_all_locales_date}.tar.bz2
+# Source4-md5:	be100dee9f443c28fa3934a64548c118
+Source5:	%{name}.conf
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-abook_take.patch
@@ -151,7 +152,8 @@ A Squirrel new mail notify plug-in.
 Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
-%setup -q -a1
+#%setup -q -a1
+%setup -q -a1 -n %{name}-%{version}-%{_rc}
 
 # List of useful plugins (ONLY useful ones should be here)
 for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
@@ -163,6 +165,7 @@ done
 
 tar -zxvf %{SOURCE2} -C plugins
 tar -zxvf %{SOURCE3} -C plugins
+tar -jxvf %{SOURCE4}
 
 # use poppassd from separate package; don't include x86 binaries!!!
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
@@ -177,9 +180,9 @@ rm -f plugins/mail_fwd/fwdfile/wfwd
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
-%patch8 -p1
-%patch9 -p1
-%patch10 -p0
+#%patch8 -p1
+#%patch9 -p1
+#%patch10 -p0
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
 	CFLAGS="%{rpmcflags}" \
@@ -340,8 +343,8 @@ fi
 %lang(sl) %{_squirreldir}/locale/sl_SI
 %lang(th) %{_squirreldir}/locale/th_TH
 %lang(tr) %{_squirreldir}/locale/tr_TR
-%lang(uk) %{_squirreldir}/locale/uk_UA
-%lang(vi) %{_squirreldir}/locale/vi_VN
+#%lang(uk) %{_squirreldir}/locale/uk_UA
+#%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
