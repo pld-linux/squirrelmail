@@ -11,18 +11,38 @@ License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	285b42bec8967b88ef3c083fcad18634
-Source1:	%{name}_plugins-20050108.tar
-# Source1-md5:	819fa3165bc6ab43c9cdd53addcf340c
+%define		_all_locales_date	20050122
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
+# Source1-md5:	ec7f97d77c706135571732ac7accf961
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
+Source3:	http://www.squirrelmail.org/plugins/addgraphics-2.3-1.0.3.tar.gz
+# Source3-md5:	c9319e32149026372a0d515ddbc1d14b
+Source4:	http://www.squirrelmail.org/plugins/auto_cc-2.0-1.2.tar.gz
+# Source4-md5:	259a001d964c7257be11bbb2b764ba52
+Source5:	http://www.squirrelmail.org/plugins/change_pass-2.7-1.4.x.tar.gz
+# Source5-md5:	590e0b3e879bffdb4dea57d369618353
+Source6:	http://www.squirrelmail.org/plugins/gzip-2.02-1.1.1.tar.gz
+# Source6-md5:	2df7370e0dbdf3e48e888cef094ead8b
+Source7:	http://www.squirrelmail.org/plugins/mail_fwd.0.4.1-1.4.0.tar.gz
+# Source7-md5:	472bfb19e60d865b7aa363f3ea0293c2
+Source8:	http://www.squirrelmail.org/plugins/motd.1.2-1.0.3.tar.gz
+# Source8-md5:	d76f2f5282dfc4a4c90dc28326d92b4b
+Source9:	http://www.squirrelmail.org/plugins/password_forget.2.1-1.0.1.tar.gz
+# Source9-md5:	33ffd387d5190b690d53358cb3b4e691
+Source10:	http://www.squirrelmail.org/plugins/quicksave-2.3-1.1.0.tar.gz
+# Source10-md5:	c60c68aace4eb67ccba4282327b13fdc
+Source11:	http://www.squirrelmail.org/plugins/retrieveuserdata.0.9-1.4.0.tar.gz
+# Source11-md5:	dfe469f7ab473fd2292b30800e3141d5
+Source12:	http://www.squirrelmail.org/plugins/username-2.3-1.0.0.tar.gz
+# Source12-md5:	c81670f5607835dc1e226653cf5c53b1
+Source13:	http://www.squirrelmail.org/plugins/vacation_1.41_1.4.tar.gz
+# Source13-md5:	f1fbd5e3778bd8bcae41ca147fbc4333
+Source14:	%{name}.conf
 #%define		_change_passwd_version	4.0
-#Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
-## Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
-%define		_all_locales_date	20050122
-Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source4-md5:	ec7f97d77c706135571732ac7accf961
-Source5:	%{name}.conf
+#SourceX:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+## SourceX-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-fortune.patch
@@ -144,19 +164,12 @@ A Squirrel new mail notify plug-in.
 Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
-%setup -q -a1 -a4
+%setup -q -a1
 
-# List of useful plugins (ONLY useful ones should be here)
-for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
-	gzip*.tar.gz mail_fwd*.tar.gz motd*.tar.gz \
-	password_forget*.tar.gz quicksave*.tar.gz retrieveuserdata*.tar.gz \
-	username*.tar.gz vacation*.tar.gz; do
-		tar -xzf $i -C plugins
+for f in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} \
+	%{SOURCE8} %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13}; do
+	tar -xzf $f -C plugins
 done
-rm -f *.tar.gz
-
-tar -xzf %{SOURCE2} -C plugins
-#tar -xzf %{SOURCE3} -C plugins
 
 # locales for not present plugins
 rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archive_mail,askuserinfo,attachment_doc,autocomplete,avelsieve,block_attach,block_sender,bounce,change_ldappass,change_merakpass,change_mysqlpass,change_passwd,check_quota,chg_sasl_passwd,contactclean,cookie_warning,courier_vacation,custom_from,disk_quota,empty_folders,enews,extract,file_manager,folder_sizes,gpg,got_hotmail,image_buttons,japanese_input,junkfolder,ldap_abook,ldapquery,left_css,login_alias,mark_read,naguser,notes,online_users,preview_pane,qmailadmin_login,quota_usage,restrict_senders,rewrap,sasql,select_range,sent_confirmation,serversidefilter,show_headers,show_user_and_ip,smallcal,smime,startup_folder,tmda,tmdatools,taglines,templates,timeout_user,twc_weather,unsafe_image_rules,useracl,user_special_mailboxes,vadmin,view_as_html,virus_scan,vkeyboard,vpopmail,windows,yelp}.mo
@@ -206,7 +219,7 @@ install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
-install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
+install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
 
 cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
