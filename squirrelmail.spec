@@ -48,6 +48,7 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
+Patch4:		%{name}-squirrelspell.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -212,6 +213,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 find locale -name '*.po' | xargs rm -f
 
