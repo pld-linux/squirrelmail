@@ -13,8 +13,9 @@ Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
 Patch3:		%{name}-auto_cc.patch
 Patch4:		%{name}-fortune.patch
-Patch5:		%{name}-mail_fwd.patch
-Patch6:		%{name}-username.patch
+Patch5:		%{name}-gzip.patch
+Patch6:		%{name}-mail_fwd.patch
+Patch7:		%{name}-username.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -130,6 +131,7 @@ done
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 cd plugins/mail_fwd/fwdfile
@@ -150,6 +152,8 @@ cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 cd $RPM_BUILD_ROOT
 rm -rf `find . -name *.po`
 cd -
+
+rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
