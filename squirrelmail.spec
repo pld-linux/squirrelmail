@@ -175,7 +175,7 @@ Requires:	php-ftp
 A Squirrel vacation plug-in.
 
 %description vacation -l pl
-Wtyczka vacation dla Squirrelmail-a.
+Wtyczka vacation dla Squirrelmaila.
 
 %prep
 %setup -q -a1
@@ -412,7 +412,6 @@ fi
 %{_squirreldir}/plugins/spamcop
 %{_squirreldir}/plugins/translate
 %{_squirreldir}/plugins/username
-%{_squirreldir}/plugins/vacation
 %{_squirreldir}/src
 %{_squirreldir}/themes
 %attr(710,root,http) %dir %{_squirreldata}
