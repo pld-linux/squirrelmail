@@ -9,7 +9,7 @@ diff -urN squirrelmail-1.2.0-rc2.org/functions/i18n.php squirrelmail-1.2.0-rc2/f
 +	 	&& !is_file("/usr/share/i18n/locales/" . $sm_notAlias)) {
 +	  $new_sm_notAlias = $sm_notAlias . "_" . strtoupper($sm_notAlias);
 +	  if (is_file("/usr/share/i18n/locales/" . $new_sm_notAlias))
-+	   $sm_notAlias = $new_sm_notAlias;
++	   $sm_notAlias = $new_sm_notAlias; }
           if ((ini_get('safe_mode') == FALSE) && (getenv('LC_ALL') != $sm_language)) {
             putenv('LC_ALL=' . $sm_notAlias);
           }
