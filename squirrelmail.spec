@@ -6,7 +6,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.3a
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -226,6 +226,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(cy) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
 %lang(de) %{_squirreldir}/help/de_DE
+%lang(en) %{_squirreldir}/help/en_GB
 %lang(es) %{_squirreldir}/help/es_ES
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
@@ -241,6 +242,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ru) %{_squirreldir}/help/ru_RU
 %lang(sk) %{_squirreldir}/help/sk_SK
 %lang(sl) %{_squirreldir}/help/sl_SI
+%lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
 %lang(th) %{_squirreldir}/help/th_TH
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
@@ -249,16 +251,21 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_squirreldir}/locale
 %{_squirreldir}/locale/index.php
 %{_squirreldir}/locale/timezones.cfg
+%lang(ar) %{_squirreldir}/locale/ar
 %lang(bg) %{_squirreldir}/locale/bg_BG
 %lang(ca) %{_squirreldir}/locale/ca_ES
 %lang(da) %{_squirreldir}/locale/da_DK
 %lang(de) %{_squirreldir}/locale/de_DE
 %lang(cs) %{_squirreldir}/locale/cs_CZ
 %lang(cy) %{_squirreldir}/locale/cy_GB
+%lang(el) %{_squirreldir}/locale/el_GR
+%lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(fi) %{_squirreldir}/locale/fi_FI
+%lang(fo) %{_squirreldir}/locale/fo_FO
 %lang(fr) %{_squirreldir}/locale/fr_FR
+%lang(he) %{_squirreldir}/locale/he_IL
 %lang(hr) %{_squirreldir}/locale/hr_HR
 %lang(hu) %{_squirreldir}/locale/hu_HU
 %lang(id) %{_squirreldir}/locale/id_ID
@@ -267,6 +274,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(ja) %{_squirreldir}/locale/ja_JP
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
+%lang(ms) %{_squirreldir}/locale/ms_MY
+%lang(nb) %{_squirreldir}/locale/nb_NO
 %lang(nl) %{_squirreldir}/locale/nl_NL
 %lang(nn) %{_squirreldir}/locale/nn_NO
 %lang(pl) %{_squirreldir}/locale/pl_PL
@@ -280,6 +289,8 @@ rm -rf $RPM_BUILD_ROOT
 %lang(sl) %{_squirreldir}/locale/sl_SI
 %lang(th) %{_squirreldir}/locale/th_TH
 %lang(tr) %{_squirreldir}/locale/tr_TR
+%lang(uk) %{_squirreldir}/locale/uk_UA
+%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
