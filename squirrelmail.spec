@@ -3,13 +3,13 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.1
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	e72f4d1e83eaedd33bf309b31957ee39
-Source1:	%{name}_plugins-20010604.tar
-# Source1-md5:	f6fe02b37f25518e92fc64a56115afbd
+Source1:	%{name}_plugins-20030725.tar
+# Source1-md5:	400fc50e277aa86f736e9a18393a8391
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
