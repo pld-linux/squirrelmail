@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.8
-Release:	7
+Release:	8
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
