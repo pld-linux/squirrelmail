@@ -114,12 +114,13 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/{config,data} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
 
+gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
+	doc/README* doc/ReleaseNotes/1.2/*
+
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
 
-gzip -9nf AUTHORS ChangeLog INSTALL README UPGRADE doc/*.txt doc/*.html \
-	doc/README* doc/ReleaseNotes/1.2/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
