@@ -8,6 +8,7 @@ Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Patch0:		squirrelmail-fortune.patch
+Patch1:		squirrelmail-ri_once.patch
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	php
@@ -70,6 +71,7 @@ for i in change_pass*tar.gz username*tar.gz abook_take*tar.gz \
 done
 
 %patch0 -p1
+%patch1 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
