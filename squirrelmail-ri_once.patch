@@ -1,58 +1,3 @@
-diff -ru squirrelmail-1.2.6/plugins/abook_take/setup.php plugins.AX/abook_take/setup.php
---- squirrelmail-1.2.6/plugins/abook_take/setup.php	Thu Apr 26 16:05:22 2001
-+++ plugins.AX/abook_take/setup.php	Fri May 24 11:17:08 2002
-@@ -1,3 +1,4 @@
-+<?php /* Modified at 2 places by ri_once */ ?>
- <?php
- 
- 
-@@ -20,7 +21,7 @@
- {
-   global $abook_take_verify, $Email_RegExp_Match;
-   
--  include '../functions/url_parser.php';
-+  /* '_once' Added by ri_once */ include_once '../functions/url_parser.php';
-   
-   if (! eregi('^' . $Email_RegExp_Match . '$', $email))
-     return false;
-@@ -39,7 +40,7 @@
- {
-   global $abook_found_email, $Email_RegExp_Match;
-   
--  include '../functions/url_parser.php';
-+  /* '_once' Added by ri_once */ include_once '../functions/url_parser.php';
- 
-   while (eregi('(' . $Email_RegExp_Match . ')', $str, $hits))
-   {
-diff -ru squirrelmail-1.2.6/plugins/abook_take/take.php plugins.AX/abook_take/take.php
---- squirrelmail-1.2.6/plugins/abook_take/take.php	Thu Apr 26 15:59:41 2001
-+++ plugins.AX/abook_take/take.php	Fri May 24 11:17:08 2002
-@@ -1,3 +1,4 @@
-+<?php /* Modified at 7 places by ri_once */ ?>
- <?php
-   /**
-    **  take.php
-@@ -7,13 +8,13 @@
-    **/
-    
-    chdir('..');
--   include('../src/validate.php');
--   include("../functions/strings.php");
--   include("../config/config.php");
--   include("../functions/i18n.php");
--   include("../functions/page_header.php");
--   include("../functions/addressbook.php");
--   include("../src/load_prefs.php");
-+   /* '_once' Added by ri_once */ include_once('../src/validate.php');
-+   /* '_once' Added by ri_once */ include_once("../functions/strings.php");
-+   /* '_once' Added by ri_once */ include_once("../config/config.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/i18n.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/addressbook.php");
-+   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
-    
-    displayPageHeader($color, "None");
-    
 Only in squirrelmail-1.2.6/plugins/: administrator
 diff -ru squirrelmail-1.2.6/plugins/attachment_common/vcard.php plugins.AX/attachment_common/vcard.php
 --- squirrelmail-1.2.6/plugins/attachment_common/vcard.php	Wed May  2 15:45:33 2001
@@ -235,32 +180,6 @@ diff -ru squirrelmail-1.2.6/plugins/retrieveuserdata/setup.php plugins.AX/retrie
       $userdata = retrieve_data($username, $cleartext_password);
 Only in squirrelmail-1.2.6/plugins/: sent_subfolders
 Only in squirrelmail-1.2.6/plugins/: spamcop
-diff -ru squirrelmail-1.2.6/plugins/sqclock/setup.php plugins.AX/sqclock/setup.php
---- squirrelmail-1.2.6/plugins/sqclock/setup.php	Mon Mar  5 16:21:41 2001
-+++ plugins.AX/sqclock/setup.php	Fri May 24 11:17:08 2002
-@@ -1,3 +1,4 @@
-+<?php /* Modified at 2 places by ri_once */ ?>
- <?php
-    /*
-     *  SquirrelMail Clock
-@@ -17,7 +18,7 @@
-     *
-     */
- 
--   include "../plugins/sqclock/options.php";
-+   /* '_once' Added by ri_once */ include_once "../plugins/sqclock/options.php";
- 
-    function squirrelmail_plugin_init_sqclock() {
-       global $squirrelmail_plugin_hooks;
-@@ -62,7 +63,7 @@
-          </td></tr></table>
-          <br>
-          </center>
--      <?
-+      <?php /* 'php' Added by ri_once */
-       }
-    }
- ?>
 Only in squirrelmail-1.2.6/plugins/: squirrelspell
 Only in squirrelmail-1.2.6/plugins/: translate
 diff -ru squirrelmail-1.2.6/plugins/vacation/setup.php plugins.AX/vacation/setup.php
