@@ -1,7 +1,6 @@
-diff -ru squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po
---- squirrelmail-1.4.2/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 20:04:48.000000000 +0100
-+++ squirrelmail-1.4.2-AX/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-02-27 20:06:20.000000000 +0100
-@@ -3502,6 +3502,45 @@
+--- squirrelmail-1.4.3a/locale/pl_PL/LC_MESSAGES/squirrelmail.po~	2004-04-22 18:53:18.000000000 +0200
++++ squirrelmail-1.4.3a/locale/pl_PL/LC_MESSAGES/squirrelmail.po	2004-10-24 22:54:53.922783768 +0200
+@@ -3501,6 +3501,45 @@
  msgid "Undelivered Message Headers"
  msgstr "Nag³ówki niedostarczonych wiadomo¶ci"
  
