@@ -1,0 +1,12 @@
+diff -Nru squirrelmail-1.2.6.orig/plugins/fortune/setup.php squirrelmail-1.2.6/plugins/fortune/setup.php
+--- squirrelmail-1.2.6.orig/plugins/fortune/setup.php	Mon Mar  5 16:21:41 2001
++++ squirrelmail-1.2.6/plugins/fortune/setup.php	Wed May 15 11:49:33 2002
+@@ -20,7 +20,7 @@
+   if( !$fortune_visible ) {
+     return;
+   }
+-  $fortune_location = "/usr/games/fortune";
++  $fortune_location = "/usr/bin/fortune";
+   global $color;
+   $exist = file_exists("$fortune_location");
+   echo "<center><table cellpadding=0 cellspacing=0 border=0 bgcolor=$color[10]><tr><td><table width=100% cellpadding=2 cellspacing=1 border=0 bgcolor=\"$color[5]\"><tr><td align=center>";
