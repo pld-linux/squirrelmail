@@ -16,24 +16,24 @@ Source1:	%{name}_plugins-20050108.tar
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
-#%define		_change_passwd_version	4.0
-#Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
-## Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
+%define		_change_passwd_version	4.0
+Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+# Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 %define		_all_locales_date	20050122
 Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
 # Source4-md5:	ec7f97d77c706135571732ac7accf961
 Source5:	%{name}.conf
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
-Patch2:		%{name}-abook_take.patch
-Patch3:		%{name}-addgraphics.patch
-Patch4:		%{name}-auto_cc.patch
-Patch5:		%{name}-fortune.patch
-Patch6:		%{name}-gzip.patch
-Patch7:		%{name}-mail_fwd.patch
-Patch8:		%{name}-change_pass-i18n.patch
-Patch9:		%{name}-change_pass-polish.patch
-Patch10:	%{name}-mail_fwd-Makefile.patch
+Patch2:		%{name}-fortune.patch
+Patch3:		%{name}-mail_fwd-Makefile.patch
+#Patch2:		%{name}-abook_take.patch
+#Patch3:		%{name}-addgraphics.patch
+#Patch4:		%{name}-auto_cc.patch
+#Patch6:		%{name}-gzip.patch
+#Patch7:		%{name}-mail_fwd.patch
+#Patch8:		%{name}-change_pass-i18n.patch
+#Patch9:		%{name}-change_pass-polish.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -151,8 +151,7 @@ A Squirrel new mail notify plug-in.
 Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
-#%setup -q -a1
-%setup -q -a1 -n %{name}-%{version}
+%setup -q -a1
 
 # List of useful plugins (ONLY useful ones should be here)
 for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
@@ -163,30 +162,24 @@ for i in addgraphics*.tar.gz auto_cc*.tar.gz change_pass*.tar.gz \
 done
 
 tar -xzf %{SOURCE2} -C plugins
-#tar -xzf %{SOURCE3} -C plugins
+tar -xzf %{SOURCE3} -C plugins
 tar -xjf %{SOURCE4}
 
-#rm -f plugins/change_passwd/chpasswd
+rm -f plugins/change_passwd/chpasswd
 rm -f plugins/mail_fwd/fwdfile/wfwd.o
 
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
-#%patch4 -p1
-%patch5 -p1
-#%patch6 -p1
-#%patch7 -p1
-#%patch8 -p1
-#%patch9 -p1
-%patch10 -p1
+%patch2 -p1
+%patch3 -p1
+
 %build
 %{__make} -C plugins/mail_fwd/fwdfile \
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
 
-#%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
-#	plugins/change_passwd/chpasswd.c -lcrypt
+%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
+	plugins/change_passwd/chpasswd.c -lcrypt
 
 cd po
 ./compilepo pl_PL
