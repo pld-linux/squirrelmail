@@ -1,17 +1,24 @@
+# TODO:
+# - make separate packages with plugins..
+#
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.2
-Release:	5
+Release:	5.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	8d8271c704a9f23d53138a4ceea38fb4
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
-Source2:	http://www.squirrelmail.org/plugins/compatibility-1.2.tar.gz
-# Source2-md5:	3f1e632406e5637842a73b90353f367d
+%define		_compatibility_version	1.3
+Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
+# Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
+%define		_change_passwd_version	4.0
+Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+# Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 Patch0:		%{name}-ri_once.patch
 Patch1:		%{name}-abook_take.patch
 Patch2:		%{name}-addgraphics.patch
@@ -22,17 +29,18 @@ Patch6:		%{name}-mail_fwd.patch
 Patch7:		%{name}-change_pass-i18n.patch
 Patch8:		%{name}-change_pass-polish.patch
 URL:		http://www.squirrelmail.org/
-Requires:	webserver
+BuildRequires:	gettext-devel
 Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
 Requires:	php-zlib
-BuildRequires:	gettext-devel
+Requires:	webserver
+Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_squirreldir	/home/services/httpd/html/squirrel
+%define		_squirreldir	/home/httpd/html/squirrel
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
@@ -69,6 +77,7 @@ Summary(pl):	Wiewiórczy interfejs do zmiany hase³
 Group:		Applications/Mail
 Requires:	poppassd
 Requires:	%{name} = %{version}-%{release}
+Requires:	squirrelmail-compatibility-%{_compatibility_version}
 
 %description change_pass
 This package contains a interface to change passwords.
@@ -146,6 +155,7 @@ for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz 
 done
 
 tar -zxvf %{SOURCE2} -C plugins
+tar -zxvf %{SOURCE3} -C plugins
 
 # use poppassd from separate package; don't include x86 binaries!!!
 rm -rf plugins/change_pass/{courierpassd,poppassd}*
