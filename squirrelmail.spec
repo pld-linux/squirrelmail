@@ -205,7 +205,7 @@ install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
-install %{SOURCE4} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
+install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
 
 cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 
