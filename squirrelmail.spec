@@ -12,13 +12,13 @@ License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
 # Source0-md5:	b17478106aab5abc6cfd824fffd310f0
-Source1:	%{name}_plugins-20030725.tar
-# Source1-md5:	400fc50e277aa86f736e9a18393a8391
+Source1:	%{name}_plugins-20050108.tar
+# Source1-md5:	03414c43cfceb3e187e7968e22736aa2
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
-%define		_change_passwd_version	4.0
-Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
+#%define		_change_passwd_version	4.0
+#Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
 %define		_all_locales_date	20050101
 Source4:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}%{_rc}-%{_all_locales_date}.tar.bz2
@@ -34,7 +34,7 @@ Patch6:		%{name}-gzip.patch
 Patch7:		%{name}-mail_fwd.patch
 Patch8:		%{name}-change_pass-i18n.patch
 Patch9:		%{name}-change_pass-polish.patch
-Patch10:	%{name}-sm143a-xss.diff
+Patch10:	%{name}-mail_fwd-Makefile.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -156,40 +156,40 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 %setup -q -a1 -n %{name}-%{version}-%{_rc}
 
 # List of useful plugins (ONLY useful ones should be here)
-for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
-	fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
-	password_forget*tar.gz username*tar.gz quicksave*tar.gz \
-	retrieveuserdata*tar.gz vacation*tar.gz; do
+for i in addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
+	gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
+	password_forget*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
+	username*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
 tar -zxvf %{SOURCE2} -C plugins
-tar -zxvf %{SOURCE3} -C plugins
+#tar -zxvf %{SOURCE3} -C plugins
 tar -jxvf %{SOURCE4}
 
 # use poppassd from separate package; don't include x86 binaries!!!
-rm -rf plugins/change_pass/{courierpassd,poppassd}*
-rm -f plugins/change_passwd/chpasswd
-rm -f plugins/mail_fwd/fwdfile/wfwd
+#rm -rf plugins/change_pass/{courierpassd,poppassd}*
+#rm -f plugins/change_passwd/chpasswd
+#rm -f plugins/mail_fwd/fwdfile/wfwd
 
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch2 -p1
+#%patch3 -p1
+#%patch4 -p1
 %patch5 -p1
-%patch6 -p1
-%patch7 -p1
+#%patch6 -p1
+#%patch7 -p1
 #%patch8 -p1
 #%patch9 -p1
-#%patch10 -p0
+%patch10 -p1
 %build
-%{__make} -C plugins/mail_fwd/fwdfile \
+%{__make} -C plugins/mail_fwd/fwdfile
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
 
-%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
-	plugins/change_passwd/chpasswd.c -lcrypt
+#%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
+#	plugins/change_passwd/chpasswd.c -lcrypt
 
 cd po
 ./compilepo pl_PL
@@ -394,13 +394,17 @@ fi
 %files mail_fwd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/wfwd
+%doc plugins/mail_fwd/README
 %dir %{_squirreldir}/plugins/mail_fwd
-%{_squirreldir}/plugins/mail_fwd/[!f]*
+%{_squirreldir}/plugins/mail_fwd/[!f]*.php
 
 %files mailfetch
 %defattr(644,root,root,755)
-%{_squirreldir}/plugins/mail_fetch
+%doc plugins/mail_fetch/README
+%{_squirreldir}/plugins/mail_fetch/*.php
 
 %files newmail
 %defattr(644,root,root,755)
-%{_squirreldir}/plugins/newmail
+%doc plugins/newmail/{HISTORY,README}
+%{_squirreldir}/plugins/newmail/*.php
+%{_squirreldir}/plugins/newmail/sounds
