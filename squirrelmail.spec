@@ -5,12 +5,12 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.2
-Release:	6
+Version:	1.4.3a
+Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d8271c704a9f23d53138a4ceea38fb4
+# Source0-md5:	9564fed8b8dc6fc75d5ac31825569a77
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
 %define		_compatibility_version	1.3
@@ -40,7 +40,7 @@ Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_squirreldir	/home/services/httpd/html/squirrel
+%define		_squirreldir	/home/httpd/html/squirrel
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
@@ -147,10 +147,10 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 %setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
-for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz fortune*tar.gz \
-	gzip*tar.gz mail_fwd*tar.gz motd*tar.gz password_forget*tar.gz \
-	username*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
-	vacation*tar.gz; do
+for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
+	fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
+	password_forget*tar.gz username*tar.gz quicksave*tar.gz \
+	retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
@@ -265,7 +265,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(nl) %{_squirreldir}/locale/nl_NL
 %lang(nn) %{_squirreldir}/locale/nn_NO
-%lang(nb) %{_squirreldir}/locale/no_NO
 %lang(pl) %{_squirreldir}/locale/pl_PL
 %lang(pt) %{_squirreldir}/locale/pt_PT
 %lang(pt_BR) %{_squirreldir}/locale/pt_BR
