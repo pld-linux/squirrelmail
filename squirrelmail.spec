@@ -216,7 +216,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(640,root,http) %{_squirreldir}/data/*
 %{_squirreldir}/index.php
 %attr(744,root,root) %{_squirreldir}/configure
-%attr(640,root,http) %dir %{_squirreldir}/config
+%attr(750,root,http) %dir %{_squirreldir}/config
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %{_squirreldir}/functions
