@@ -11,14 +11,17 @@ License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	9564fed8b8dc6fc75d5ac31825569a77
+# Source0-size:	2254039
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
+# Source2-size:	5966
 %define		_change_passwd_version	4.0
 Source3:	http://www.squirrelmail.org/plugins/change_passwd-%{_change_passwd_version}-1.2.8.tar.gz
 # Source3-md5:	22b5ee1698b2e59a88f2150a96ec17f3
+# Source3-size:	27587
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-abook_take.patch
