@@ -1,25 +1,4 @@
 Only in squirrelmail-1.2.6/plugins/: administrator
-diff -ru squirrelmail-1.2.6/plugins/attachment_common/vcard.php plugins.AX/attachment_common/vcard.php
---- squirrelmail-1.2.6/plugins/attachment_common/vcard.php	Wed May  2 15:45:33 2001
-+++ plugins.AX/attachment_common/vcard.php	Fri May 24 11:17:08 2002
-@@ -1,11 +1,12 @@
-+<?php /* Modified at 5 places by ri_once */ ?>
- <?php
-    chdir("..");
- 
--   include('../src/validate.php');
--   include("../functions/date.php");
--   include("../functions/page_header.php");
--   include("../functions/mime.php");
--   include("../src/load_prefs.php");
-+   /* '_once' Added by ri_once */ include_once('../src/validate.php');
-+   /* '_once' Added by ri_once */ include_once("../functions/date.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/page_header.php");
-+   /* '_once' Added by ri_once */ include_once("../functions/mime.php");
-+   /* '_once' Added by ri_once */ include_once("../src/load_prefs.php");
- 
-    $imapConnection = sqimap_login($username, $key, $imapServerAddress, $imapPort, 0);
-    sqimap_mailbox_select($imapConnection, $mailbox);
 Only in squirrelmail-1.2.6/plugins/: bug_report
 Only in squirrelmail-1.2.6/plugins/: calendar
 diff -ru squirrelmail-1.2.6/plugins/change_pass/options.php plugins.AX/change_pass/options.php
