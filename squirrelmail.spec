@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -74,7 +74,7 @@ Requires:	%{name} = %{version}
 This package contains a interface to pop3 serwers, it allows you to
 fetch mail from this kind of serwers.
 
-%description ispell -l pl
+%description mailfetch -l pl
 Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gn±c z nich
 pocztê za pomoc± us³ugi pop3.
 
