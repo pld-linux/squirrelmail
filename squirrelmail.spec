@@ -1,12 +1,13 @@
 # TODO:
 # - make separate packages with plugins
+# - move plugins into separate specs
 #
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.4
-Release:	1
+Release:	1.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -163,6 +164,19 @@ A Squirrel new mail notify plug-in.
 %description newmail -l pl
 Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
+%package vacation
+Summary:	A vacation plugin
+Summary(pl):	Wtyczka vacation
+Group:		Applications/Mail
+Requires:	%{name} = %{version}-%{release}
+Requires:	php-ftp
+
+%description vacation
+A Squirrel vacation plug-in.
+
+%description vacation -l pl
+Wtyczka vacation dla Squirrelmail-a.
+
 %prep
 %setup -q -a1
 
@@ -229,6 +243,10 @@ rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.ph
 
 cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/%{name}/config.php}
 ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
+
+# move plugins configuration to etc:
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/vacation_config.php
+ln -s %{_sysconfdir}/%{name}/vacation_config.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -445,3 +463,10 @@ fi
 %dir %{_squirreldir}/plugins/newmail
 %{_squirreldir}/plugins/newmail/*.php
 %{_squirreldir}/plugins/newmail/sounds
+
+%files vacation
+%defattr(644,root,root,755)
+%doc plugins/vacation/README
+%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/vacation_config.php
+%dir %{_squirreldir}/plugins/vacation
+%{_squirreldir}/plugins/vacation/*.php
