@@ -1,6 +1,6 @@
-diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php ./squirrelmail-1.4.4-rc1/config/config_default.php
---- ./squirrelmail-1.4.4-rc1.orig/config/config_default.php	2004-12-24 16:55:39.000000000 +0100
-+++ ./squirrelmail-1.4.4-rc1/config/config_default.php	2005-01-06 16:20:04.648183416 +0100
+diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4.4-rc1/config/config_default.php
+--- squirrelmail-1.4.4-rc1.orig/config/config_default.php	2004-12-24 16:55:39.000000000 +0100
++++ squirrelmail-1.4.4-rc1/config/config_default.php	2005-01-06 16:20:04.648183416 +0100
 @@ -84,7 +84,7 @@
   * option set to true.
   * @global string $provider_name
@@ -46,9 +46,9 @@ diff -urN ./squirrelmail-1.4.4-rc1.orig/config/config_default.php ./squirrelmail
  
  /**
   * Hash level used for data directory.
-diff -urN ./squirrelmail-1.4.4-rc1.orig/config/conf.pl ./squirrelmail-1.4.4-rc1/config/conf.pl
---- ./squirrelmail-1.4.4-rc1.orig/config/conf.pl	2004-12-30 00:19:35.000000000 +0100
-+++ ./squirrelmail-1.4.4-rc1/config/conf.pl	2005-01-06 16:21:18.747918544 +0100
+diff -urN squirrelmail-1.4.4-rc1.orig/config/conf.pl squirrelmail-1.4.4-rc1/config/conf.pl
+--- squirrelmail-1.4.4-rc1.orig/config/conf.pl	2004-12-30 00:19:35.000000000 +0100
++++ squirrelmail-1.4.4-rc1/config/conf.pl	2005-01-06 16:21:18.747918544 +0100
 @@ -286,8 +286,8 @@
  $noselect_fix_enable = "false"         if ( !$noselect_fix_enable );
  $frame_top = "_top"                    if ( !$frame_top );
