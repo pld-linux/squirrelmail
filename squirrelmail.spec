@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.8
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -109,11 +109,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS COPYING ChangeLog INSTALL README ReleaseNotes UPGRADE doc/*.txt doc/*.html
 %doc doc/README* doc/ReleaseNotes/1.2/*
-%defattr(750,root,http,750)
-%attr(730,http,http) %{_squirreldir}/data/
+%dir %{_squirreldir}
+%attr(730,root,http) %dir %{_squirreldir}/data
+%attr(640,root,http) %{_squirreldir}/data/.htaccess
+%attr(640,root,http) %{_squirreldir}/data/*
 %{_squirreldir}/index.php
-%{_squirreldir}/configure
-%attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*
+%attr(744,root,root) %{_squirreldir}/configure
+%attr(744,root,root) %{_squirreldir}/config/*.pl
+%attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %{_squirreldir}/functions
 %{_squirreldir}/help/index.php
 %{_squirreldir}/help/en_US
