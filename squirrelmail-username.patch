@@ -1,6 +1,6 @@
 --- squirrelmail-1.2.8/plugins/username/setup.php.orig	Wed May  2 20:01:39 2001
-+++ squirrelmail-1.2.8/plugins/username/setup.php	Thu Sep 19 18:59:58 2002
-@@ -41,20 +41,22 @@
++++ squirrelmail-1.2.8/plugins/username/setup.php	Fri Sep 20 14:21:37 2002
+@@ -41,20 +41,27 @@
           return;
  	 
        ?>
@@ -14,16 +14,22 @@
 +
        if ($show_username == 1)
 -          echo $username;
-+         echo $username;
-       if ($show_username == 2)
+-      if ($show_username == 2)
 -          echo 'Logged in as: ' . $username;
 -       
 -?></tt>
 -</td></tr></table>
++         echo $username;
++      if ($show_username == 2) {
++         $msgpl = 'Zalogowany jako: ' .  $username;
++	 $msgother = 'Logged in as: ' .  $username;
 +	 if (getPref($data_dir, $username, 'language') == pl_PL)
-+	    echo 'Zalogowany jako: ' .  $username;
++	    echo $msgpl;
++	 else if ($squirrelmail_default_language = 'pl_PL' && getPref($data_dir, $username, 'language') == '')
++	    echo $msgpl;
 +	 else
-+	    echo 'Logged in as: ' .  $username;
++	    echo $msgother;
++	 }   
 +
 +?></h3></tt>
  </td></tr></table>
@@ -33,7 +39,7 @@
     }
  
     function username_show_options() {
-@@ -105,10 +107,10 @@
+@@ -105,10 +112,10 @@
     }
  
     function username_save_options() {
