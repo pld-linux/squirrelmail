@@ -5,8 +5,8 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.2
-Release:	6
+Version:	1.4.3a
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -147,10 +147,10 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 %setup -q -a1
 
 # List of usefull plugins (ONLY usefull one should be here)
-for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz fortune*tar.gz \
-	gzip*tar.gz mail_fwd*tar.gz motd*tar.gz password_forget*tar.gz \
-	username*tar.gz quicksave*tar.gz retrieveuserdata*tar.gz \
-	vacation*tar.gz; do
+for i in abook_take*tar.gz addgraphics*tar.gz auto_cc*tar.gz change_pass*tar.gz \
+	fortune*tar.gz gzip*tar.gz mail_fwd*tar.gz motd*tar.gz \
+	password_forget*tar.gz username*tar.gz quicksave*tar.gz \
+	retrieveuserdata*tar.gz vacation*tar.gz; do
 		tar xfvz $i -C plugins
 done
 
@@ -265,7 +265,6 @@ rm -rf $RPM_BUILD_ROOT
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(nl) %{_squirreldir}/locale/nl_NL
 %lang(nn) %{_squirreldir}/locale/nn_NO
-%lang(nb) %{_squirreldir}/locale/no_NO
 %lang(pl) %{_squirreldir}/locale/pl_PL
 %lang(pt) %{_squirreldir}/locale/pt_PT
 %lang(pt_BR) %{_squirreldir}/locale/pt_BR
