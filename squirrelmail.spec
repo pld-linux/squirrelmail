@@ -2,7 +2,7 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	1.1.2
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Group(de):	Applikationen/Post
@@ -45,13 +45,12 @@ install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel \
 
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/config
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/data
-install AUTHORS COPYING ChangeLog INSTALL README UPGRADE $RPM_BUILD_ROOT%{_datadir}/docs/squirrel
-install doc/* $RPM_BUILD_ROOT%{_datadir}/doc/squirrel
 install %{SOURCE1} $RPM_BUILD_ROOT/home/httpd/html/squirrel/config/config.php
 install %{SOURCE2} $RPM_BUILD_ROOT/home/httpd/html/squirrel/data/
 
-rm AUTHORS ChangeLog INSTALL README UPGRADE doc/*
-gzip -9nf $RPM_BUILD_ROOT%{_datadir}/docs/squirrel/*
+gzip -9nf AUTHORS COPYING ChangeLog INSTALL README UPGRADE
+gzip -9nf doc/*
+
 cp -avR * $RPM_BUILD_ROOT/home/httpd/html/squirrel
 cd plugins/squirrelspell
 cp sqspell_config.dist sqspell_config.php
@@ -62,7 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files 
 %defattr(644,root,root,755)
-%doc %{_datadir}/doc/squirrel/*.gz
+%doc AUTHORS.gz COPYING.gz ChangeLog.gz INSTALL.gz README.gz UPGRADE.gz
+%doc doc/*.gz
 %defattr(755,http,http,755)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
