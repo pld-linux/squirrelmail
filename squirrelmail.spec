@@ -10,7 +10,7 @@ Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	8d8271c704a9f23d53138a4ceea38fb4
+# Source0-md5:	9564fed8b8dc6fc75d5ac31825569a77
 Source1:	%{name}_plugins-20030725.tar
 # Source1-md5:	400fc50e277aa86f736e9a18393a8391
 %define		_compatibility_version	1.3
