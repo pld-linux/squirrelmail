@@ -6,7 +6,7 @@ Version:	1.2.11
 Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 Source1:	http://www.squirrelmail.org/plugins/%{name}_plugins-20010604.tar
 Source2:	http://www.squirrelmail.org/plugins/change_pass-1.5-1.2.8.tar.gz
 Patch0:		%{name}-ri_once.patch
