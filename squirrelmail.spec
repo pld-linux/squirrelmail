@@ -102,6 +102,10 @@ install -d $RPM_BUILD_ROOT%{_squirreldir}/{config,data} \
 
 cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 
+cd $RPM_BUILD_ROOT
+rm -rf `find . -name *.po`
+cd -
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -143,102 +147,38 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_squirreldir}/locale
 %{_squirreldir}/locale/index.php
 %{_squirreldir}/locale/timezones.cfg
-%lang(bg) %dir %{_squirreldir}/locale/bg_BG
-%lang(bg) %dir %{_squirreldir}/locale/bg_BG/LC_MESSAGES
-%lang(bg) %{_squirreldir}/locale/bg_BG/LC_MESSAGES/squirrelmail.mo
-%lang(ca) %dir %{_squirreldir}/locale/ca_ES
-%lang(ca) %dir %{_squirreldir}/locale/ca_ES/LC_MESSAGES
-%lang(ca) %{_squirreldir}/locale/ca_ES/LC_MESSAGES/squirrelmail.mo
-%lang(da) %dir %{_squirreldir}/locale/da_DK
-%lang(da) %dir %{_squirreldir}/locale/da_DK/LC_MESSAGES
-%lang(da) %{_squirreldir}/locale/da_DK/LC_MESSAGES/squirrelmail.mo
-%lang(de) %dir %{_squirreldir}/locale/de_DE
-%lang(de) %dir %{_squirreldir}/locale/de_DE/LC_MESSAGES
-%lang(de) %{_squirreldir}/locale/de_DE/LC_MESSAGES/squirrelmail.mo
-%lang(cs) %dir %{_squirreldir}/locale/cs_CZ
-%lang(cs) %dir %{_squirreldir}/locale/cs_CZ/LC_MESSAGES
-%lang(cs) %{_squirreldir}/locale/cs_CZ/LC_MESSAGES/squirrelmail.mo
-%lang(es) %dir %{_squirreldir}/locale/es_ES
-%lang(es) %dir %{_squirreldir}/locale/es_ES/LC_MESSAGES
-%lang(es) %{_squirreldir}/locale/es_ES/LC_MESSAGES/squirrelmail.mo
-%lang(et) %dir %{_squirreldir}/locale/et_EE
-%lang(et) %dir %{_squirreldir}/locale/et_EE/LC_MESSAGES
-%lang(et) %{_squirreldir}/locale/et_EE/LC_MESSAGES/squirrelmail.mo
-%lang(fi) %dir %{_squirreldir}/locale/fi_FI
-%lang(fi) %dir %{_squirreldir}/locale/fi_FI/LC_MESSAGES
-%lang(fi) %{_squirreldir}/locale/fi_FI/LC_MESSAGES/squirrelmail.mo
-%lang(fr) %dir %{_squirreldir}/locale/fr_FR
-%lang(fr) %dir %{_squirreldir}/locale/fr_FR/LC_MESSAGES
-%lang(fr) %{_squirreldir}/locale/fr_FR/LC_MESSAGES/squirrelmail.mo
-%lang(hr) %dir %{_squirreldir}/locale/hr_HR
-%lang(hr) %dir %{_squirreldir}/locale/hr_HR/LC_MESSAGES
-%lang(hr) %{_squirreldir}/locale/hr_HR/LC_MESSAGES/squirrelmail.mo
-%lang(hu) %dir %{_squirreldir}/locale/hu_HU
-%lang(hu) %dir %{_squirreldir}/locale/hu_HU/LC_MESSAGES
-%lang(hu) %{_squirreldir}/locale/hu_HU/LC_MESSAGES/squirrelmail.mo
-%lang(id) %dir %{_squirreldir}/locale/id_ID
-%lang(id) %dir %{_squirreldir}/locale/id_ID/LC_MESSAGES
-%lang(id) %{_squirreldir}/locale/id_ID/LC_MESSAGES/squirrelmail.mo
-%lang(is) %dir %{_squirreldir}/locale/is_IS
-%lang(is) %dir %{_squirreldir}/locale/is_IS/LC_MESSAGES
-%lang(is) %{_squirreldir}/locale/is_IS/LC_MESSAGES/squirrelmail.mo
-%lang(it) %dir %{_squirreldir}/locale/it_IT
-%lang(it) %dir %{_squirreldir}/locale/it_IT/LC_MESSAGES
-%lang(it) %{_squirreldir}/locale/it_IT/LC_MESSAGES/squirrelmail.mo
-%lang(ko) %dir %{_squirreldir}/locale/ko_KR
-%lang(ko) %dir %{_squirreldir}/locale/ko_KR/LC_MESSAGES
-%lang(ko) %{_squirreldir}/locale/ko_KR/LC_MESSAGES/squirrelmail.mo
-%lang(lt) %dir %{_squirreldir}/locale/lt_LT
-%lang(lt) %dir %{_squirreldir}/locale/lt_LT/LC_MESSAGES
-%lang(lt) %{_squirreldir}/locale/lt_LT/LC_MESSAGES/squirrelmail.mo
-%lang(nl) %dir %{_squirreldir}/locale/nl_NL
-%lang(nl) %dir %{_squirreldir}/locale/nl_NL/LC_MESSAGES
-%lang(nl) %{_squirreldir}/locale/nl_NL/LC_MESSAGES/squirrelmail.mo
-%lang(nn) %dir %{_squirreldir}/locale/nn_NO
-%lang(nn) %dir %{_squirreldir}/locale/nn_NO/LC_MESSAGES
-%lang(nn) %{_squirreldir}/locale/nn_NO/LC_MESSAGES/squirrelmail.mo
-%lang(no) %dir %{_squirreldir}/locale/no_NO
-%lang(no) %dir %{_squirreldir}/locale/no_NO/LC_MESSAGES
-%lang(no) %{_squirreldir}/locale/no_NO/LC_MESSAGES/squirrelmail.mo
-%lang(pl) %dir %{_squirreldir}/locale/pl_PL
-%lang(pl) %dir %{_squirreldir}/locale/pl_PL/LC_MESSAGES
-%lang(pl) %{_squirreldir}/locale/pl_PL/LC_MESSAGES/squirrelmail.mo
-%lang(pt) %dir %{_squirreldir}/locale/pt_PT
-%lang(pt) %dir %{_squirreldir}/locale/pt_PT/LC_MESSAGES
-%lang(pt) %{_squirreldir}/locale/pt_PT/LC_MESSAGES/squirrelmail.mo
-%lang(pt_BR) %dir %{_squirreldir}/locale/pt_BR
-%lang(pt_BR) %dir %{_squirreldir}/locale/pt_BR/LC_MESSAGES
-%lang(pt_BR) %{_squirreldir}/locale/pt_BR/LC_MESSAGES/squirrelmail.mo
-%lang(ro) %dir %{_squirreldir}/locale/ro_RO
-%lang(ro) %dir %{_squirreldir}/locale/ro_RO/LC_MESSAGES
-%lang(ro) %{_squirreldir}/locale/ro_RO/LC_MESSAGES/squirrelmail.mo
-%lang(ru) %dir %{_squirreldir}/locale/ru_RU
-%lang(ru) %dir %{_squirreldir}/locale/ru_RU/LC_MESSAGES
-%lang(ru) %{_squirreldir}/locale/ru_RU/LC_MESSAGES/squirrelmail.mo
-%lang(sr) %dir %{_squirreldir}/locale/sr_YU
-%lang(sr) %dir %{_squirreldir}/locale/sr_YU/LC_MESSAGES
-%lang(sr) %{_squirreldir}/locale/sr_YU/LC_MESSAGES/squirrelmail.mo
-%lang(sv) %dir %{_squirreldir}/locale/sv_SE
-%lang(sv) %dir %{_squirreldir}/locale/sv_SE/LC_MESSAGES
-%lang(sv) %{_squirreldir}/locale/sv_SE/LC_MESSAGES/squirrelmail.mo
-%lang(sk) %dir %{_squirreldir}/locale/sk_SK
-%lang(sk) %dir %{_squirreldir}/locale/sk_SK/LC_MESSAGES
-%lang(sk) %{_squirreldir}/locale/sk_SK/LC_MESSAGES/squirrelmail.mo
-%lang(sl) %dir %{_squirreldir}/locale/sl_SI
-%lang(sl) %dir %{_squirreldir}/locale/sl_SI/LC_MESSAGES
-%lang(sl) %{_squirreldir}/locale/sl_SI/LC_MESSAGES/squirrelmail.mo
-%lang(th) %dir %{_squirreldir}/locale/th_TH
-%lang(th) %dir %{_squirreldir}/locale/th_TH/LC_MESSAGES
-%lang(th) %{_squirreldir}/locale/th_TH/LC_MESSAGES/squirrelmail.mo
-%lang(tr) %dir %{_squirreldir}/locale/tr_TR
-%lang(tr) %dir %{_squirreldir}/locale/tr_TR/LC_MESSAGES
-%lang(tr) %{_squirreldir}/locale/tr_TR/LC_MESSAGES/squirrelmail.mo
-%lang(zh_CN) %dir %{_squirreldir}/locale/zh_CN
-%lang(zh_CN) %dir %{_squirreldir}/locale/zh_CN/LC_MESSAGES
-%lang(zh_CN) %{_squirreldir}/locale/zh_CN/LC_MESSAGES/squirrelmail.mo
-%lang(zh_TW) %dir %{_squirreldir}/locale/zh_TW
-%lang(zh_TW) %dir %{_squirreldir}/locale/zh_TW/LC_MESSAGES
-%lang(zh_TW) %{_squirreldir}/locale/zh_TW/LC_MESSAGES/squirrelmail.mo
+%lang(bg) %{_squirreldir}/locale/bg_BG
+%lang(ca) %{_squirreldir}/locale/ca_ES
+%lang(da) %{_squirreldir}/locale/da_DK
+%lang(de) %{_squirreldir}/locale/de_DE
+%lang(cs) %{_squirreldir}/locale/cs_CZ
+%lang(es) %{_squirreldir}/locale/es_ES
+%lang(et) %{_squirreldir}/locale/et_EE
+%lang(fi) %{_squirreldir}/locale/fi_FI
+%lang(fr) %{_squirreldir}/locale/fr_FR
+%lang(hr) %{_squirreldir}/locale/hr_HR
+%lang(hu) %{_squirreldir}/locale/hu_HU
+%lang(id) %{_squirreldir}/locale/id_ID
+%lang(is) %{_squirreldir}/locale/is_IS
+%lang(it) %{_squirreldir}/locale/it_IT
+%lang(ko) %{_squirreldir}/locale/ko_KR
+%lang(lt) %{_squirreldir}/locale/lt_LT
+%lang(nl) %{_squirreldir}/locale/nl_NL
+%lang(nn) %{_squirreldir}/locale/nn_NO
+%lang(no) %{_squirreldir}/locale/no_NO
+%lang(pl) %{_squirreldir}/locale/pl_PL
+%lang(pt) %{_squirreldir}/locale/pt_PT
+%lang(pt_BR) %{_squirreldir}/locale/pt_BR
+%lang(ro) %{_squirreldir}/locale/ro_RO
+%lang(ru) %{_squirreldir}/locale/ru_RU
+%lang(sr) %{_squirreldir}/locale/sr_YU
+%lang(sv) %{_squirreldir}/locale/sv_SE
+%lang(sk) %{_squirreldir}/locale/sk_SK
+%lang(sl) %{_squirreldir}/locale/sl_SI
+%lang(th) %{_squirreldir}/locale/th_TH
+%lang(tr) %{_squirreldir}/locale/tr_TR
+%lang(zh_CN) %{_squirreldir}/locale/zh_CN
+%lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
 %{_squirreldir}/plugins/README.plugins
 %{_squirreldir}/plugins/abook_take
