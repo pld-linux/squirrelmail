@@ -3,7 +3,7 @@ Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.2.8
-Release:	9
+Release:	10
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://prdownloads.sf.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -22,7 +22,6 @@ Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
 Provides:	webmail
-Buildarch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_squirreldir	/home/httpd/html/squirrel
@@ -72,6 +71,20 @@ mail against typos and common mistakes
 Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziæ pocztê pod
 k±tem ¼le wpisanych s³ów i ortografi.
 
+%package mail_fwd
+Summary:	A squirrel email forwarding plug-in
+Summary(pl):	Plug-in umo¿liwiaj±cy przekierowanie poczty
+Group:		Applications/Mail
+Requires:	%{name} = %{version}
+
+%description mail_fwd
+This plug-in allows to set email forwarding.
+Note: binary file included in this package must be suid.
+
+%description mail_fwd -l pl
+Ten plug-in pozwala na ustawienie przekierowania poczty.
+Uwaga: plik binarny zawarty w tym pakiecie musi mieæ ustawiony bit suid.
+
 %package mailfetch
 Summary:	A squirrel pop3 plug-in
 Summary(pl):	Wiewiórczy plug-in pop3
@@ -118,17 +131,25 @@ done
 %patch5 -p1
 %patch6 -p1
 
+%build
+cd plugins/mail_fwd/fwdfile
+rm -f wfwd
+%{__make}
+cd -
+
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_squirreldir}/{config,data} \
+
+install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 	$RPM_BUILD_ROOT%{_datadir}/docs/squirrel/
+
+install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
 cp -avR * $RPM_BUILD_ROOT%{_squirreldir}
 
 cd $RPM_BUILD_ROOT
 rm -rf `find . -name *.po`
 cd -
-rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/mail_fwd/fwdfile/wfwd
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -219,7 +240,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
-%{_squirreldir}/plugins/mail_fwd
 %{_squirreldir}/plugins/make_archive.pl
 %{_squirreldir}/plugins/motd
 %{_squirreldir}/plugins/password_forget
@@ -236,6 +256,12 @@ rm -rf $RPM_BUILD_ROOT
 %files ispell
 %defattr(644,root,root,755)
 %{_squirreldir}/plugins/squirrelspell
+
+%files mail_fwd
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_sbindir}/wfwd
+%dir %{_squirreldir}/plugins/mail_fwd
+%{_squirreldir}/plugins/mail_fwd/[!f]*
 
 %files mailfetch
 %defattr(644,root,root,755)
