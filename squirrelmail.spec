@@ -9,8 +9,8 @@ Group(de):	Applikationen/Post
 Group(pl):	Aplikacje/Poczta
 Group(pt):	Aplicações/Correio Eletrônico
 Source0:	http://prdownloads.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-Source1:	squirrelmail-%{version}-config-pl
-Source2:	squirrelmail-%{version}-default-user-pl
+Source1:	%{name}-%{version}-config-pl
+Source2:	%{name}-%{version}-default-user-pl
 URL:		http://www.squirrelmail.org/
 Requires:	webserver
 Requires:	imapdaemon
@@ -20,7 +20,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
-you check mail by any cookie-aware WWW browser. Squirrel supports many languages: Polish, Russian, German:
+you check mail by any cookie-aware WWW browser. Squirrel supports many
+languages: Polish, Russian, German:
 
 %description -l pl
 Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
@@ -40,7 +41,7 @@ install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel \
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/config
 install -d $RPM_BUILD_ROOT/home/httpd/html/squirrel/data
 install AUTHORS COPYING ChangeLog INSTALL README UPGRADE $RPM_BUILD_ROOT%{_datadir}/docs/squirrel
-install doc/* $RPM_BUILD_ROOT%{_datadir}/docs/squirrel
+install doc/* $RPM_BUILD_ROOT%{_datadir}/doc/squirrel
 install %{SOURCE1} $RPM_BUILD_ROOT/home/httpd/html/squirrel/config/config.php
 install %{SOURCE2} $RPM_BUILD_ROOT/home/httpd/html/squirrel/data/
 
@@ -53,7 +54,8 @@ gzip -9nf $RPM_BUILD_ROOT%{_datadir}/docs/squirrel/*
 rm -rf $RPM_BUILD_ROOT
 
 %files 
-%doc %{_datadir}/docs/squirrel/*.gz
+%defattr(644,root,root,755)
+%doc %{_datadir}/doc/squirrel/*.gz
 %defattr(755,http,http,755)
 %attr(730,http,http) /home/httpd/html/squirrel/data/
 /home/httpd/html/squirrel/index.php
