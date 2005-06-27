@@ -12,9 +12,9 @@ License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	285b42bec8967b88ef3c083fcad18634
-%define		_all_locales_date	20050122
+%define		_all_locales_date	20050308
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	ec7f97d77c706135571732ac7accf961
+# Source1-md5:	d5f8e79deab0f7a5a91e8d3d259983cb
 %define		_compatibility_version	1.3
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
