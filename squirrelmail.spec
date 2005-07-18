@@ -6,18 +6,18 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.4
-Release:	2
+Version:	1.4.5
+Release:	0.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	285b42bec8967b88ef3c083fcad18634
-%define		_all_locales_date	20050308
+# Source0-md5:	bcfe0c1d4049e9c26e0040b2fa3adb07
+%define		_all_locales_date	20050713
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	d5f8e79deab0f7a5a91e8d3d259983cb
-%define		_compatibility_version	1.3
+# Source1-md5:	80f4e28b85cbdeac4c8e2bc12a38f7eb
+%define		_compatibility_version	2.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	049c46507ef161ad4ba5f4d4a0b96d09
+# Source2-md5:	8e3c8fc99a6669a1d9de911c2194dc31
 Source3:	http://www.squirrelmail.org/plugins/addgraphics-2.3-1.0.3.tar.gz
 # Source3-md5:	c9319e32149026372a0d515ddbc1d14b
 Source4:	http://www.squirrelmail.org/plugins/auto_cc-2.0-1.2.tar.gz
@@ -49,7 +49,6 @@ Patch1:		%{name}-ri_once.patch
 Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
 Patch4:		%{name}-squirrelspell.patch
-Patch5:		http://dl.sourceforge.net/squirrelmail/sqm-144-xss.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -215,7 +214,6 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
-%patch5 -p1
 
 find locale -name '*.po' | xargs rm -f
 
@@ -291,7 +289,7 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog README ReleaseNotes UPGRADE doc/*.txt doc/*.html
-%doc doc/README* doc/ReleaseNotes/*/*
+%doc doc/ReleaseNotes/*/*
 %dir %{_squirreldir}
 %{_squirreldir}/class
 %attr(640,root,http) %{_squirreldir}/data/.htaccess
@@ -350,7 +348,6 @@ fi
 %lang(el) %{_squirreldir}/locale/el_GR
 %lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
-%lang(et) %{_squirreldir}/locale/et_EE
 %lang(eu) %{_squirreldir}/locale/eu_ES
 %lang(fa) %{_squirreldir}/locale/fa_IR
 %lang(fi) %{_squirreldir}/locale/fi_FI
@@ -399,11 +396,7 @@ fi
 %dir %{_squirreldir}/plugins/gzip
 %{_squirreldir}/plugins/gzip/*.php
 %dir %{_squirreldir}/plugins/gzip/locale
-%lang(de) %{_squirreldir}/plugins/gzip/locale/de_DE
 %lang(el) %{_squirreldir}/plugins/gzip/locale/el_GR
-%lang(id) %{_squirreldir}/plugins/gzip/locale/id_ID
-%lang(lt) %{_squirreldir}/plugins/gzip/locale/lt_LT
-%lang(sv) %{_squirreldir}/plugins/gzip/locale/sv_SE
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
@@ -434,15 +427,11 @@ fi
 %lang(de) %{_squirreldir}/plugins/change_pass/locale/de_DE
 %lang(es) %{_squirreldir}/plugins/change_pass/locale/es_ES
 %lang(fr) %{_squirreldir}/plugins/change_pass/locale/fr_FR
-%lang(id) %{_squirreldir}/plugins/change_pass/locale/id_ID
 %lang(ja) %{_squirreldir}/plugins/change_pass/locale/ja_JP
 %lang(lt) %{_squirreldir}/plugins/change_pass/locale/lt_LT
-%lang(nl) %{_squirreldir}/plugins/change_pass/locale/nl_NL
-%lang(nn) %{_squirreldir}/plugins/change_pass/locale/nn_NO
 %lang(pl) %{_squirreldir}/plugins/change_pass/locale/pl_PL
 %lang(pt_BR) %{_squirreldir}/plugins/change_pass/locale/pt_BR
 %lang(pt) %{_squirreldir}/plugins/change_pass/locale/pt_PT
-%lang(sv) %{_squirreldir}/plugins/change_pass/locale/sv_SE
 
 %files ispell
 %defattr(644,root,root,755)
