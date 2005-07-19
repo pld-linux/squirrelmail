@@ -300,7 +300,7 @@ fi
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %dir %{_sysconfdir}/%{name}
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/%{name}.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/%{name}.conf
 %attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/config.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
