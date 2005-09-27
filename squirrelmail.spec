@@ -7,7 +7,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.5
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -50,6 +50,7 @@ Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
 Patch4:		%{name}-squirrelspell.patch
 Patch5:		%{name}-retrieveuserdata-passwd.patch
+Patch6:		%{name}-php505.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
 Requires:	php
@@ -216,6 +217,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 find locale -name '*.po' | xargs rm -f
 
