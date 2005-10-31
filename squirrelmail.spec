@@ -7,17 +7,17 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.5
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	bcfe0c1d4049e9c26e0040b2fa3adb07
-%define		_all_locales_date	20050713
+%define		_all_locales_date	20050904
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	80f4e28b85cbdeac4c8e2bc12a38f7eb
-%define		_compatibility_version	2.0
+# Source1-md5:	f75557ad06787c15f92dff9fcfe30632
+%define		_compatibility_version	2.0.2
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	8e3c8fc99a6669a1d9de911c2194dc31
+# Source2-md5:	b6f8e5e62f304f4b68974158aeabb22d
 Source3:	http://www.squirrelmail.org/plugins/addgraphics-2.3-1.0.3.tar.gz
 # Source3-md5:	c9319e32149026372a0d515ddbc1d14b
 Source4:	http://www.squirrelmail.org/plugins/auto_cc-2.0-1.2.tar.gz
@@ -292,7 +292,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog README ReleaseNotes UPGRADE doc/*.txt doc/*.html
+%doc AUTHORS ChangeLog ChangeLog.locales README ReleaseNotes ReleaseNotes.locales UPGRADE doc/*.txt doc/*.html
 %doc doc/ReleaseNotes/*/*
 %dir %{_squirreldir}
 %{_squirreldir}/class
