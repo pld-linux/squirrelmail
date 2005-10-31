@@ -5,7 +5,7 @@ diff -urN squirrelmail-1.4.4.orig/plugins/squirrelspell/sqspell_config.php squir
   *                     'Spanish' => 'ispell -d spanish -a' );
   */
  $SQSPELL_APP = array('English' => 'ispell -a',
-+			'Polish' => 'ispell -d polish -a');
++			'Polish' => 'ispell -d polish -a',
  			'Spanish' => 'ispell -d spanish -a');
  $SQSPELL_APP_DEFAULT = 'English';
  $SQSPELL_WORDS_FILE = 
