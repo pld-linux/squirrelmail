@@ -7,7 +7,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.5
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -53,6 +53,7 @@ Patch5:		%{name}-retrieveuserdata-passwd.patch
 Patch6:		%{name}-php505.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	gettext-devel
+BuildRequires:	rpmbuild(macros) >= 1.264
 Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
@@ -65,6 +66,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_squirreldir	%{_datadir}/%{name}
 %define		_squirreldata	/var/lib/%{name}
+%define		_webapps		/etc/webapps
+%define		_webapp			%{name}
+%define		_sysconfdir		%{_webapps}/%{_webapp}
 
 %description
 This package contains the Squirrelmail, a webmail system which allows
@@ -234,12 +238,12 @@ rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/%{name} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/httpd
+	$RPM_BUILD_ROOT%{_sysconfdir}
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
 
-install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/%{name}.conf
+install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 
 cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
@@ -247,53 +251,89 @@ find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
 rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~,make_archive.pl,README.plugins}
 
-cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/%{name}/config.php}
-ln -sf %{_sysconfdir}/%{name}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
+cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/config.php}
+ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
 
 # move plugins configuration to etc:
-mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php $RPM_BUILD_ROOT%{_sysconfdir}/%{name}/vacation_config.php
-ln -s %{_sysconfdir}/%{name}/vacation_config.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php $RPM_BUILD_ROOT%{_sysconfdir}/vacation_config.php
+ln -s %{_sysconfdir}/vacation_config.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post
-if [ -f %{_sysconfdir}/httpd/httpd.conf ] && ! grep -q "^Include.*%{name}.conf" %{_sysconfdir}/httpd/httpd.conf; then
-        echo "Include %{_sysconfdir}/httpd/%{name}.conf" >> %{_sysconfdir}/httpd/httpd.conf
-elif [ -d %{_sysconfdir}/httpd/httpd.conf ]; then
-        ln -sf %{_sysconfdir}/httpd/%{name}.conf %{_sysconfdir}/httpd/httpd.conf/99_%{name}.conf
-fi
-if [ -f /var/lock/subsys/httpd ]; then
-        /usr/sbin/apachectl restart 1>&2
-fi
+%triggerin -- apache1
+%webapp_register apache %{_webapp}
 
-%preun
-if [ "$1" = "0" ]; then
-        umask 027
-        if [ -d %{_sysconfdir}/httpd/httpd.conf ]; then
-            rm -f %{_sysconfdir}/httpd/httpd.conf/99_%{name}.conf
-        else
-                grep -v "^Include.*%{name}.conf" %{_sysconfdir}/httpd/httpd.conf > \
-                        %{_sysconfdir}/httpd/httpd.conf.tmp
-                mv -f %{_sysconfdir}/httpd/httpd.conf.tmp %{_sysconfdir}/httpd/httpd.conf
-                if [ -f /var/lock/subsys/httpd ]; then
-                    /usr/sbin/apachectl restart 1>&2
-                fi
-        fi
-fi
+%triggerun -- apache1
+%webapp_unregister apache %{_webapp}
 
-%triggerpostun -- squirrelmail < 1.4.3a-5
+%triggerin -- apache >= 2.0.0
+%webapp_register httpd %{_webapp}
+
+%triggerun -- apache >= 2.0.0
+%webapp_unregister httpd %{_webapp}
+
+%triggerpostun -- squirrelmail < 1.4.5-4.1
 if [ -f /home/services/httpd/html/squirrel/config/config.php.rpmsave ]; then
-	echo "Moving old config file to %{_sysconfdir}/%{name}/config.php"
-	mv -f %{_sysconfdir}/%{name}/config.php %{_sysconfdir}/%{name}/config.php.rpmnew
-	mv -f /home/services/httpd/html/squirrel/config/config.php.rpmsave \
-		%{_sysconfdir}/%{name}/config.php
+	echo "Moving old config file to %{_sysconfdir}/config.php"
+	mv -f %{_sysconfdir}/config.php{,.rpmnew}
+	mv -f /home/services/httpd/html/squirrel/config/config.php.rpmsave %{_sysconfdir}/config.php
+fi
+
+if [ -f /etc/squirrelmail/config.php.rpmsave ]; then
+	echo "Moving old config file to %{_sysconfdir}/config.php"
+	mv -f %{_sysconfdir}/config.php{,.rpmnew}
+	mv -f /etc/squirrelmail/config.php.rpmsave %{_sysconfdir}/config.php
+fi
+
+# nuke very-old config location (this mostly for Ra)
+if [ -f /etc/httpd/httpd.conf ]; then
+	sed -i -e "/^Include.*squirrelmail.conf/d" /etc/httpd/httpd.conf
+	httpd_reload=1
+fi
+
+# migrate from httpd (apache2) config dir
+if [ -f /etc/httpd/squirrelmail.conf.rpmsave ]; then
+	cp -f %{_sysconfdir}/httpd.conf{,.rpmnew}
+	mv -f /etc/httpd/squirrelmail.conf.rpmsave %{_sysconfdir}/httpd.conf
+	httpd_reload=1
+fi
+
+if [ -d /etc/httpd/webapps.d ]; then
+	/usr/sbin/webapp register httpd %{_webapp}
+	httpd_reload=1
+fi
+
+# place new config location, as trigger puts config only on first install, do it here.
+if [ -L /etc/httpd/httpd.conf/99_squirrelmail.conf ]; then
+	rm -f /etc/httpd/httpd.conf/99_squirrelmail.conf
+	/usr/sbin/webapp register httpd %{_webapp}
+	httpd_reload=1
+fi
+
+if [ "$httpd_reload" ]; then
+	if [ -f /var/lock/subsys/httpd ]; then
+		/etc/rc.d/init.d/httpd reload 1>&2
+	fi
+fi
+
+%triggerpostun vacation -- squirrelmail-vacation < 1.4.5-4.1
+if [ -f /etc/squirrelmail/vacation_config.php.rpmsave ]; then
+	echo "Moving old config file to %{_sysconfdir}/vacation_config.php"
+	mv -f %{_sysconfdir}/vacation_config.php{,.rpmnew}
+	mv -f /etc/squirrelmail/vacation_config.php.rpmsave %{_sysconfdir}/vacation_config.php
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog ChangeLog.locales README ReleaseNotes ReleaseNotes.locales UPGRADE doc/*.txt doc/*.html
 %doc doc/ReleaseNotes/*/*
+
+%dir %attr(750,root,http) %{_sysconfdir}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/config.php
+
 %dir %{_squirreldir}
 %{_squirreldir}/class
 %attr(640,root,http) %{_squirreldir}/data/.htaccess
@@ -303,9 +343,6 @@ fi
 %attr(750,root,http) %dir %{_squirreldir}/config
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
-%dir %{_sysconfdir}/%{name}
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/%{name}.conf
-%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/config.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
 %{_squirreldir}/help/index.php
@@ -464,6 +501,6 @@ fi
 %files vacation
 %defattr(644,root,root,755)
 %doc plugins/vacation/README
-%attr(640,root,http) %config(noreplace) %{_sysconfdir}/%{name}/vacation_config.php
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/vacation_config.php
 %dir %{_squirreldir}/plugins/vacation
 %{_squirreldir}/plugins/vacation/*.php
