@@ -101,7 +101,7 @@ que você poderia desejar em um cliente de e-mail, incluindo um forte
 suporte a MIME, livros de endereços e manipulação de pastas.
 
 %package change_pass
-Summary:	A squirreel interface to change passwords
+Summary:	A squirrel interface to change passwords
 Summary(pl):	Wiewiórczy interfejs do zmiany hase³
 Group:		Applications/Mail
 Requires:	poppassd
@@ -109,32 +109,35 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	squirrelmail-compatibility-%{_compatibility_version}
 
 %description change_pass
-This package contains a interface to change passwords.
+This package contains an interface to change passwords.
 
 %description change_pass -l pl
 Ten pakiet zawiera interfejs do zmiany hase³.
 
 %package filters
-Summary:	A squirreel interface for various filters
-Summary(pl):	Wiewiórczy inerfejs do ró¿nych filterów
+Summary:	A squirrel interface for various filters
+Summary(pl):	Wiewiórczy interfejs do ró¿nych filterów
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Provides:	webmail-filters
 
 %description filters
-This package contains a interface for various filters.
+This package contains an interface for various filters.
+
+%description filters -l pl
+Ten pakiet zawiera interfejs do ró¿nych filtrów.
 
 %package ispell
-Summary:	A squirreel interface to ispel
-Summary(pl):	Wiewiórczy inerfejs do ispela
+Summary:	A squirrel interface to ispell
+Summary(pl):	Wiewiórczy interfejs do ispella
 Group:		Applications/Mail
 Requires:	ispell
 Requires:	%{name} = %{version}-%{release}
 Provides:	webmail-spellcheck
 
 %description ispell
-This package contains a interface to ispell and it allows you to check
-mail against typos and common mistakes
+This package contains an interface to ispell and it allows you to
+check mail against typos and common mistakes.
 
 %description ispell -l pl
 Pakiet zawiera interfejs do ispella pozwalaj±cy sprawdziæ pocztê pod
