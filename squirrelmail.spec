@@ -7,7 +7,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.5
-Release:	5.1
+Release:	5.2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -283,6 +283,10 @@ ln -s %{_sysconfdir}/vacation_config.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/
 mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php $RPM_BUILD_ROOT%{_sysconfdir}/filters_setup.php
 ln -s %{_sysconfdir}/filters_setup.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php
 
+##---{ Other manipulations: }---##
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/README $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/README.bulkquery
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/INSTALL $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/INSTALL.bulkquery
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -501,7 +505,7 @@ fi
 
 %files filters
 %defattr(644,root,root,755)
-%doc plugins/filters/{README,CHANGES}
+%doc plugins/filters/{README*,CHANGES}
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/filters_setup.php
 %attr(755,root,root) %{_sbindir}/bulkquery
 %dir %{_squirreldir}/plugins/filters
