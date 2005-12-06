@@ -7,7 +7,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.5
-Release:	5
+Release:	5.1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -52,6 +52,7 @@ Patch4:		%{name}-squirrelspell.patch
 Patch5:		%{name}-retrieveuserdata-passwd.patch
 Patch6:		%{name}-php505.patch
 URL:		http://www.squirrelmail.org/
+BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
 BuildRequires:	rpmbuild(macros) >= 1.264
 Requires:	php
@@ -112,6 +113,16 @@ This package contains a interface to change passwords.
 
 %description change_pass -l pl
 Ten pakiet zawiera interfejs do zmiany hase³.
+
+%package filters
+Summary:	A squirreel interface for various filters
+Summary(pl):	Wiewiórczy inerfejs do ró¿nych filterów
+Group:		Applications/Mail
+Requires:	%{name} = %{version}-%{release}
+Provides:	webmail-filters
+
+%description filters
+This package contains a interface for various filters.
 
 %package ispell
 Summary:	A squirreel interface to ispel
@@ -230,17 +241,23 @@ find locale -name '*.po' | xargs rm -f
 	CFLAGS="%{rpmcflags}" \
 	LFLAGS="%{rpmldflags}"
 
+%{__make} -C plugins/filters/bulkquery \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags} " \
+	LDFLAGS="%{rpmldflags} -lpthread -llwres" \
+	
 #%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
 #	plugins/change_passwd/chpasswd.c -lcrypt
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}} \
 	$RPM_BUILD_ROOT%{_sysconfdir}
 
 install plugins/mail_fwd/fwdfile/wfwd $RPM_BUILD_ROOT%{_sbindir}
+install plugins/filters/bulkquery/bulkquery $RPM_BUILD_ROOT%{_sbindir}
+rm -f plugins/filters/bulkquery/*.{in,out,c} plugins/filters/bulkquery/bulkquery
 
 install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
@@ -249,14 +266,22 @@ cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
 find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
+# junk:
 rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~,make_archive.pl,README.plugins}
 
+ln -s %{_sbindir}/bulkquery $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/bulkquery
+
+##---{ move configuration to etc: }---##
 cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/config.php}
 ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.php
 
-# move plugins configuration to etc:
+##---{ move plugins configuration to etc: }---##
+# vacation:
 mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php $RPM_BUILD_ROOT%{_sysconfdir}/vacation_config.php
 ln -s %{_sysconfdir}/vacation_config.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/vacation/config.php
+# filters:
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php $RPM_BUILD_ROOT%{_sysconfdir}/filters_setup.php
+ln -s %{_sysconfdir}/filters_setup.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -473,6 +498,15 @@ fi
 %lang(pl) %{_squirreldir}/plugins/change_pass/locale/pl_PL
 %lang(pt_BR) %{_squirreldir}/plugins/change_pass/locale/pt_BR
 %lang(pt) %{_squirreldir}/plugins/change_pass/locale/pt_PT
+
+%files filters
+%defattr(644,root,root,755)
+%doc plugins/filters/{README,CHANGES}
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/filters_setup.php
+%attr(755,root,root) %{_sbindir}/bulkquery
+%dir %{_squirreldir}/plugins/filters
+%dir %{_squirreldir}/plugins/filters/bulkquery
+%{_squirreldir}/plugins/filters/*.php
 
 %files ispell
 %defattr(644,root,root,755)
