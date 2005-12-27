@@ -6,18 +6,19 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.5
-Release:	5.3
+Version:	1.4.6
+%define		_rc	rc1
+Release:	0.%{_rc}.1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	bcfe0c1d4049e9c26e0040b2fa3adb07
-%define		_all_locales_date	20050904
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	f75557ad06787c15f92dff9fcfe30632
-%define		_compatibility_version	2.0.2
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
+# Source0-md5:	9e58e290f6a40df2798f9c21fe460223
+%define		_all_locales_date	20051212
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}%{_rc}-%{_all_locales_date}.tar.bz2
+# Source1-md5:	016f41abaee2c1a9d9f4b3c0bd8efbea
+%define		_compatibility_version	2.0.4
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	b6f8e5e62f304f4b68974158aeabb22d
+# Source2-md5:	cfc3279a613b917fcba8200c596dadb0
 Source3:	http://www.squirrelmail.org/plugins/addgraphics-2.3-1.0.3.tar.gz
 # Source3-md5:	c9319e32149026372a0d515ddbc1d14b
 Source4:	http://www.squirrelmail.org/plugins/auto_cc-2.0-1.2.tar.gz
@@ -50,7 +51,6 @@ Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
 Patch4:		%{name}-squirrelspell.patch
 Patch5:		%{name}-retrieveuserdata-passwd.patch
-Patch6:		%{name}-php505.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -199,7 +199,7 @@ A Squirrel vacation plug-in.
 Wtyczka vacation dla Squirrelmaila.
 
 %prep
-%setup -q -a1
+%setup -q -a1 -n %{name}-%{version}-%{_rc}
 
 for f in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} \
 	%{SOURCE8} %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13}; do
@@ -235,7 +235,6 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 find locale -name '*.po' | xargs rm -f
 
@@ -403,7 +402,7 @@ fi
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
-#%lang(th) %{_squirreldir}/help/th_TH
+%lang(th) %{_squirreldir}/help/th_TH
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
