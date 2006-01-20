@@ -60,6 +60,7 @@ Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
 Requires:	php-zlib
+Requires:	webapps
 Requires:	webserver
 Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
@@ -104,8 +105,8 @@ suporte a MIME, livros de endereços e manipulação de pastas.
 Summary:	A squirrel interface to change passwords
 Summary(pl):	Wiewiórczy interfejs do zmiany hase³
 Group:		Applications/Mail
-Requires:	poppassd
 Requires:	%{name} = %{version}-%{release}
+Requires:	poppassd
 Requires:	squirrelmail-compatibility-%{_compatibility_version}
 
 %description change_pass
@@ -131,8 +132,8 @@ Ten pakiet zawiera interfejs do ró¿nych filtrów.
 Summary:	A squirrel interface to ispell
 Summary(pl):	Wiewiórczy interfejs do ispella
 Group:		Applications/Mail
-Requires:	ispell
 Requires:	%{name} = %{version}-%{release}
+Requires:	ispell
 Provides:	webmail-spellcheck
 
 %description ispell
@@ -247,7 +248,7 @@ find locale -name '*.po' | xargs rm -f
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} " \
 	LDFLAGS="%{rpmldflags} -lpthread -llwres" \
-	
+
 #%{__cc} %{rpmldflags} %{rpmcflags} -Wall -o plugins/change_passwd/chpasswd \
 #	plugins/change_passwd/chpasswd.c -lcrypt
 
