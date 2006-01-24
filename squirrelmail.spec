@@ -8,7 +8,7 @@ Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.6
 %define		_rc	rc1
-Release:	0.%{_rc}.1
+Release:	0.%{_rc}.2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
