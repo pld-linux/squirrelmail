@@ -51,6 +51,7 @@ Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
 Patch4:		%{name}-squirrelspell.patch
 Patch5:		%{name}-retrieveuserdata-passwd.patch
+Patch6:		%{name}-sec-CVS.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -236,6 +237,7 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 find locale -name '*.po' | xargs rm -f
 
