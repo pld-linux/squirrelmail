@@ -329,18 +329,6 @@ diff -urNbBw -I '^.*$Id: .*' -x .cvsignore squirrelmail-1.4.6-rc1/functions/stri
  
  /**
   * SquirrelMail internal version number -- DO NOT CHANGE
-diff -urNbBw -I '^.*$Id: .*' -x .cvsignore squirrelmail-1.4.6-rc1/help/en_US/basic.hlp squirrelmail.stable/help/en_US/basic.hlp
---- squirrelmail-1.4.6-rc1/help/en_US/basic.hlp	2005-11-13 13:15:18.000000000 +0100
-+++ squirrelmail.stable/help/en_US/basic.hlp	2005-12-10 20:33:50.000000000 +0100
-@@ -8,7 +8,7 @@
-    </summary>
-    <description>
-       <p>
--      So what exactly is <a href="http://www.squirrelmail.org/index.php3?from=1">SquirrelMail</a>?
-+      So what exactly is <a href="http://www.squirrelmail.org/">SquirrelMail</a>?
-       It's a web interface to email that's written in <a href="http://www.php.net">PHP</a>.
-       It was designed to allow email access through your server from 
-       anywhere in the world via the Web.  More information about exactly 
 diff -urNbBw -I '^.*$Id: .*' -x .cvsignore squirrelmail-1.4.6-rc1/src/webmail.php squirrelmail.stable/src/webmail.php
 --- squirrelmail-1.4.6-rc1/src/webmail.php	2005-11-09 23:44:28.000000000 +0100
 +++ squirrelmail.stable/src/webmail.php	2006-01-31 08:22:13.000000000 +0100
