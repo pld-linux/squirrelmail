@@ -8,14 +8,14 @@ Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.6
 %define		_rc	rc1
-Release:	0.%{_rc}.3
+Release:	1
 License:	GPL
 Group:		Applications/Mail
-Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	9e58e290f6a40df2798f9c21fe460223
-%define		_all_locales_date	20051212
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}%{_rc}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	016f41abaee2c1a9d9f4b3c0bd8efbea
+Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
+# Source0-md5:	300ddcf66b7907a61b6e9404840e35de
+%define		_all_locales_date	20060221
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
+# Source1-md5:	29dfec2e0f71fba368a89c36c51881c2
 %define		_compatibility_version	2.0.4
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	cfc3279a613b917fcba8200c596dadb0
@@ -51,7 +51,6 @@ Patch2:		%{name}-fortune.patch
 Patch3:		%{name}-mail_fwd-Makefile.patch
 Patch4:		%{name}-squirrelspell.patch
 Patch5:		%{name}-retrieveuserdata-passwd.patch
-Patch6:		%{name}-sec-CVS.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -201,7 +200,7 @@ A Squirrel vacation plug-in.
 Wtyczka vacation dla Squirrelmaila.
 
 %prep
-%setup -q -a1 -n %{name}-%{version}-%{_rc}
+%setup -q -a1
 
 for f in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} %{SOURCE7} \
 	%{SOURCE8} %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} %{SOURCE13}; do
@@ -237,7 +236,6 @@ rm -f plugins/mail_fwd/fwdfile/wfwd.o
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
 
 find locale -name '*.po' | xargs rm -f
 
@@ -423,6 +421,7 @@ fi
 %lang(el) %{_squirreldir}/locale/el_GR
 %lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
+%lang(et) %{_squirreldir}/locale/et_EE
 %lang(eu) %{_squirreldir}/locale/eu_ES
 %lang(fa) %{_squirreldir}/locale/fa_IR
 %lang(fi) %{_squirreldir}/locale/fi_FI
@@ -435,6 +434,7 @@ fi
 %lang(is) %{_squirreldir}/locale/is_IS
 %lang(it) %{_squirreldir}/locale/it_IT
 %lang(ja) %{_squirreldir}/locale/ja_JP
+%lang(ka) %{_squirreldir}/locale/ka
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
 %lang(ms) %{_squirreldir}/locale/ms_MY
@@ -450,11 +450,8 @@ fi
 %lang(sv) %{_squirreldir}/locale/sv_SE
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
-#%lang(th) %{_squirreldir}/locale/th_TH
 %lang(tr) %{_squirreldir}/locale/tr_TR
 %lang(ug) %{_squirreldir}/locale/ug
-#%lang(uk) %{_squirreldir}/locale/uk_UA
-#%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
