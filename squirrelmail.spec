@@ -343,9 +343,7 @@ if [ -L /etc/httpd/httpd.conf/99_squirrelmail.conf ]; then
 fi
 
 if [ "$httpd_reload" ]; then
-	if [ -f /var/lock/subsys/httpd ]; then
-		/etc/rc.d/init.d/httpd reload 1>&2
-	fi
+	%service -q httpd reload
 fi
 
 %triggerpostun vacation -- squirrelmail-vacation < 1.4.5-4.1
