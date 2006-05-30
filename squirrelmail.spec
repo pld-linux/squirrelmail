@@ -15,16 +15,10 @@ Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_lo
 %define		_compatibility_version	2.0.4
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	cfc3279a613b917fcba8200c596dadb0
-Source11:	http://www.squirrelmail.org/plugins/retrieveuserdata.0.9-1.4.0.tar.gz
-# Source11-md5:	dfe469f7ab473fd2292b30800e3141d5
-Source12:	http://www.squirrelmail.org/plugins/username-2.3-1.0.0.tar.gz
-# Source12-md5:	c81670f5607835dc1e226653cf5c53b1
-Source14:	%{name}.conf
+Source3:	%{name}.conf
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-ri_once.patch
-Patch2:		%{name}-fortune.patch
-Patch4:		%{name}-squirrelspell.patch
-Patch5:		%{name}-retrieveuserdata-passwd.patch
+Patch1:		%{name}-fortune.patch
+Patch2:		%{name}-squirrelspell.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -136,11 +130,7 @@ Wiewiórcza wtyczka informuj±ca o nowej poczcie.
 
 %prep
 %setup -q -a1
-
-for f in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE6} \
-	%{SOURCE8} %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12}; do
-	tar -xzf $f -C plugins
-done
+tar -xzf %{SOURCE2} -C plugins
 
 # locales for not present plugins
 rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archive_mail,askuserinfo,attachment_doc,autocomplete,avelsieve,block_attach,block_sender,bounce,change_ldappass,change_merakpass,change_mysqlpass,change_passwd,check_quota,chg_sasl_passwd,contactclean,cookie_warning,courier_vacation,custom_from,disk_quota,empty_folders,enews,extract,file_manager,folder_sizes,gpg,got_hotmail,image_buttons,japanese_input,junkfolder,ldap_abook,ldapquery,left_css,login_alias,mark_read,naguser,notes,online_users,preview_pane,qmailadmin_login,quota_usage,restrict_senders,rewrap,sasql,select_range,sent_confirmation,serversidefilter,show_headers,show_user_and_ip,smallcal,smime,startup_folder,tmda,tmdatools,taglines,templates,timeout_user,twc_weather,unsafe_image_rules,useracl,user_special_mailboxes,vadmin,view_as_html,virus_scan,vkeyboard,vpopmail,windows,yelp}.mo
@@ -151,8 +141,6 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch4 -p1
-%patch5 -p1
 
 find locale -name '*.po' | xargs rm -f
 
@@ -171,15 +159,15 @@ install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 install plugins/filters/bulkquery/bulkquery $RPM_BUILD_ROOT%{_sbindir}
 rm -f plugins/filters/bulkquery/*.{in,out,c} plugins/filters/bulkquery/bulkquery
 
-install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
-install %{SOURCE14} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 
 cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
 find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
 # junk:
-rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{username/options.php,gzip/setup.php~,make_archive.pl,README.plugins}
+rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{make_archive.pl,README.plugins}
 
 ln -s %{_sbindir}/bulkquery $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/bulkquery
 
@@ -363,11 +351,9 @@ fi
 %{_squirreldir}/plugins/info
 %{_squirreldir}/plugins/listcommands
 %{_squirreldir}/plugins/message_details
-%{_squirreldir}/plugins/retrieveuserdata
 %{_squirreldir}/plugins/sent_subfolders
 %{_squirreldir}/plugins/spamcop
 %{_squirreldir}/plugins/translate
-%{_squirreldir}/plugins/username
 %{_squirreldir}/src
 %{_squirreldir}/themes
 %attr(710,root,http) %dir %{_squirreldata}
