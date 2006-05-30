@@ -27,7 +27,6 @@ Requires:	php
 Requires:	php-gettext
 Requires:	php-pcre
 Requires:	php-posix
-Requires:	php-zlib
 Requires:	webapps
 Requires:	webserver
 Provides:	squirrelmail-compatibility-%{_compatibility_version}
