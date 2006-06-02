@@ -1,0 +1,151 @@
+diff -ur squirrelmail-1.4.6.orig/functions/abook_ldap_server.php squirrelmail-1.4.6/functions/abook_ldap_server.php
+--- squirrelmail-1.4.6.orig/functions/abook_ldap_server.php	2006-02-03 23:27:46.000000000 +0100
++++ squirrelmail-1.4.6/functions/abook_ldap_server.php	2006-06-02 19:25:42.713109500 +0200
+@@ -30,6 +30,7 @@
+  *  ? binddn    => LDAP Bind DN.
+  *  ? bindpw    => LDAP Bind Password.
+  *  ? protocol  => LDAP Bind protocol.
++ *  ? adldap    => Set to true if connecting to MS Active Directory
+  * </pre>
+  * NOTE. This class should not be used directly. Use the
+  *       "AddressBook" class instead.
+@@ -98,6 +99,10 @@
+      * @since 1.5.0 and 1.4.3
+      */
+     var $protocol = '';
++    /**
++     * @var bool True if connecting to MS Active Directory
++     */
++    var $adldap = '';
+ 
+     /**
+      * Constructor. Connects to database
+@@ -132,6 +137,9 @@
+             if(isset($param['protocol'])) {
+                 $this->protocol = $param['protocol'];
+             }
++            if(isset($param['adldap'])) {
++                $this->adldap = $param['adldap'];
++            }
+             if(empty($param['name'])) {
+                 $this->sname = 'LDAP: ' . $param['host'];
+             }
+@@ -178,6 +186,15 @@
+             }
+         }
+ 
++        if($this->adldap) {
++            if(!@ldap_set_option($this->linkid, LDAP_OPT_REFERRALS, 0)) {
++                if(function_exists('ldap_error')) {
++                    return $this->set_error(ldap_error($this->linkid));
++                } else {
++                    return $this->set_error('ldap_set_option failed');
++                }
++            }
++        }
+         if(!empty($this->binddn)) {
+             if(!@ldap_bind($this->linkid, $this->binddn, $this->bindpw)) {
+                 if(function_exists('ldap_error')) {
+@@ -272,16 +289,21 @@
+             /* Undo sanitizing of * symbol */
+             $expr = str_replace('\2a','*',$expr);
+         }
+-        $expression = "cn=$expr";
+ 
+         /* Make sure connection is there */
+         if(!$this->open()) {
+             return false;
+         }
+ 
++        if(!$this->adldap) {
++            $attributes = array('dn', 'o', 'ou', 'sn', 'givenname', 'cn', 'mail');
++            $expression = "cn=$expr";
++        } else {
++            $attributes = array('description', 'sn', 'givenname', 'cn', 'mail');
++            $expression = "(|(sn=$expr)(givenname=$expr)(sAMAccountName=$expr)(cn=$expr)(displayname=$expr))";
++        }
+         $sret = @ldap_search($this->linkid, $this->basedn, $expression,
+-            array('dn', 'o', 'ou', 'sn', 'givenname', 'cn', 'mail'),
+-            0, $this->maxrows, $this->timeout);
++            $attributes, 0, $this->maxrows, $this->timeout);
+ 
+         /* Should get error from server using the ldap_error() function,
+          * but it only exist in the PHP LDAP documentation. */
+@@ -301,33 +323,59 @@
+         $ret = array();
+         $returned_rows = 0;
+         $res = @ldap_get_entries($this->linkid, $sret);
++
+         for($i = 0 ; $i < $res['count'] ; $i++) {
+             $row = $res[$i];
+ 
+             /* Extract data common for all e-mail addresses
+              * of an object. Use only the first name */
+-            $nickname = $this->charset_decode($row['dn']);
+-            $fullname = $this->charset_decode($row['cn'][0]);
++            if(!$this->adldap) {
++                $nickname = $this->charset_decode($row['dn']);
++                $fullname = $this->charset_decode($row['cn'][0]);
+ 
+-            if(!empty($row['ou'][0])) {
+-                $label = $this->charset_decode($row['ou'][0]);
+-            }
+-            else if(!empty($row['o'][0])) {
+-                $label = $this->charset_decode($row['o'][0]);
+-            } else {
+-                $label = '';
+-            }
++                if(!empty($row['ou'][0])) {
++                    $label = $this->charset_decode($row['ou'][0]);
++                }
++                else if(!empty($row['o'][0])) {
++                    $label = $this->charset_decode($row['o'][0]);
++                } else {
++                    $label = '';
++                }
+ 
+-            if(empty($row['givenname'][0])) {
+-                $firstname = '';
+-            } else {
+-                $firstname = $this->charset_decode($row['givenname'][0]);
+-            }
++                if(empty($row['givenname'][0])) {
++                    $firstname = '';
++                } else {
++                    $firstname = $this->charset_decode($row['givenname'][0]);
++                }
+ 
+-            if(empty($row['sn'][0])) {
+-                $surname = '';
++                if(empty($row['sn'][0])) {
++                    $surname = '';
++                } else {
++                    $surname = $this->charset_decode($row['sn'][0]);
++                }
+             } else {
+-                $surname = $this->charset_decode($row['sn'][0]);
++                $nickname = $this->charset_decode($row['cn'][0]);
++                $fullname = '';
++
++                if(!empty($row['description'][0])) {
++                    $label = $this->charset_decode($row['description'][0]);
++                } else {
++                    $label = '';
++                }
++
++                if(empty($row['givenname'][0])) {
++                    $firstname = '';
++                } else {
++                    $firstname = $this->charset_decode($row['givenname'][0]);
++                    $fullname = $this->charset_decode($row['givenname'][0]);
++                }
++
++                if(empty($row['sn'][0])) {
++                    $surname = '';
++                } else {
++                    $surname = $this->charset_decode($row['sn'][0]);
++                    $fullname .= ' '.$this->charset_decode($row['sn'][0]);
++                }
+             }
+ 
+             /* Add one row to result for each e-mail address */
