@@ -4,7 +4,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -16,9 +16,11 @@ Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_lo
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	cfc3279a613b917fcba8200c596dadb0
 Source3:	%{name}.conf
+Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-fortune.patch
 Patch2:		%{name}-squirrelspell.patch
+Patch3:		%{name}-ad_ldap.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -140,6 +142,7 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 find locale -name '*.po' | xargs rm -f
 
@@ -162,6 +165,8 @@ install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 
 cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
+
+install %{SOURCE4} $RPM_BUILD_ROOT%{_squirreldir}/functions/encode/cp1250.php
 
 find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 
