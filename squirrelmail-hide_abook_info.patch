@@ -1,0 +1,85 @@
+diff -ur squirrelmail-1.4.6.orig/config/config_default.php squirrelmail-1.4.6/config/config_default.php
+--- squirrelmail-1.4.6.orig/config/config_default.php	2006-01-16 11:50:51.000000000 +0100
++++ squirrelmail-1.4.6/config/config_default.php	2006-06-05 10:34:36.272569000 +0200
+@@ -860,6 +860,12 @@
+  */
+ $addrbook_global_listing = false;
+ 
++/**
++ * Hide info field in address book search results
++ * @global boolean $hide_abook_info
++ */
++$hide_abook_info = false;
++
+ /*** Language settings ***/
+ /**
+  * Default language
+diff -ur squirrelmail-1.4.6.orig/src/addrbook_search_html.php squirrelmail-1.4.6/src/addrbook_search_html.php
+--- squirrelmail-1.4.6.orig/src/addrbook_search_html.php	2006-02-03 23:27:53.000000000 +0100
++++ squirrelmail-1.4.6/src/addrbook_search_html.php	2006-06-05 10:31:57.806665500 +0200
+@@ -68,7 +68,7 @@
+  * @param bool $includesource If true, adds backend column to address listing
+  */
+ function addr_display_result($res, $includesource = true) {
+-    global $color, $javascript_on, $PHP_SELF, $squirrelmail_language;
++    global $color, $javascript_on, $PHP_SELF, $squirrelmail_language, $hide_abook_info;
+ 
+     if (sizeof($res) <= 0) return;
+ 
+@@ -105,7 +105,7 @@
+     html_tag( 'th', '&nbsp;' . $chk_all, 'left' ) .
+     html_tag( 'th', '&nbsp;' . _("Name"), 'left' ) .
+     html_tag( 'th', '&nbsp;' . _("E-mail"), 'left' ) .
+-    html_tag( 'th', '&nbsp;' . _("Info"), 'left' );
++    ($hide_abook_info ? '' : html_tag( 'th', '&nbsp;' . _("Info"), 'left' ));
+ 
+     if ($includesource) {
+         echo html_tag( 'th', '&nbsp;' . _("Source"), 'left', '', 'width="10%"' );
+@@ -133,7 +133,7 @@
+         'center', '', 'width="5%" nowrap' ) .
+         html_tag( 'td', '&nbsp;' . htmlspecialchars($row['lastname']) . ' ' . htmlspecialchars($row['firstname']) . '&nbsp;', 'left', '', 'nowrap' ) .
+         html_tag( 'td', '&nbsp;' . htmlspecialchars($row['email']) . '&nbsp;', 'left', '', 'nowrap' ) .
+-        html_tag( 'td', '&nbsp;' . htmlspecialchars($row['label']) . '&nbsp;', 'left', '', 'nowrap' );
++        ($hide_abook_info ? '' : html_tag( 'td', '&nbsp;' . htmlspecialchars($row['label']) . '&nbsp;', 'left', '', 'nowrap' ));
+             } else {
+         echo html_tag( 'tr', '', '', $tr_bgcolor, 'nowrap' ) .
+         html_tag( 'td',
+@@ -146,7 +146,7 @@
+         'center', '', 'width="5%" nowrap' ) .
+         html_tag( 'td', '&nbsp;' . htmlspecialchars($row['name']) . '&nbsp;', 'left', '', 'nowrap' ) .
+         html_tag( 'td', '&nbsp;' . htmlspecialchars($row['email']) . '&nbsp;', 'left', '', 'nowrap' ) .
+-        html_tag( 'td', '&nbsp;' . htmlspecialchars($row['label']) . '&nbsp;', 'left', '', 'nowrap' );
++        ($hide_abook_info ? '' : html_tag( 'td', '&nbsp;' . htmlspecialchars($row['label']) . '&nbsp;', 'left', '', 'nowrap' ));
+             }
+ 
+          if ($includesource) {
+diff -ur squirrelmail-1.4.6.orig/src/addrbook_search.php squirrelmail-1.4.6/src/addrbook_search.php
+--- squirrelmail-1.4.6.orig/src/addrbook_search.php	2006-02-03 23:27:53.000000000 +0100
++++ squirrelmail-1.4.6/src/addrbook_search.php	2006-06-05 10:31:57.806665500 +0200
+@@ -116,7 +116,7 @@
+  * @return void
+  */
+ function display_result($res, $includesource = true) {
+-    global $color;
++    global $color, $hide_abook_info;
+         
+     if(sizeof($res) <= 0) return;
+         
+@@ -128,7 +128,7 @@
+     html_tag( 'th', '&nbsp;', 'left' ) .
+     html_tag( 'th', '&nbsp;' . _("Name"), 'left' ) .
+     html_tag( 'th', '&nbsp;' . _("E-mail"), 'left' ) .
+-    html_tag( 'th', '&nbsp;' . _("Info"), 'left' );
++    ($hide_abook_info ? '' : html_tag( 'th', '&nbsp;' . _("Info"), 'left' ));
+ 
+     if ($includesource) {
+         echo html_tag( 'th', '&nbsp;' . _("Source"), 'left', '', 'width="10%"' );
+@@ -156,7 +156,7 @@
+              '<a href="javascript:to_and_close(' .
+                  "'" . $email . "');\">" . htmlspecialchars($row['email']) . '</a>'
+         , 'left', '', 'valign="top"' ) .
+-        html_tag( 'td', htmlspecialchars($row['label']), 'left', '', 'valign="top" nowrap' );
++        ($hide_abook_info ? '' : html_tag( 'td', htmlspecialchars($row['label']), 'left', '', 'valign="top" nowrap' ));
+         if ($includesource) {
+             echo html_tag( 'td', '&nbsp;' . $row['source'], 'left', '', 'valign="top" nowrap' );
+         }
