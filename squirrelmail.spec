@@ -4,7 +4,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -21,6 +21,7 @@ Patch0:		%{name}-config.patch
 Patch1:		%{name}-fortune.patch
 Patch2:		%{name}-squirrelspell.patch
 Patch3:		%{name}-ad_ldap.patch
+Patch4:		%{name}-hide_abook_info.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -143,6 +144,7 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 find locale -name '*.po' | xargs rm -f
 
