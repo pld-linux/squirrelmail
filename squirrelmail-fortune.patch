@@ -1,11 +1,18 @@
---- squirrelmail-1.4.4-rc1.orig/plugins/fortune/setup.php	2004-12-29 20:12:06.000000000 +0100
-+++ squirrelmail-1.4.4-rc1/plugins/fortune/setup.php	2005-01-08 15:09:02.816320328 +0100
+--- plugins/fortune/setup.php.orig	2006-07-07 15:16:41.000000000 +0200
++++ plugins/fortune/setup.php	2006-08-14 23:15:45.968978672 +0200
 @@ -43,7 +43,7 @@
          return;
      }
  
 -    $fortune_location = '/usr/games/fortune';
 +    $fortune_location = '/usr/bin/fortune';
-     $exist = file_exists($fortune_location);
+     $exist = is_file($fortune_location);
      echo "<center><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" bgcolor=\"$color[10]\">\n".
          "<tr><td><table width=\"100%\" cellpadding=\"2\" cellspacing=\"1\" border=\"0\" bgcolor=\"$color[5]\">\n".
+@@ -100,4 +100,4 @@
+     }
+ }
+ 
+-?>
+\ Brak znaku nowej linii na koñcu pliku
++?>
