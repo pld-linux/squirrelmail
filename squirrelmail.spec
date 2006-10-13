@@ -3,7 +3,7 @@ Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.8
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -75,6 +75,7 @@ Summary:	A squirrel interface for various filters
 Summary(pl):	Wiewiórczy interfejs do ró¿nych filterów
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
+Provides:	squirremail-filters
 Provides:	webmail-filters
 Obsoletes:	squirremail-filters
 
@@ -90,6 +91,7 @@ Summary(pl):	Wiewiórczy interfejs do ispella
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	ispell
+Provides:	squirrelmail-ispell
 Provides:	webmail-spellcheck
 Obsoletes:	squirrelmail-ispell
 
@@ -106,6 +108,7 @@ Summary:	A squirrel pop3 plug-in
 Summary(pl):	Wiewiórcza wtyczka pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
+Provides:	squirrelmail-mailfetch
 Obsoletes:	squirrelmail-mailfetch
 
 %description -n %{name}-plugin-mailfetch
@@ -122,6 +125,8 @@ Summary(pl):	Wtyczka informuj±ca o nowej poczcie
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-plugin-ispell = %{version}-%{release}
+Provides:	squirrelmail-newmail
+Obsoletes:	squirrelmail-newmail
 
 %description -n %{name}-plugin-newmail
 A Squirrel new mail notify plug-in.
