@@ -1,6 +1,6 @@
 Summary:	The SquirrelMail, a WebMail package
-Summary(pl.UTF-8):   Wiewiórcza Poczta, Poczta przez WWW
-Summary(pt_BR.UTF-8):   O SquirrelMail é um webmail
+Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
+Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.9
 Release:	1
@@ -73,7 +73,7 @@ suporte a MIME, livros de endereços e manipulação de pastas.
 
 %package -n %{name}-plugin-filters
 Summary:	A squirrel interface for various filters
-Summary(pl.UTF-8):   Wiewiórczy interfejs do różnych filterów
+Summary(pl.UTF-8):	Wiewiórczy interfejs do różnych filterów
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Provides:	squirremail-filters
@@ -88,7 +88,7 @@ Ten pakiet zawiera interfejs do różnych filtrów.
 
 %package -n %{name}-plugin-ispell
 Summary:	A squirrel interface to ispell
-Summary(pl.UTF-8):   Wiewiórczy interfejs do ispella
+Summary(pl.UTF-8):	Wiewiórczy interfejs do ispella
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	ispell
@@ -106,7 +106,7 @@ kątem źle wpisanych słów i ortografii.
 
 %package -n %{name}-plugin-mailfetch
 Summary:	A squirrel pop3 plug-in
-Summary(pl.UTF-8):   Wiewiórcza wtyczka pop3
+Summary(pl.UTF-8):	Wiewiórcza wtyczka pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Provides:	squirrelmail-mailfetch
@@ -122,7 +122,7 @@ pocztę za pomocą usługi pop3.
 
 %package -n %{name}-plugin-newmail
 Summary:	A new mail notify plug-in
-Summary(pl.UTF-8):   Wtyczka informująca o nowej poczcie
+Summary(pl.UTF-8):	Wtyczka informująca o nowej poczcie
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-plugin-ispell = %{version}-%{release}
