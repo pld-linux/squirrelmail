@@ -1,6 +1,6 @@
 Summary:	The SquirrelMail, a WebMail package
-Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
-Summary(pt_BR):	O SquirrelMail é um webmail
+Summary(pl.UTF-8):   WiewiÃ³rcza Poczta, Poczta przez WWW
+Summary(pt_BR.UTF-8):   O SquirrelMail Ã© um webmail
 Name:		squirrelmail
 Version:	1.4.9
 Release:	1
@@ -52,28 +52,28 @@ and install. SquirrelMail has a all the functionality you would want
 from an email client, including strong MIME support, address books,
 and folder manipulation.
 
-%description -l pl
-Pakiet zawiera Wiewiórcz± Pocztê, system pozwalaj±cy sprawdzaæ pocztê
-przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW. Pakiet u¿ywa
-wbudowanej w PHP obs³ugi protoko³ów IMAP i SMTP, a serwowane strony
-u¿ywaj± tylko HTML 4.0 (bez Javascriptu) po to, ¿eby udostêpniaæ
-zasoby na mo¿liwie du¿± ilo¶æ typów przegl±darek http. Pakiet jest
-³atwy w instalacji i konfigurowaniu, a tak¿e ma wszystkie obecnie
-wymagane cechy dobrego klienta pocztowego jak obs³uga MIME, ksi±¿ka
-adresowa i wsparcie dla przechowywania listów w folderach.
+%description -l pl.UTF-8
+Pakiet zawiera WiewiÃ³rczÄ… PocztÄ™, system pozwalajÄ…cy sprawdzaÄ‡ pocztÄ™
+przez dowolnÄ…, obsÅ‚ugujÄ…cÄ… ciasteczka przeglÄ…darkÄ™ WWW. Pakiet uÅ¼ywa
+wbudowanej w PHP obsÅ‚ugi protokoÅ‚Ã³w IMAP i SMTP, a serwowane strony
+uÅ¼ywajÄ… tylko HTML 4.0 (bez Javascriptu) po to, Å¼eby udostÄ™pniaÄ‡
+zasoby na moÅ¼liwie duÅ¼Ä… iloÅ›Ä‡ typÃ³w przeglÄ…darek http. Pakiet jest
+Å‚atwy w instalacji i konfigurowaniu, a takÅ¼e ma wszystkie obecnie
+wymagane cechy dobrego klienta pocztowego jak obsÅ‚uga MIME, ksiÄ…Å¼ka
+adresowa i wsparcie dla przechowywania listÃ³w w folderach.
 
-%description -l pt_BR
-O SquirrelMail é um webmail baseado. Ele inclui suporte em PHP puro
-para os protocolos IMAP e SMTP e todas as páginas são montadas em puro
-HTML 4.0 (sem nenhum Javascript) para máxima compatibilidade entre
-navegadores. Ele possui poucas exigências e é muito fácil de se
+%description -l pt_BR.UTF-8
+O SquirrelMail Ã© um webmail baseado. Ele inclui suporte em PHP puro
+para os protocolos IMAP e SMTP e todas as pÃ¡ginas sÃ£o montadas em puro
+HTML 4.0 (sem nenhum Javascript) para mÃ¡xima compatibilidade entre
+navegadores. Ele possui poucas exigÃªncias e Ã© muito fÃ¡cil de se
 configurar e instalar. O SquirrelMail possui todas as funcionalidades
-que você poderia desejar em um cliente de e-mail, incluindo um forte
-suporte a MIME, livros de endereços e manipulação de pastas.
+que vocÃª poderia desejar em um cliente de e-mail, incluindo um forte
+suporte a MIME, livros de endereÃ§os e manipulaÃ§Ã£o de pastas.
 
 %package -n %{name}-plugin-filters
 Summary:	A squirrel interface for various filters
-Summary(pl):	Wiewiórczy interfejs do ró¿nych filterów
+Summary(pl.UTF-8):   WiewiÃ³rczy interfejs do rÃ³Å¼nych filterÃ³w
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Provides:	squirremail-filters
@@ -83,12 +83,12 @@ Obsoletes:	squirremail-filters
 %description -n %{name}-plugin-filters
 This package contains an interface for various filters.
 
-%description -n %{name}-plugin-filters -l pl
-Ten pakiet zawiera interfejs do ró¿nych filtrów.
+%description -n %{name}-plugin-filters -l pl.UTF-8
+Ten pakiet zawiera interfejs do rÃ³Å¼nych filtrÃ³w.
 
 %package -n %{name}-plugin-ispell
 Summary:	A squirrel interface to ispell
-Summary(pl):	Wiewiórczy interfejs do ispella
+Summary(pl.UTF-8):   WiewiÃ³rczy interfejs do ispella
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	ispell
@@ -100,13 +100,13 @@ Obsoletes:	squirrelmail-ispell
 This package contains an interface to ispell and it allows you to
 check mail against typos and common mistakes.
 
-%description -n %{name}-plugin-ispell -l pl
-Pakiet zawiera interfejs do ispella pozwalaj±cy sprawdziæ pocztê pod
-k±tem ¼le wpisanych s³ów i ortografii.
+%description -n %{name}-plugin-ispell -l pl.UTF-8
+Pakiet zawiera interfejs do ispella pozwalajÄ…cy sprawdziÄ‡ pocztÄ™ pod
+kÄ…tem Åºle wpisanych sÅ‚Ã³w i ortografii.
 
 %package -n %{name}-plugin-mailfetch
 Summary:	A squirrel pop3 plug-in
-Summary(pl):	Wiewiórcza wtyczka pop3
+Summary(pl.UTF-8):   WiewiÃ³rcza wtyczka pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Provides:	squirrelmail-mailfetch
@@ -116,13 +116,13 @@ Obsoletes:	squirrelmail-mailfetch
 This package contains a interface to pop3 serwers, it allows you to
 fetch mail from this kind of serwers.
 
-%description -n %{name}-plugin-mailfetch -l pl
-Pakiet zawiera interfejs do serwerów pop3, pozwala ¶ci±gaæ z nich
-pocztê za pomoc± us³ugi pop3.
+%description -n %{name}-plugin-mailfetch -l pl.UTF-8
+Pakiet zawiera interfejs do serwerÃ³w pop3, pozwala Å›ciÄ…gaÄ‡ z nich
+pocztÄ™ za pomocÄ… usÅ‚ugi pop3.
 
 %package -n %{name}-plugin-newmail
 Summary:	A new mail notify plug-in
-Summary(pl):	Wtyczka informuj±ca o nowej poczcie
+Summary(pl.UTF-8):   Wtyczka informujÄ…ca o nowej poczcie
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-plugin-ispell = %{version}-%{release}
@@ -132,8 +132,8 @@ Obsoletes:	squirrelmail-newmail
 %description -n %{name}-plugin-newmail
 A Squirrel new mail notify plug-in.
 
-%description -n %{name}-plugin-newmail -l pl
-Wiewiórcza wtyczka informuj±ca o nowej poczcie.
+%description -n %{name}-plugin-newmail -l pl.UTF-8
+WiewiÃ³rcza wtyczka informujÄ…ca o nowej poczcie.
 
 %prep
 %setup -q -a1
