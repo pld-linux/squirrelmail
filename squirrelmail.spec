@@ -1,5 +1,5 @@
 Summary:	The SquirrelMail, a WebMail package
-Summary(pl):	Wiewórcza Poczta, Poczta przez WWW
+Summary(pl.UTF-8):   WiewÃ³rcza Poczta, Poczta przez WWW
 Name:		squirrelmail
 Version:	1.2.5
 Release:	2
@@ -21,13 +21,13 @@ This package contains the Squirrelmail, a webmail system which allows
 you check mail by any cookie-aware WWW browser. Squirrel supports many
 languages: Polish, Russian, German:
 
-%description -l pl
-Pakiet zawiera Wiewiórcz±Pocztê, system pozwalaj±cy sprawdzaæ pocztê
-przez dowoln±, obs³uguj±c± ciasteczka przegl±darkê WWW.
+%description -l pl.UTF-8
+Pakiet zawiera WiewiÃ³rczÄ…PocztÄ™, system pozwalajÄ…cy sprawdzaÄ‡ pocztÄ™
+przez dowolnÄ…, obsÅ‚ugujÄ…cÄ… ciasteczka przeglÄ…darkÄ™ WWW.
 
 %package ispell
 Summary:	A squirreel interface to ispel
-Summary(pl):	Wiewórczy inerfejs do ispela
+Summary(pl.UTF-8):   WiewÃ³rczy inerfejs do ispela
 Group:		Applications/Mail
 Requires:	ispell
 Requires:	%{name} = %{version}
@@ -37,13 +37,13 @@ Provides:	webmail-spellcheck
 This package contains a interface to ispell and it allows you to check
 mail against typos and common mistakes
 
-%description ispell -l pl
-Pakiet zawiera interfejs do ispela pozwalaj±cy sprawdziæ pocztê pod
-k±tem ¼le wpisanych s³ów i ortografi.
+%description ispell -l pl.UTF-8
+Pakiet zawiera interfejs do ispela pozwalajÄ…cy sprawdziÄ‡ pocztÄ™ pod
+kÄ…tem Åºle wpisanych sÅ‚Ã³w i ortografi.
 
 %package mailfetch
 Summary:	A squirrel pop3 plug-in
-Summary(pl):	Wiewiórczy plug-in pop3
+Summary(pl.UTF-8):   WiewiÃ³rczy plug-in pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 
@@ -53,7 +53,7 @@ fetch mail from this kind of serwers.
 
 %package printerfriendly
 Summary:	A squirrel plug-in, shows printer friendly mail 
-Summary(pl):	Wiewiórczy plug-in, pokazuje wersje przyjazna dla drukarki
+Summary(pl.UTF-8):   WiewiÃ³rczy plug-in, pokazuje wersje przyjazna dla drukarki
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 
@@ -61,20 +61,20 @@ Requires:	%{name} = %{version}
 This package helps you when its time to print mail from browser, 
 showing printer friendly version.  
 
-%description printerfriendly -l pl
+%description printerfriendly -l pl.UTF-8
 Pakiet pomaga przy wydruku poczty z przegladarki, pokazuje wersje przyjazna
 dla drukarki.
 
 %package passwordforget
 Summary:	A squirrel plug-in, helps browser forget about login/password
-Summary(pl):	Wiewiórczy plug-in, pomaga przegladarkom zapominac o loginie/hasle
+Summary(pl.UTF-8):   WiewiÃ³rczy plug-in, pomaga przegladarkom zapominac o loginie/hasle
 Group:		Applications/Mail
 Requires:	%{name} = %{version}
 
 %description passwordforget
 This package corrects behavior of browsers: they shouldn't remeber passwords.
 
-%description passwordforget -l pl
+%description passwordforget -l pl.UTF-8
 Pakiet poprawia zachowanie przegladarek: niepowinny one zapamietywac hasel.
 
 %prep
