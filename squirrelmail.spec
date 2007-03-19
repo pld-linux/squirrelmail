@@ -1,17 +1,17 @@
-#
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.8
+Version:	1.4.9a
 Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	ba3306e4790bbdb10eaccb00195f5107
-%define		_all_locales_date	20060811
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	83774a3cd782bd2bd91f7f92f54c3e37
+# Source0-md5:	3adf66bfe2e816ba8375cf811d8ef3f6
+%define		_all_locales_version	1.4.9
+%define		_all_locales_date	20070106
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_all_locales_version}-%{_all_locales_date}.tar.bz2
+# Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
 %define		_compatibility_version	2.0.4
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	cfc3279a613b917fcba8200c596dadb0
@@ -26,12 +26,12 @@ URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
 BuildRequires:	rpmbuild(macros) >= 1.264
-Requires:	php
-Requires:	php-gettext
-Requires:	php-pcre
-Requires:	php-posix
+Requires:	php(gettext)
+Requires:	php(pcre)
+Requires:	php(posix)
 Requires:	webapps
 Requires:	webserver
+Requires:	webserver(php)
 Provides:	squirrelmail-compatibility-%{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -76,6 +76,7 @@ Summary:	A squirrel interface for various filters
 Summary(pl):	Wiewiórczy interfejs do ró¿nych filterów
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
+Provides:	squirremail-filters
 Provides:	webmail-filters
 Obsoletes:	squirremail-filters
 
@@ -91,6 +92,7 @@ Summary(pl):	Wiewiórczy interfejs do ispella
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	ispell
+Provides:	squirrelmail-ispell
 Provides:	webmail-spellcheck
 Obsoletes:	squirrelmail-ispell
 
@@ -107,6 +109,7 @@ Summary:	A squirrel pop3 plug-in
 Summary(pl):	Wiewiórcza wtyczka pop3
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
+Provides:	squirrelmail-mailfetch
 Obsoletes:	squirrelmail-mailfetch
 
 %description -n %{name}-plugin-mailfetch
@@ -123,6 +126,8 @@ Summary(pl):	Wtyczka informuj±ca o nowej poczcie
 Group:		Applications/Mail
 Requires:	%{name} = %{version}-%{release}
 Requires:	%{name}-plugin-ispell = %{version}-%{release}
+Provides:	squirrelmail-newmail
+Obsoletes:	squirrelmail-newmail
 
 %description -n %{name}-plugin-newmail
 A Squirrel new mail notify plug-in.
@@ -193,10 +198,10 @@ mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/INSTALL $RPM_BUILD_R
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%triggerin -- apache1
+%triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
 
-%triggerun -- apache1
+%triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
 %triggerin -- apache < 2.2.0, apache-base
@@ -295,6 +300,7 @@ fi
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
 #%lang(th) %{_squirreldir}/help/th_TH
+%lang(uk) %{_squirreldir}/help/uk_UA
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
@@ -342,6 +348,7 @@ fi
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
 %lang(tr) %{_squirreldir}/locale/tr_TR
+%lang(uk) %{_squirreldir}/locale/uk_UA
 %lang(ug) %{_squirreldir}/locale/ug
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
