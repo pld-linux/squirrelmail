@@ -2,15 +2,16 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.8
-Release:	4
+Version:	1.4.9a
+Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	ba3306e4790bbdb10eaccb00195f5107
-%define		_all_locales_date	20060811
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{version}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	83774a3cd782bd2bd91f7f92f54c3e37
+# Source0-md5:	3adf66bfe2e816ba8375cf811d8ef3f6
+%define		_all_locales_version	1.4.9
+%define		_all_locales_date	20070106
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_all_locales_version}-%{_all_locales_date}.tar.bz2
+# Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
 %define		_compatibility_version	2.0.4
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	cfc3279a613b917fcba8200c596dadb0
@@ -299,6 +300,7 @@ fi
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
 #%lang(th) %{_squirreldir}/help/th_TH
+%lang(uk) %{_squirreldir}/help/uk_UA
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
@@ -346,6 +348,7 @@ fi
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
 %lang(tr) %{_squirreldir}/locale/tr_TR
+%lang(uk) %{_squirreldir}/locale/uk_UA
 %lang(ug) %{_squirreldir}/locale/ug
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
