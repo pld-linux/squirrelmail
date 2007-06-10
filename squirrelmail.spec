@@ -12,9 +12,9 @@ Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 %define		_all_locales_date	20070106
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_locales_ver}-%{_all_locales_date}.tar.bz2
 # Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		_compatibility_version	2.0.4
+%define		_compatibility_version	2.0.7-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	cfc3279a613b917fcba8200c596dadb0
+# Source2-md5:	05cb2cb55ca288d5ed7d90cfc7da195c
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
@@ -150,6 +150,8 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+patch -p2 < plugins/compatibility/patches/compatibility_patch-1.4.10.diff
+rm -rf plugins/compatibility/patches*
 
 find locale -name '*.po' | xargs rm -f
 
