@@ -2,20 +2,21 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.9a
-Release:	2
+Version:	1.4.10a
+Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	3adf66bfe2e816ba8375cf811d8ef3f6
+# Source0-md5:	298aaa1811b3fb40a803a6f57b22be20
 %define		_all_locales_version	1.4.9
 %define		_all_locales_date	20070106
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_all_locales_version}-%{_all_locales_date}.tar.bz2
 # Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		_compatibility_version	2.0.4
+%define		_compatibility_version	2.0.8-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	cfc3279a613b917fcba8200c596dadb0
+# Source2-md5:	b7a19451b104480fc01f75f39d056cd0
 Source3:	%{name}.conf
+# Source3-md5:	f8bd7389fefa5cf7654b6b1114e1b211
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-fortune.patch
@@ -150,6 +151,8 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+patch -p2 < plugins/compatibility/patches/compatibility_patch-1.4.10.diff
+rm -rf plugins/compatibility/patches*
 
 find locale -name '*.po' | xargs rm -f
 
