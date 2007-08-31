@@ -16,7 +16,6 @@ Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_all_locales_versi
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
 # Source2-md5:	b7a19451b104480fc01f75f39d056cd0
 Source3:	%{name}.conf
-# Source3-md5:	f8bd7389fefa5cf7654b6b1114e1b211
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-fortune.patch
