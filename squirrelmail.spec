@@ -2,19 +2,19 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.10a
+Version:	1.4.11
 Release:	1
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	298aaa1811b3fb40a803a6f57b22be20
+# Source0-md5:	486fb27a6ab306088603163160dbc8ca
 %define		_locales_ver		1.4.9
 %define		_all_locales_date	20070106
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_locales_ver}-%{_all_locales_date}.tar.bz2
 # Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		_compatibility_version	2.0.8-1.0
+%define		_compatibility_version	2.0.9-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	b7a19451b104480fc01f75f39d056cd0
+# Source2-md5:	53e89f4ad52a93909a8c7d66ba5b2b1b
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
@@ -379,7 +379,7 @@ fi
 
 %files -n %{name}-plugin-filters
 %defattr(644,root,root,755)
-%doc plugins/filters/{README*,CHANGES}
+%doc plugins/filters/README
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/filters_setup.php
 %attr(755,root,root) %{_sbindir}/bulkquery
 %dir %{_squirreldir}/plugins/filters
