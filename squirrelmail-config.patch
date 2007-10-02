@@ -32,7 +32,7 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4
   *   $data_dir = SM_PATH . 'data/';
   * @global string $data_dir
   */
--$data_dir = SM_PATH . 'data/';
+-$data_dir = '/var/local/squirrelmail/data/';
 +$data_dir = '/var/lib/squirrelmail/prefs/';
  
  /**
@@ -41,7 +41,7 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4
   *    + It should probably be another directory than data_dir.
   * @global string $attachment_dir
   */
--$attachment_dir = $data_dir;
+-$attachment_dir = '/var/local/squirrelmail/attach/';
 +$attachment_dir = '/var/lib/squirrelmail/data/';
  
  /**
