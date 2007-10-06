@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.11
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -32,7 +32,7 @@ Requires:	php(posix)
 Requires:	webapps
 Requires:	webserver
 Requires:	webserver(php)
-Provides:	squirrelmail-compatibility-%{_compatibility_version}
+Provides:	squirrelmail-compatibility = %{_compatibility_version}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
