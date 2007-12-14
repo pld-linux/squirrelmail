@@ -4,16 +4,16 @@ Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.12
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
 # Source0-md5:	b4b352cbc21256cdda2e4aad00bbf7e7
-%define		_locales_ver		1.4.9
-%define		_all_locales_date	20070106
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_locales_ver}-%{_all_locales_date}.tar.bz2
+%define		locales_ver		1.4.9
+%define		all_locales_date	20070106
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all_locales_date}.tar.bz2
 # Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		_compatibility_version	2.0.9-1.0
-Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
+%define		compatibility_ver	2.0.9-1.0
+Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
 # Source2-md5:	53e89f4ad52a93909a8c7d66ba5b2b1b
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
@@ -32,7 +32,7 @@ Requires:	php(posix)
 Requires:	webapps
 Requires:	webserver
 Requires:	webserver(php)
-Provides:	squirrelmail-compatibility = %{_compatibility_version}
+Provides:	squirrelmail-compatibility = %{compatibility_ver}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
