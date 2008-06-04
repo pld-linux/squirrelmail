@@ -18,10 +18,9 @@ Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
-#Patch1:		%{name}-fortune.patch
-Patch2:		%{name}-squirrelspell.patch
-Patch3:		%{name}-ad_ldap.patch
-Patch4:		%{name}-hide_abook_info.patch
+Patch1:		%{name}-squirrelspell.patch
+Patch2:		%{name}-ad_ldap.patch
+Patch3:		%{name}-hide_abook_info.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -146,10 +145,9 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 # compatibility
 
 %patch0 -p1
-#%patch1 -p0
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 patch -p2 < plugins/compatibility/patches/compatibility_patch-1.4.10.diff
 rm -rf plugins/compatibility/patches*
 
