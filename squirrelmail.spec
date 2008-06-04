@@ -2,23 +2,23 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.13
+Version:	1.4.15
 Release:	1
 License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	1a1bdad6245aaabcdd23d9402acb388e
-%define		locales_ver		1.4.9
-%define		all_locales_date	20070106
+# Source0-md5:	22164ce827edafd0afd65763d2a0f096
+%define		locales_ver		1.4.13
+%define		all_locales_date	20071220
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all_locales_date}.tar.bz2
-# Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		compatibility_ver	2.0.9-1.0
+# Source1-md5:	c6463312afcd602ae60fd8f388dfb8c2
+%define		compatibility_ver	2.0.11-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
-# Source2-md5:	53e89f4ad52a93909a8c7d66ba5b2b1b
+# Source2-md5:	fc8dc9337709798143d91f7c951e00b6
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-fortune.patch
+#Patch1:		%{name}-fortune.patch
 Patch2:		%{name}-squirrelspell.patch
 Patch3:		%{name}-ad_ldap.patch
 Patch4:		%{name}-hide_abook_info.patch
@@ -146,7 +146,7 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 # compatibility
 
 %patch0 -p1
-%patch1 -p0
+#%patch1 -p0
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -301,7 +301,7 @@ fi
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
-#%lang(th) %{_squirreldir}/help/th_TH
+%lang(th) %{_squirreldir}/help/th_TH
 %lang(uk) %{_squirreldir}/help/uk_UA
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
@@ -326,6 +326,7 @@ fi
 %lang(fi) %{_squirreldir}/locale/fi_FI
 %lang(fo) %{_squirreldir}/locale/fo_FO
 %lang(fr) %{_squirreldir}/locale/fr_FR
+%lang(fy) %{_squirreldir}/locale/fy
 %lang(he) %{_squirreldir}/locale/he_IL
 %lang(hr) %{_squirreldir}/locale/hr_HR
 %lang(hu) %{_squirreldir}/locale/hu_HU
@@ -361,6 +362,7 @@ fi
 %{_squirreldir}/plugins/calendar
 %{_squirreldir}/plugins/compatibility
 %{_squirreldir}/plugins/delete_move_next
+%{_squirreldir}/plugins/demo
 %{_squirreldir}/plugins/fortune
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
@@ -368,6 +370,7 @@ fi
 %{_squirreldir}/plugins/message_details
 %{_squirreldir}/plugins/sent_subfolders
 %{_squirreldir}/plugins/spamcop
+%{_squirreldir}/plugins/test
 %{_squirreldir}/plugins/translate
 %{_squirreldir}/src
 %{_squirreldir}/themes
