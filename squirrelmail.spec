@@ -2,19 +2,19 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.15
-Release:	2
+Version:	1.4.16
+Release:	1
 License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	22164ce827edafd0afd65763d2a0f096
+# Source0-md5:	22dcf999941e644edc3ea467ed3b9e24
 %define		locales_ver		1.4.13
 %define		all_locales_date	20071220
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all_locales_date}.tar.bz2
 # Source1-md5:	c6463312afcd602ae60fd8f388dfb8c2
-%define		compatibility_ver	2.0.11-1.0
+%define		compatibility_ver	2.0.13-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
-# Source2-md5:	fc8dc9337709798143d91f7c951e00b6
+# Source2-md5:	8ec797a9a16451af864654376799cd40
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
@@ -354,7 +354,6 @@ fi
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
-%{_squirreldir}/plugins/abook_take
 %{_squirreldir}/plugins/administrator
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
