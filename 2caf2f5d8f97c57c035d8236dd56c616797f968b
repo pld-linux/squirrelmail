@@ -1,0 +1,2 @@
+- up to 1.4.16 (CVE-2008-3663), compatibility to 2.0.13
+- removed the Address Take (abook_take) plugin, see the Add Address (third party) plugin
