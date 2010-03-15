@@ -2,19 +2,19 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.18
-Release:	3
+Version:	1.4.20
+Release:	1
 License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	2df99afc1bc3b121296af65f52fbc5cc
-%define		locales_ver		1.4.13
-%define		all_locales_date	20071220
+# Source0-md5:	76aa7963e67edc7cea2be919f51ded72
+%define		locales_ver		1.4.18
+%define		all_locales_date	20090526
 Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all_locales_date}.tar.bz2
-# Source1-md5:	c6463312afcd602ae60fd8f388dfb8c2
-%define		compatibility_ver	2.0.14-1.0
+# Source1-md5:	ddb51e99e87b2aa8180cebe07de89fa2
+%define		compatibility_ver	2.0.16-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
-# Source2-md5:	30d221e59c24eba733529314d6715b24
+# Source2-md5:	d472fb353cdf0c8d56489b5d5523d0dc
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
@@ -270,10 +270,12 @@ fi
 %{_squirreldir}/index.php
 %attr(744,root,root) %{_squirreldir}/configure
 %attr(750,root,http) %dir %{_squirreldir}/config
+%attr(640,root,http) %{_squirreldir}/config/.htaccess
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
+%attr(640,root,http) %{_squirreldir}/help/.htaccess
 %{_squirreldir}/help/index.php
 %{_squirreldir}/help/en_US
 %lang(bg) %{_squirreldir}/help/bg_BG
@@ -282,8 +284,9 @@ fi
 %lang(cy) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
 %lang(de) %{_squirreldir}/help/de_DE
-%lang(en) %{_squirreldir}/help/en_GB
+%lang(en) %{_squirreldir}/help/en_US
 %lang(es) %{_squirreldir}/help/es_ES
+%lang(fa) %{_squirreldir}/help/fa_IR
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
 %lang(id) %{_squirreldir}/help/id_ID
@@ -300,16 +303,17 @@ fi
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
-%lang(th) %{_squirreldir}/help/th_TH
 %lang(uk) %{_squirreldir}/help/uk_UA
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
 %dir %{_squirreldir}/locale
+%attr(640,root,http) %{_squirreldir}/locale/.htaccess
 %{_squirreldir}/locale/index.php
 %{_squirreldir}/locale/timezones.cfg
 %lang(ar) %{_squirreldir}/locale/ar
 %lang(bg) %{_squirreldir}/locale/bg_BG
+%lang(bn) %{_squirreldir}/locale/bn_BD
 %lang(bn) %{_squirreldir}/locale/bn_IN
 %lang(ca) %{_squirreldir}/locale/ca_ES
 %lang(da) %{_squirreldir}/locale/da_DK
@@ -317,7 +321,6 @@ fi
 %lang(cs) %{_squirreldir}/locale/cs_CZ
 %lang(cy) %{_squirreldir}/locale/cy_GB
 %lang(el) %{_squirreldir}/locale/el_GR
-%lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(eu) %{_squirreldir}/locale/eu_ES
@@ -334,8 +337,11 @@ fi
 %lang(it) %{_squirreldir}/locale/it_IT
 %lang(ja) %{_squirreldir}/locale/ja_JP
 %lang(ka) %{_squirreldir}/locale/ka
+%lang(km) %{_squirreldir}/locale/km
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
+%lang(lv) %{_squirreldir}/locale/lv_LV
+%lang(mk) %{_squirreldir}/locale/mk
 %lang(ms) %{_squirreldir}/locale/ms_MY
 %lang(nb) %{_squirreldir}/locale/nb_NO
 %lang(nl) %{_squirreldir}/locale/nl_NL
@@ -349,9 +355,11 @@ fi
 %lang(sv) %{_squirreldir}/locale/sv_SE
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
+%lang(ta) %{_squirreldir}/locale/ta_LK
 %lang(tr) %{_squirreldir}/locale/tr_TR
 %lang(uk) %{_squirreldir}/locale/uk_UA
 %lang(ug) %{_squirreldir}/locale/ug
+%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
@@ -386,6 +394,7 @@ fi
 %dir %{_squirreldir}/plugins/filters
 %dir %{_squirreldir}/plugins/filters/bulkquery
 %{_squirreldir}/plugins/filters/*.php
+%{_squirreldir}/plugins/filters/bulkquery/*.php
 
 %files -n %{name}-plugin-ispell
 %defattr(644,root,root,755)
