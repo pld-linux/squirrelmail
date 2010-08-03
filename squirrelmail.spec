@@ -2,26 +2,25 @@ Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
-Version:	1.4.10a
+Version:	1.4.21
 Release:	1
-License:	GPL
+License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
-# Source0-md5:	298aaa1811b3fb40a803a6f57b22be20
-%define		_locales_ver		1.4.9
-%define		_all_locales_date	20070106
-Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{_locales_ver}-%{_all_locales_date}.tar.bz2
-# Source1-md5:	eaa0e8835b8d7d451500aad907c22e24
-%define		_compatibility_version	2.0.7-1.0
-Source2:	http://www.squirrelmail.org/plugins/compatibility-%{_compatibility_version}.tar.gz
-# Source2-md5:	05cb2cb55ca288d5ed7d90cfc7da195c
+# Source0-md5:	44d2fe85d6fc3092bf4f11e6e928f9dc
+%define		locales_ver		1.4.18
+%define		all_locales_date	20090526
+Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all_locales_date}.tar.bz2
+# Source1-md5:	ddb51e99e87b2aa8180cebe07de89fa2
+%define		compatibility_ver	2.0.16-1.0
+Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
+# Source2-md5:	d472fb353cdf0c8d56489b5d5523d0dc
 Source3:	%{name}.conf
 Source4:	%{name}-cp1250_charset_encode.php
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-fortune.patch
-Patch2:		%{name}-squirrelspell.patch
-Patch3:		%{name}-ad_ldap.patch
-Patch4:		%{name}-hide_abook_info.patch
+Patch1:		%{name}-squirrelspell.patch
+Patch2:		%{name}-ad_ldap.patch
+Patch3:		%{name}-hide_abook_info.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
 BuildRequires:	gettext-devel
@@ -29,10 +28,11 @@ BuildRequires:	rpmbuild(macros) >= 1.264
 Requires:	php(gettext)
 Requires:	php(pcre)
 Requires:	php(posix)
+Requires:	php(session)
 Requires:	webapps
 Requires:	webserver
 Requires:	webserver(php)
-Provides:	squirrelmail-compatibility-%{_compatibility_version}
+Provides:	squirrelmail-compatibility = %{compatibility_ver}
 Provides:	webmail
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -146,10 +146,9 @@ rm -f locale/*/LC_MESSAGES/{abook_group,address_add,admin_add,amavisnewsql,archi
 # compatibility
 
 %patch0 -p1
-%patch1 -p0
+%patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
 patch -p2 < plugins/compatibility/patches/compatibility_patch-1.4.10.diff
 rm -rf plugins/compatibility/patches*
 
@@ -256,8 +255,8 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog ChangeLog.locales README ReleaseNotes ReleaseNotes.locales UPGRADE doc/*.txt doc/*.html
-%doc doc/ReleaseNotes/*/*
+%doc doc/AUTHORS doc/ChangeLog ChangeLog.locales doc/README doc/ReleaseNotes ReleaseNotes.locales doc/UPGRADE doc/*.txt doc/*.html
+%doc doc/release_notes_archive/*/*
 
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
@@ -271,10 +270,12 @@ fi
 %{_squirreldir}/index.php
 %attr(744,root,root) %{_squirreldir}/configure
 %attr(750,root,http) %dir %{_squirreldir}/config
+%attr(640,root,http) %{_squirreldir}/config/.htaccess
 %attr(744,root,root) %{_squirreldir}/config/*.pl
 %attr(640,root,http) %config(noreplace) %{_squirreldir}/config/*.php
 %{_squirreldir}/functions
 %dir %{_squirreldir}/help
+%attr(640,root,http) %{_squirreldir}/help/.htaccess
 %{_squirreldir}/help/index.php
 %{_squirreldir}/help/en_US
 %lang(bg) %{_squirreldir}/help/bg_BG
@@ -283,8 +284,9 @@ fi
 %lang(cy) %{_squirreldir}/help/cy_GB
 %lang(da) %{_squirreldir}/help/da_DK
 %lang(de) %{_squirreldir}/help/de_DE
-%lang(en) %{_squirreldir}/help/en_GB
+%lang(en) %{_squirreldir}/help/en_US
 %lang(es) %{_squirreldir}/help/es_ES
+%lang(fa) %{_squirreldir}/help/fa_IR
 %lang(fi) %{_squirreldir}/help/fi_FI
 %lang(fr) %{_squirreldir}/help/fr_FR
 %lang(id) %{_squirreldir}/help/id_ID
@@ -301,16 +303,17 @@ fi
 %lang(sl) %{_squirreldir}/help/sl_SI
 %lang(sr) %{_squirreldir}/help/sr_YU
 %lang(sv) %{_squirreldir}/help/sv_SE
-#%lang(th) %{_squirreldir}/help/th_TH
 %lang(uk) %{_squirreldir}/help/uk_UA
 %lang(zh_CN) %{_squirreldir}/help/zh_CN
 %{_squirreldir}/images
 %{_squirreldir}/include
 %dir %{_squirreldir}/locale
+%attr(640,root,http) %{_squirreldir}/locale/.htaccess
 %{_squirreldir}/locale/index.php
 %{_squirreldir}/locale/timezones.cfg
 %lang(ar) %{_squirreldir}/locale/ar
 %lang(bg) %{_squirreldir}/locale/bg_BG
+%lang(bn) %{_squirreldir}/locale/bn_BD
 %lang(bn) %{_squirreldir}/locale/bn_IN
 %lang(ca) %{_squirreldir}/locale/ca_ES
 %lang(da) %{_squirreldir}/locale/da_DK
@@ -318,7 +321,6 @@ fi
 %lang(cs) %{_squirreldir}/locale/cs_CZ
 %lang(cy) %{_squirreldir}/locale/cy_GB
 %lang(el) %{_squirreldir}/locale/el_GR
-%lang(en) %{_squirreldir}/locale/en_GB
 %lang(es) %{_squirreldir}/locale/es_ES
 %lang(et) %{_squirreldir}/locale/et_EE
 %lang(eu) %{_squirreldir}/locale/eu_ES
@@ -326,6 +328,7 @@ fi
 %lang(fi) %{_squirreldir}/locale/fi_FI
 %lang(fo) %{_squirreldir}/locale/fo_FO
 %lang(fr) %{_squirreldir}/locale/fr_FR
+%lang(fy) %{_squirreldir}/locale/fy
 %lang(he) %{_squirreldir}/locale/he_IL
 %lang(hr) %{_squirreldir}/locale/hr_HR
 %lang(hu) %{_squirreldir}/locale/hu_HU
@@ -334,8 +337,11 @@ fi
 %lang(it) %{_squirreldir}/locale/it_IT
 %lang(ja) %{_squirreldir}/locale/ja_JP
 %lang(ka) %{_squirreldir}/locale/ka
+%lang(km) %{_squirreldir}/locale/km
 %lang(ko) %{_squirreldir}/locale/ko_KR
 %lang(lt) %{_squirreldir}/locale/lt_LT
+%lang(lv) %{_squirreldir}/locale/lv_LV
+%lang(mk) %{_squirreldir}/locale/mk
 %lang(ms) %{_squirreldir}/locale/ms_MY
 %lang(nb) %{_squirreldir}/locale/nb_NO
 %lang(nl) %{_squirreldir}/locale/nl_NL
@@ -349,18 +355,20 @@ fi
 %lang(sv) %{_squirreldir}/locale/sv_SE
 %lang(sk) %{_squirreldir}/locale/sk_SK
 %lang(sl) %{_squirreldir}/locale/sl_SI
+%lang(ta) %{_squirreldir}/locale/ta_LK
 %lang(tr) %{_squirreldir}/locale/tr_TR
 %lang(uk) %{_squirreldir}/locale/uk_UA
 %lang(ug) %{_squirreldir}/locale/ug
+%lang(vi) %{_squirreldir}/locale/vi_VN
 %lang(zh_CN) %{_squirreldir}/locale/zh_CN
 %lang(zh_TW) %{_squirreldir}/locale/zh_TW
 %dir %{_squirreldir}/plugins
-%{_squirreldir}/plugins/abook_take
 %{_squirreldir}/plugins/administrator
 %{_squirreldir}/plugins/bug_report
 %{_squirreldir}/plugins/calendar
 %{_squirreldir}/plugins/compatibility
 %{_squirreldir}/plugins/delete_move_next
+%{_squirreldir}/plugins/demo
 %{_squirreldir}/plugins/fortune
 %{_squirreldir}/plugins/index.php
 %{_squirreldir}/plugins/info
@@ -368,6 +376,7 @@ fi
 %{_squirreldir}/plugins/message_details
 %{_squirreldir}/plugins/sent_subfolders
 %{_squirreldir}/plugins/spamcop
+%{_squirreldir}/plugins/test
 %{_squirreldir}/plugins/translate
 %{_squirreldir}/src
 %{_squirreldir}/themes
@@ -379,12 +388,13 @@ fi
 
 %files -n %{name}-plugin-filters
 %defattr(644,root,root,755)
-%doc plugins/filters/{README*,CHANGES}
+%doc plugins/filters/README
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/filters_setup.php
 %attr(755,root,root) %{_sbindir}/bulkquery
 %dir %{_squirreldir}/plugins/filters
 %dir %{_squirreldir}/plugins/filters/bulkquery
 %{_squirreldir}/plugins/filters/*.php
+%{_squirreldir}/plugins/filters/bulkquery/*.php
 
 %files -n %{name}-plugin-ispell
 %defattr(644,root,root,755)

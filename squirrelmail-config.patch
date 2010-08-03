@@ -1,7 +1,7 @@
 diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4.4-rc1/config/config_default.php
 --- squirrelmail-1.4.4-rc1.orig/config/config_default.php	2004-12-24 16:55:39.000000000 +0100
 +++ squirrelmail-1.4.4-rc1/config/config_default.php	2005-01-06 16:20:04.648183416 +0100
-@@ -84,7 +84,7 @@
+@@ -92,7 +92,7 @@
   * option set to true.
   * @global string $provider_name
   */
@@ -10,16 +10,16 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4
  
  /**
   * Provider URI
-@@ -95,7 +95,7 @@
+@@ -103,7 +103,7 @@
   * option set to true.
   * @global string $provider_uri
   */
--$provider_uri = 'http://www.squirrelmail.org/';
+-$provider_uri = 'http://squirrelmail.org/';
 +$provider_uri = 'http://www.pld-linux.org/';
  
  /*** Server Settings ***/
  /**
-@@ -266,7 +266,7 @@
+@@ -339,7 +339,7 @@
   * If you do not use this, set it to the empty string.
   * @global string $default_folder_prefix
   */
@@ -28,8 +28,8 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4
  
  /**
   * User level prefix control
-@@ -418,7 +418,7 @@
-  *   $data_dir = SM_PATH . 'data/';
+@@ -496,7 +496,7 @@
+  *
   * @global string $data_dir
   */
 -$data_dir = '/var/local/squirrelmail/data/';
@@ -37,7 +37,7 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/config_default.php squirrelmail-1.4
  
  /**
   * Attachments directory
-@@ -436,7 +436,7 @@
+@@ -514,7 +514,7 @@
   *    + It should probably be another directory than data_dir.
   * @global string $attachment_dir
   */
@@ -53,7 +53,7 @@ diff -urN squirrelmail-1.4.4-rc1.orig/config/conf.pl squirrelmail-1.4.4-rc1/conf
  $noselect_fix_enable = "false"         if ( !$noselect_fix_enable );
  $frame_top = "_top"                    if ( !$frame_top );
  
--$provider_uri = "http://www.squirrelmail.org/" if ( !$provider_uri );
+-$provider_uri = "http://squirrelmail.org/" if ( !$provider_uri );
 -$provider_name = "SquirrelMail"        if ( !$provider_name );
 +$provider_uri = "http://www.pld-linux.org/" if ( !$provider_uri );
 +$provider_name = "PLD Linux"        if ( !$provider_name );
