@@ -113,8 +113,8 @@ Provides:	squirrelmail-mailfetch
 Obsoletes:	squirrelmail-mailfetch
 
 %description -n %{name}-plugin-mailfetch
-This package contains a interface to pop3 serwers, it allows you to
-fetch mail from this kind of serwers.
+This package contains an interface to pop3 servers, it allows you to
+fetch mail from this kind of servers.
 
 %description -n %{name}-plugin-mailfetch -l pl.UTF-8
 Pakiet zawiera interfejs do serwerów pop3, pozwala ściągać z nich
