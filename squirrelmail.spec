@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.21
-Release:	3
+Release:	4
 License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -15,8 +15,9 @@ Source1:	http://dl.sourceforge.net/squirrelmail/all_locales-%{locales_ver}-%{all
 %define		compatibility_ver	2.0.16-1.0
 Source2:	http://www.squirrelmail.org/plugins/compatibility-%{compatibility_ver}.tar.gz
 # Source2-md5:	d472fb353cdf0c8d56489b5d5523d0dc
-Source3:	%{name}.conf
+Source3:	%{name}-apache.conf
 Source4:	%{name}-cp1250_charset_encode.php
+Source5:	%{name}-httpd.conf
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-squirrelspell.patch
 Patch2:		%{name}-ad_ldap.patch
@@ -34,6 +35,7 @@ Requires:	webserver
 Requires:	webserver(php)
 Provides:	squirrelmail-compatibility = %{compatibility_ver}
 Provides:	webmail
+Conflicts:	apache-base < 2.4.0-1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_squirreldir	%{_datadir}/%{name}
@@ -169,8 +171,8 @@ install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 install plugins/filters/bulkquery/bulkquery $RPM_BUILD_ROOT%{_sbindir}
 rm -f plugins/filters/bulkquery/*.{in,out,c} plugins/filters/bulkquery/bulkquery
 
-install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 cp -aR * $RPM_BUILD_ROOT%{_squirreldir}
 
@@ -205,10 +207,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin -- apache < 2.2.0, apache-base
+%triggerin -- apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun -- apache < 2.2.0, apache-base
+%triggerun -- apache-base
 %webapp_unregister httpd %{_webapp}
 
 %triggerpostun -- squirrelmail < 1.4.5-4.1
