@@ -24,7 +24,7 @@ Patch2:		%{name}-ad_ldap.patch
 Patch3:		%{name}-hide_abook_info.patch
 URL:		http://www.squirrelmail.org/
 BuildRequires:	bind-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	rpmbuild(macros) >= 1.264
 Requires:	php(gettext)
 Requires:	php(pcre)
