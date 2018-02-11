@@ -1,9 +1,13 @@
+#
+# Conditional build:
+%bcond_with	bulkquery		# build bulkquery plugin
+#
 Summary:	The SquirrelMail, a WebMail package
 Summary(pl.UTF-8):	Wiewiórcza Poczta, Poczta przez WWW
 Summary(pt_BR.UTF-8):	O SquirrelMail é um webmail
 Name:		squirrelmail
 Version:	1.4.21
-Release:	11
+Release:	12
 License:	GPL v2+
 Group:		Applications/Mail
 Source0:	http://dl.sourceforge.net/squirrelmail/%{name}-%{version}.tar.bz2
@@ -23,7 +27,7 @@ Patch1:		%{name}-squirrelspell.patch
 Patch2:		%{name}-ad_ldap.patch
 Patch3:		%{name}-hide_abook_info.patch
 URL:		http://www.squirrelmail.org/
-BuildRequires:	bind-devel
+%{?with_bulkquery:BuildRequires:	bind-devel}
 BuildRequires:	gettext-tools
 BuildRequires:	rpmbuild(macros) >= 1.264
 Requires:	php(gettext)
@@ -157,19 +161,18 @@ rm -rf plugins/compatibility/patches*
 find locale -name '*.po' | xargs rm -f
 
 %build
+%if %{with bulkquery}
 %{__make} -C plugins/filters/bulkquery \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} " \
 	LDFLAGS="%{rpmldflags} -lpthread -llwres" \
+%endif
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_squirreldir}/{config,data},%{_sbindir}} \
 	$RPM_BUILD_ROOT{%{_datadir}/docs/squirrel,%{_squirreldata}/{prefs,data}} \
 	$RPM_BUILD_ROOT%{_sysconfdir}
-
-install plugins/filters/bulkquery/bulkquery $RPM_BUILD_ROOT%{_sbindir}
-rm -f plugins/filters/bulkquery/*.{in,out,c} plugins/filters/bulkquery/bulkquery
 
 install %{SOURCE3} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install %{SOURCE5} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
@@ -183,7 +186,14 @@ find $RPM_BUILD_ROOT%{_squirreldir} -name '*.po' -o -name '*.pot' | xargs rm -f
 # junk:
 rm -f $RPM_BUILD_ROOT%{_squirreldir}/plugins/{make_archive.pl,README.plugins}
 
+%if %{with bulkquery}
+install plugins/filters/bulkquery/bulkquery $RPM_BUILD_ROOT%{_sbindir}
+rm -f plugins/filters/bulkquery/*.{in,out,c} plugins/filters/bulkquery/bulkquery
+
 ln -s %{_sbindir}/bulkquery $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/bulkquery
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/README $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/README.bulkquery
+mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/INSTALL $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/INSTALL.bulkquery
+%endif
 
 ##---{ move configuration to etc: }---##
 cp $RPM_BUILD_ROOT{%{_squirreldir}/config/config_default.php,%{_sysconfdir}/config.php}
@@ -193,10 +203,6 @@ ln -sf %{_sysconfdir}/config.php $RPM_BUILD_ROOT%{_squirreldir}/config/config.ph
 # filters:
 mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php $RPM_BUILD_ROOT%{_sysconfdir}/filters_setup.php
 ln -s %{_sysconfdir}/filters_setup.php $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/setup.php
-
-##---{ Other manipulations: }---##
-mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/README $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/README.bulkquery
-mv $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/bulkquery/INSTALL $RPM_BUILD_ROOT%{_squirreldir}/plugins/filters/INSTALL.bulkquery
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -391,11 +397,13 @@ fi
 %defattr(644,root,root,755)
 %doc plugins/filters/README
 %attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/filters_setup.php
-%attr(755,root,root) %{_sbindir}/bulkquery
 %dir %{_squirreldir}/plugins/filters
-%dir %{_squirreldir}/plugins/filters/bulkquery
 %{_squirreldir}/plugins/filters/*.php
+%if %{with bulkquery}
+%attr(755,root,root) %{_sbindir}/bulkquery
+%dir %{_squirreldir}/plugins/filters/bulkquery
 %{_squirreldir}/plugins/filters/bulkquery/*.php
+%endif
 
 %files -n %{name}-plugin-ispell
 %defattr(644,root,root,755)
